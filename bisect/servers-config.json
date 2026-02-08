@@ -1,0 +1,28 @@
+{
+  "servers": [
+    {
+      "name": "Production",
+      "uuid": "your-production-server-uuid-here",
+      "schedule": "Weekly",
+      "day": "Monday",
+      "time": "02:00",
+      "logRetention": 5
+    },
+    {
+      "name": "Staging",
+      "uuid": "your-staging-server-uuid-here",
+      "schedule": "Weekly",
+      "day": "Tuesday",
+      "time": "02:00",
+      "logRetention": 5
+    },
+    {
+      "name": "Testing",
+      "uuid": "your-testing-server-uuid-here",
+      "schedule": "Weekly",
+      "day": "Wednesday",
+      "time": "02:00",
+      "logRetention": 5
+    }
+  ]
+}
