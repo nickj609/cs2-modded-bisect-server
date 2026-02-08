@@ -1,0 +1,19 @@
+{
+  "menutype.select": "Menü kiválasztása",
+  "menutype.console": "Konzol",
+  "menutype.chat": "Csevegés",
+  "menutype.center": "Központ",
+  "menutype.button": "Gomb",
+  "menutype.metamod": "Metamod",
+  "menutype.selected": "Kiválasztott menü: ",
+  "menu.selection.left": "&#9654; [ ",
+  "menu.selection.right": "] &#9664;",
+  "menu.footer.scroll": "Görgetés",
+  "menu.footer.scroll.button": "W/S",
+  "menu.footer.select": "Kiválasztás",
+  "menu.footer.select.button": "E",
+  "menu.footer.previous": "Előző",
+  "menu.footer.previous.button": "CTRL",
+  "menu.footer.exit": "Kilépés",
+  "menu.footer.exit.button": "R"
+}
