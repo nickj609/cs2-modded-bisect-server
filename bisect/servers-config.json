@@ -1,3 +1,11 @@
 {
-    "servers": []
+    "servers":  [
+                    {
+                        "name":  "test",
+                        "uuid":  "dfb99e74",
+                        "role":  "test",
+                        "schedule":  "Manual",
+                        "logRetention":  5
+                    }
+                ]
 }

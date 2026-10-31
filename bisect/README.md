@@ -114,7 +114,7 @@ Each server has a name in `bisect/servers-config.json` and its **own** API key +
 .\uninstall.ps1 -RemoveServer test
 ```
 
-`servers-config.json` entries: `name` (letters, digits, `-`, `_`), `uuid`, `role` (`production` | `test`, default
+`servers-config.json` entries: `name` (letters, digits, `-`, `_`), `uuid` (full UUID or 8-character short ID), `role` (`production` | `test`, default
 production), optional `schedule` (`Manual` | `Daily` | `Weekly` | `Monthly`, default Manual; Weekly/Monthly need `day`,
 all but Manual need `time`) and `logRetention`. It holds no secrets, but it is committed: server names and UUIDs are
 visible in the repo.

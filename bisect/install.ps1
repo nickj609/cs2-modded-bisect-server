@@ -76,9 +76,8 @@ if ($AddServer) {
 
     if (-not $ServerUuid -and $existingEntry) { $ServerUuid = "$($existingEntry.uuid)" }
     if (-not $ServerUuid) { $ServerUuid = Read-Host "Server UUID of '$AddServer' (Bisect panel)" }
-    $parsedUuid = [Guid]::Empty
-    while (-not [Guid]::TryParse($ServerUuid, [ref]$parsedUuid)) {
-        Write-Host "Invalid UUID format. Please paste the full server UUID from the Bisect panel." -ForegroundColor Yellow
+    while (-not (Test-BisectServerId $ServerUuid)) {
+        Write-Host "Invalid server ID. Paste the server UUID or the 8-character short ID from the Bisect panel." -ForegroundColor Yellow
         $ServerUuid = Read-Host "Server UUID"
     }
 
@@ -153,9 +152,8 @@ elseif ($hasCredentialParams) {
             $ServerUuid = Get-DefaultServerUuid
             if ([string]::IsNullOrWhiteSpace($ServerUuid)) {
                 $ServerUuid = Read-Host "Enter Server UUID"
-                $parsedUuid = [Guid]::Empty
-                while (-not [Guid]::TryParse($ServerUuid, [ref]$parsedUuid)) {
-                    Write-Host "Invalid UUID format. Please paste the full server UUID from the Bisect panel." -ForegroundColor Yellow
+                while (-not (Test-BisectServerId $ServerUuid)) {
+                    Write-Host "Invalid server ID. Paste the server UUID or the 8-character short ID from the Bisect panel." -ForegroundColor Yellow
                     $ServerUuid = Read-Host "Enter Server UUID"
                 }
             }
@@ -168,15 +166,7 @@ elseif ($hasCredentialParams) {
 elseif ($UpdateCredentials) {
     $script:Credentials = Set-BisectCredentials
     if (!$MultiServer) {
-        $serverUuid = Get-DefaultServerUuid
-        if ([string]::IsNullOrWhiteSpace($serverUuid)) {
-            $serverUuid = Read-Host "Enter Server UUID"
-            $parsedUuid = [Guid]::Empty
-            while (-not [Guid]::TryParse($serverUuid, [ref]$parsedUuid)) {
-                Write-Host "Invalid UUID format. Please paste the full server UUID from the Bisect panel." -ForegroundColor Yellow
-                $serverUuid = Read-Host "Enter Server UUID"
-            }
-        }
+        if (-not $ServerUuid) { $ServerUuid = Read-SingleServerUuid }
         $script:Credentials["ServerUuid"] = $serverUuid
         $script:ServersToProcess = @(@{ uuid = $serverUuid; name = "Single Server" })
         Set-DefaultServerUuid -ServerUuid $serverUuid | Out-Null
@@ -186,15 +176,7 @@ else {
     Write-Status "Checking Credential Manager..."
     $script:Credentials = Get-BisectCredentials
     if (!$MultiServer) {
-        $serverUuid = Get-DefaultServerUuid
-        if ([string]::IsNullOrWhiteSpace($serverUuid)) {
-            $serverUuid = Read-Host "Enter Server UUID"
-            $parsedUuid = [Guid]::Empty
-            while (-not [Guid]::TryParse($serverUuid, [ref]$parsedUuid)) {
-                Write-Host "Invalid UUID format. Please paste the full server UUID from the Bisect panel." -ForegroundColor Yellow
-                $serverUuid = Read-Host "Enter Server UUID"
-            }
-        }
+        if (-not $ServerUuid) { $ServerUuid = Read-SingleServerUuid }
         $script:Credentials["ServerUuid"] = $serverUuid
         $script:ServersToProcess = @(@{ uuid = $serverUuid; name = "Single Server" })
         Set-DefaultServerUuid -ServerUuid $serverUuid | Out-Null
@@ -255,7 +237,7 @@ if ([string]::IsNullOrWhiteSpace($validationUuid) -and $script:ServersToProcess.
 }
 
 if (-not (Test-BisectApiKey -ApiKey $script:Credentials.ApiKey -ServerUuid $validationUuid)) {
-    Write-Error-Status "API key validation failed. Please check your API key."
+    Write-Error-Status "The API key can't access server $validationUuid. Check the key, and that this is the server you meant."
     $retryChoice = Read-Host "Try different credentials? (y/n)"
     if ($retryChoice -eq 'y' -or $retryChoice -eq 'Y') {
         $script:Credentials = Set-BisectCredentials

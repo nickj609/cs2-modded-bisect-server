@@ -303,6 +303,18 @@ function Update-BisectApiKey {
     }
 }
 
+function Test-BisectServerId {
+    <#
+    .SYNOPSIS
+    Checks a value is a server ID the Bisect API accepts: the full UUID or the 8-character short identifier
+    #>
+
+    param([string]$Id)
+
+    $parsed = [Guid]::Empty
+    return [Guid]::TryParse($Id, [ref]$parsed) -or ($Id -match '^[0-9a-fA-F]{8}$')
+}
+
 function Test-BisectApiKey {
     <#
     .SYNOPSIS
@@ -980,9 +992,8 @@ function Test-ServerConfig {
         }
         $names["$($server.name)".ToLowerInvariant()] = $true
 
-        $parsedUuid = [Guid]::Empty
-        if (-not [Guid]::TryParse($server.uuid, [ref]$parsedUuid)) {
-            $result.Message = "Server '$($server.name)' has invalid UUID format. Use the full UUID from the Bisect panel."
+        if (-not (Test-BisectServerId $server.uuid)) {
+            $result.Message = "Server '$($server.name)' has an invalid server ID. Use the server UUID or the 8-character short ID from the Bisect panel."
             return $result
         }
 
@@ -1190,6 +1201,27 @@ function Get-DefaultServerUuid {
     catch {
         return $null
     }
+}
+
+function Read-SingleServerUuid {
+    <#
+    .SYNOPSIS
+    Asks which server single-server mode should use, offering the saved default so it is never reused silently
+    #>
+
+    $saved = Get-DefaultServerUuid
+    if ([string]::IsNullOrWhiteSpace($saved)) {
+        $uuid = Read-Host "Enter Server UUID"
+    }
+    else {
+        $uuid = Read-Host "Server UUID (press Enter to keep the saved one, $saved)"
+        if ([string]::IsNullOrWhiteSpace($uuid)) { return $saved }
+    }
+    while (-not (Test-BisectServerId $uuid)) {
+        Write-Host "Invalid server ID. Paste the server UUID or the 8-character short ID from the Bisect panel." -ForegroundColor Yellow
+        $uuid = Read-Host "Enter Server UUID"
+    }
+    return $uuid
 }
 
 function Set-DefaultServerUuid {
@@ -1816,9 +1848,8 @@ function Resolve-TargetServer {
     if ([string]::IsNullOrWhiteSpace($uuid)) {
         if ($NoPrompt) { throw "No server configured. Run: .\install.ps1 -AddServer production" }
         $uuid = Read-Host "Enter Server UUID"
-        $parsed = [Guid]::Empty
-        while (-not [Guid]::TryParse($uuid, [ref]$parsed)) {
-            Write-Host "Invalid UUID format. Please paste the full server UUID from the Bisect panel." -ForegroundColor Yellow
+        while (-not (Test-BisectServerId $uuid)) {
+            Write-Host "Invalid server ID. Paste the server UUID or the 8-character short ID from the Bisect panel." -ForegroundColor Yellow
             $uuid = Read-Host "Enter Server UUID"
         }
     }
@@ -1849,8 +1880,7 @@ function Save-ServerEntry {
     $list = New-Object System.Collections.ArrayList
     foreach ($s in $existing) {
         if (-not $s) { continue }
-        $parsed = [Guid]::Empty
-        if (-not [Guid]::TryParse("$($s.uuid)", [ref]$parsed)) { continue }   # template placeholder
+        if (-not (Test-BisectServerId "$($s.uuid)")) { continue }   # template placeholder
         if ("$($s.name)" -ieq $Name) { continue }
         [void]$list.Add($s)
     }
