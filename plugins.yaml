@@ -138,6 +138,7 @@ components:
     pin: true                # PMM_GG1MapChooser 0.1.0 Harmony-patches GG1 1.8.1 exactly
     module: GG1_MapChooser
     always_loaded: true
+    keep: [addons/counterstrikesharp/plugins/GG1MapChooser/lang/**]   # our generic wording (Next, Make a selection): new keys on an upgrade need merging by hand
     paths:
       - addons/counterstrikesharp/plugins/GG1MapChooser/
       - addons/counterstrikesharp/plugins/GG1MapChooser/Newtonsoft.Json.dll
@@ -161,6 +162,7 @@ components:
     pin: true                # built for GG1MapChooser 1.8.1 + PMM 1.2.05+
     module: PMM_GG1MapChooser
     always_loaded: true
+    keep: [addons/counterstrikesharp/plugins/PMM_GG1MapChooser/lang/**]   # same
     requires: [GG1MapChooser, PanoramaMenuManager]
     paths:
       - addons/counterstrikesharp/plugins/PMM_GG1MapChooser/
@@ -225,7 +227,7 @@ components:
     kind: plugin
     source: { github: nickj609/GameModeManager }
     asset: GameModeManager_v*.zip
-    version: 2.0.0-test.0f354d1
+    version: 2.0.0-test.fba344d
     module: GameModeManager
     always_loaded: true
     requires: [PanoramaMenuManager, GG1MapChooser]

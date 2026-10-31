@@ -84,3 +84,29 @@ panorama/styles/custom_game/pmm_mapvote_maps.css
 ```
 
 Recompile and publish the addon again. Players rejoin to get it.
+
+## Wording
+
+The `lang/*.json` files of GG1MapChooser and PMM_GG1MapChooser in this repo are edited so the text fits maps and modes ("Next",
+"Nominate", "Make a selection"). `keep` in `plugins.yaml` stops plugin updates from overwriting them, so after an upgrade, compare
+them with the new release and add any new keys by hand. GG1 and the bridge's code are unchanged.
+
+GameModeManager's release zip also carries PanoramaMenuManager, GG1 and PMM_GG1MapChooser with their configs and wording (`GameModeManager/lib/csgo` in that repo). This repo installs them as their own components, so the copies must match: after upgrading one here, or changing its config (badges, titles, GG1 settings), copy its files to `lib/csgo` and release GameModeManager. MultiAddonManager isn't bundled: GameModeManager adds the addon with `mm_add_addon` (`WorkshopAddon`).
+## Modes in votes
+
+GameModeManager adds a few random other modes to the current pool, reshuffled every map (`MapChooser.ModesInPool`, `ModeWeight` in
+`GameModeManager.json`). In `cfg/GGMCmaps.json` they look like workshop maps: key `Mode:Surf`, `mapid` `gmm_mode_<n>`. When one wins,
+GG1 runs `host_workshop_map gmm_mode_<n>`; GameModeManager blocks that command and changes the mode. GG1 and the bridge's code are unchanged.
+
+The MODE badge and titles are in `PMM_GG1MapChooser.json` (`Badges`, `Maps`). **A new mode needs its own `Mode:<name>` entry there** to get
+them. The badge colour needs this line in the client addon's `panorama/styles/custom_game/pmm_mapvote_maps.css`, then a re-publish:
+
+```css
+.bd-mode { background-color: #e0a030; }
+```
+
+For a picture, set `"Image": "maps/<name>.png"` on the entry and follow "Bridge config" above. Without one, the placeholder shows.
+
+To check on the first test: a mode can win an RTV vote and an end-of-map vote; and `nextlevel` doesn't cause a failed change at match end
+(an end-of-map vote also sets `nextlevel Mode:Surf`, which isn't a real map). If nobody votes, GG1's random pick can land on a mode, and that's
+more likely in a mode with few maps. Lower `ModeWeight` or set `ModesInPool` to 0 if that's too often.

@@ -21,7 +21,9 @@
   "MapChooser": {
     "GeneratePools": true,
     "TriggerSecondsBeforeEnd": 60,
-    "TriggerKillsBeforeEnd": 13
+    "TriggerKillsBeforeEnd": 13,
+    "ModesInPool": 3,
+    "ModeWeight": 1
   },
   "AdminPanel": {
     "Enabled": true
