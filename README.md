@@ -830,11 +830,7 @@ If you **DO NOT** want to use this plugin; change `FollowCS2ServerGuidelines` to
 
 ### I want to permanently enable Multi Addon Manager
 
-Utilising [custom files](#custom-files), copy:
-
-`game/csgo/addons/multiaddonmanager/multiaddonmanager.vdf` to `/custom_files/addons/metamod/multiaddonmanager.vdf`
-
-This will enable [MultiAddonManager](https://github.com/Source2ZE/MultiAddonManager) on your server when it boots.
+[MultiAddonManager](https://github.com/Source2ZE/MultiAddonManager) is already enabled in this repo: its vdf is at `game/csgo/addons/metamod/multiaddonmanager.vdf`, so it loads when the server boots.
 
 To check type `meta list` in console and you should see `MultiAddonManager` in the list of loaded plugins.
 

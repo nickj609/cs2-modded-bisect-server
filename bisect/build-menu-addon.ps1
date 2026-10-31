@@ -1,0 +1,149 @@
+# Builds the client Workshop addon that PanoramaMenuManager and its bridges need, from their release zips.
+# Creates the addon in CS2's csgo_addons folders, copies the panorama files, adds the MODE badge color and compiles.
+# Safe to run again: it replaces only the panorama files below. Publishing stays manual, in Workshop Tools.
+#
+#   .\build-menu-addon.ps1
+#   .\build-menu-addon.ps1 -AddonName cs2_modded_menus -ZipFolder "$env:USERPROFILE\Downloads"
+
+[CmdletBinding()]
+param(
+    [ValidatePattern('^[A-Za-z0-9_]+$')]
+    [string]$AddonName = "cs2_modded_menus",
+    [string]$ZipFolder = (Join-Path $env:USERPROFILE "Downloads"),
+    [string]$CS2Path
+)
+
+$ErrorActionPreference = "Stop"
+Add-Type -AssemblyName System.IO.Compression.FileSystem
+
+# Define the zips to take panorama files from (newest match wins)
+$zipPatterns = @("MenuManagerCS2-*.zip", "PMM_GG1MapChooser-*.zip", "PMM_SimpleAdmin-*.zip")
+$zipPrefix = "Content-addonmanager/panorama/"
+
+# Define the files the addon must end up with
+$sourceFiles = @(
+    "panorama/layout/custom_game/menu_ui.xml",
+    "panorama/layout/custom_game/pmm_mapvote.xml",
+    "panorama/layout/custom_game/pmm_admin.xml",
+    "panorama/styles/custom_game/ui.css",
+    "panorama/styles/custom_game/pmm_mapvote.css",
+    "panorama/styles/custom_game/pmm_mapvote_maps.css",
+    "panorama/styles/custom_game/pmm_admin.css"
+)
+$modeBadge = ".bd-mode { background-color: #e0a030; }"
+
+function Stop-WithError {
+    param([string]$Message)
+    Write-Host "[ERROR] $Message" -ForegroundColor Red
+    exit 1
+}
+
+function Find-CS2 {
+    $steam = (Get-ItemProperty "HKCU:\Software\Valve\Steam" -ErrorAction SilentlyContinue).SteamPath
+    if (-not $steam) { return $null }
+
+    $libraries = @($steam)
+    $vdf = Join-Path $steam "steamapps\libraryfolders.vdf"
+    if (Test-Path $vdf) {
+        foreach ($match in (Select-String -Path $vdf -Pattern '"path"\s+"([^"]+)"')) {
+            $libraries += $match.Matches[0].Groups[1].Value -replace '\\\\', '\'
+        }
+    }
+
+    foreach ($library in $libraries) {
+        $candidate = Join-Path $library "steamapps\common\Counter-Strike Global Offensive"
+        if (Test-Path (Join-Path $candidate "game\bin\win64\resourcecompiler.exe")) { return $candidate }
+    }
+    return $null
+}
+
+if (-not $CS2Path) { $CS2Path = Find-CS2 }
+if (-not $CS2Path) { Stop-WithError "CS2 not found. Pass -CS2Path, and tick Counter-Strike 2 Workshop Tools under CS2 > Properties > DLC in Steam." }
+$compiler = Join-Path $CS2Path "game\bin\win64\resourcecompiler.exe"
+if (-not (Test-Path $compiler)) { Stop-WithError "resourcecompiler.exe not found. Tick Counter-Strike 2 Workshop Tools under CS2 > Properties > DLC in Steam." }
+if (Get-Process cs2 -ErrorAction SilentlyContinue) { Stop-WithError "CS2 or Workshop Tools is running. Close it and run this again." }
+
+$contentDir = Join-Path $CS2Path "content\csgo_addons\$AddonName"
+$gameDir = Join-Path $CS2Path "game\csgo_addons\$AddonName"
+Write-Host "Addon: $contentDir" -ForegroundColor Cyan
+
+# Create the addon, the same two folders Workshop Tools' Create New Addon makes
+New-Item -ItemType Directory -Force -Path $contentDir, $gameDir | Out-Null
+$addonInfo = Join-Path $gameDir "addoninfo.txt"
+if (-not (Test-Path $addonInfo) -or (Select-String -LiteralPath $addonInfo -Pattern '"IsTemplate"' -Quiet)) {
+    # An addon marked IsTemplate is hidden from Workshop Tools' addon list
+    Set-Content -LiteralPath $addonInfo -Value "`"AddonInfo`"`r`n{`r`n}" -Encoding Ascii
+}
+
+# Copy the panorama files out of each zip. Some zips store paths with backslashes, so read the entries directly.
+$contentRoot = [IO.Path]::GetFullPath($contentDir).TrimEnd('\') + '\'
+foreach ($pattern in $zipPatterns) {
+    $zip = Get-ChildItem -Path $ZipFolder -Filter $pattern -ErrorAction SilentlyContinue | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+    if (-not $zip) { Stop-WithError "No $pattern in $ZipFolder. Download it (see docs) or pass -ZipFolder." }
+
+    $copied = 0
+    $archive = [IO.Compression.ZipFile]::OpenRead($zip.FullName)
+    try {
+        foreach ($entry in $archive.Entries) {
+            $name = $entry.FullName -replace '\\', '/'
+            if (-not $name.StartsWith($zipPrefix) -or $name.EndsWith('/')) { continue }
+
+            $relative = $name.Substring("Content-addonmanager/".Length)
+            $target = [IO.Path]::GetFullPath((Join-Path $contentDir $relative))
+            if (-not $target.StartsWith($contentRoot, [StringComparison]::OrdinalIgnoreCase)) { Stop-WithError "Unsafe path in $($zip.Name): $name" }
+
+            New-Item -ItemType Directory -Force -Path (Split-Path $target) | Out-Null
+            [IO.Compression.ZipFileExtensions]::ExtractToFile($entry, $target, $true)
+            $copied++
+        }
+    }
+    finally {
+        $archive.Dispose()
+    }
+    if ($copied -eq 0) { Stop-WithError "$($zip.Name) has no files under $zipPrefix" }
+    Write-Host "  $($zip.Name): $copied file(s)"
+}
+
+foreach ($file in $sourceFiles) {
+    if (-not (Test-Path (Join-Path $contentDir $file))) { Stop-WithError "Missing after copying: $file" }
+}
+
+# Add the MODE badge color used by GameModeManager's mode entries in the vote
+$mapsCss = Join-Path $contentDir "panorama\styles\custom_game\pmm_mapvote_maps.css"
+if ((Get-Content -LiteralPath $mapsCss -Raw) -notmatch [regex]::Escape(".bd-mode")) {
+    [IO.File]::AppendAllText($mapsCss, "`r`n$modeBadge`r`n", (New-Object Text.UTF8Encoding($false)))
+    Write-Host "  Added the MODE badge color"
+}
+
+# Compile, then check each compiled file was really written: the compiler's exit code alone isn't trusted
+Write-Host "Compiling..." -ForegroundColor Cyan
+$started = (Get-Date).AddSeconds(-2)
+$fileList = [IO.Path]::GetTempFileName()
+try {
+    $sourceFiles | ForEach-Object { (Join-Path $contentDir $_) -replace '/', '\' } | Set-Content -LiteralPath $fileList -Encoding Ascii
+    $ErrorActionPreference = "Continue"
+    $output = & $compiler -nop4 -f -filelist $fileList 2>&1
+    $exitCode = $LASTEXITCODE
+    $ErrorActionPreference = "Stop"
+}
+finally {
+    Remove-Item -LiteralPath $fileList -ErrorAction SilentlyContinue
+}
+
+$missing = @()
+foreach ($file in $sourceFiles) {
+    $compiledName = ($file -replace '\.xml$', '.vxml_c') -replace '\.css$', '.vcss_c'
+    $compiled = Get-Item -LiteralPath (Join-Path $gameDir $compiledName) -ErrorAction SilentlyContinue
+    if (-not $compiled -or $compiled.LastWriteTime -lt $started) { $missing += $compiledName }
+}
+if ($missing.Count -gt 0 -or $exitCode -ne 0) {
+    $output | Select-Object -Last 30 | ForEach-Object { Write-Host "  $_" }
+    Stop-WithError "Compile failed (exit code $exitCode). Not written: $($missing -join ', ')"
+}
+
+Write-Host "[OK] Addon '$AddonName' is built: $($sourceFiles.Count) files compiled to $gameDir" -ForegroundColor Green
+Write-Host ""
+Write-Host "Next, publish it by hand:" -ForegroundColor Cyan
+Write-Host "  1. In Steam, launch CS2 with Launch Counter-Strike 2 Workshop Tools and open '$AddonName'."
+Write-Host "  2. Use the tools' Workshop upload, then set visibility to Unlisted on the item's Steam page."
+Write-Host "  3. Add the ID from the item's URL to mm_extra_addons in game\csgo\cfg\multiaddonmanager\multiaddonmanager.cfg."

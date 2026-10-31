@@ -46,38 +46,19 @@ Steps:
 After a change to these files: recompile, publish again (same Workshop item), then players get it on their next
 connect. Players already in the server have to rejoin.
 
-## 2. Turn on MultiAddonManager and load the addon (Bisect, via custom_files)
+## 2. Turn on MultiAddonManager and load the addon
 
-The repo keeps MAM **off** by default: its vdf is in `addons/multiaddonmanager/`, not `addons/metamod/` where Metamod
-loads plugins from. It's switched on per server with `custom_files`, which `bisect/update.ps1` / `deploy.ps1` copy over
-the deployed files on every deploy (`/home/container/custom_files/...` overrides `/home/container/...`).
+The repo keeps MAM **on**: its vdf is in `addons/metamod/`, where Metamod loads plugins from, so every server deployed
+from this repo gets it.
 
-Create these two files on the server (Bisect file manager or SFTP), under `/home/container/custom_files/`:
-
-**a. Enable MAM:** copy the repo's `game/csgo/addons/multiaddonmanager/multiaddonmanager.vdf` to
-
-```
-/home/container/custom_files/game/csgo/addons/metamod/multiaddonmanager.vdf
-```
-
-**b. Add the addon:** copy the repo's `game/csgo/cfg/multiaddonmanager/multiaddonmanager.cfg` to
-
-```
-/home/container/custom_files/game/csgo/cfg/multiaddonmanager/multiaddonmanager.cfg
-```
-
-and append your Workshop ID to `mm_extra_addons` (comma separated, keep the existing entry):
+To load the addon, append your Workshop ID to `mm_extra_addons` in `game/csgo/cfg/multiaddonmanager/multiaddonmanager.cfg`
+(comma separated, keep the existing entry), then deploy:
 
 ```
 mm_extra_addons 				"3461824328,<YOUR_ADDON_ID>"
 ```
 
 `3461824328` is already in the repo's cfg (kus's Quake Sounds addon). Remove it only if you don't use Quake Sounds.
-
-Then deploy (or restart, if the files above are the only change: `custom_files` are applied by the deploy scripts, so
-run `.\bisect\update.ps1 -Server <name> -CustomFilesOnly`).
-
-Do this on every server that should show the menus, including the test server.
 
 The server must be able to download Workshop items (it does already for workshop maps: Steam game server login
 token `STEAM_ACCOUNT`).

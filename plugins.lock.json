@@ -1348,7 +1348,7 @@
       "baseline": false,
       "files": {
         "addons/multiaddonmanager/bin/multiaddonmanager.so": "66b0bd431ad2dd81",
-        "addons/multiaddonmanager/multiaddonmanager.vdf": "445f1e0a0211aa08"
+        "addons/metamod/multiaddonmanager.vdf": "445f1e0a0211aa08"
       }
     },
     "OpenPrefirePrac": {

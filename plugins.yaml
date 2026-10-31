@@ -61,11 +61,7 @@ components:
     version: v1.7.2
     paths:
       - addons/multiaddonmanager/
-      - addons/multiaddonmanager/multiaddonmanager.vdf
-    install:
-      # Off by default (kus layout): the release puts the vdf in addons/metamod/, we keep it beside the plugin.
-      # Enable it on a server by copying it to custom_files/addons/metamod/multiaddonmanager.vdf.
-      - { from: addons/metamod/multiaddonmanager.vdf, to: addons/multiaddonmanager/multiaddonmanager.vdf }
+      - addons/metamod/multiaddonmanager.vdf
     configs: [cfg/multiaddonmanager/]
 
   - name: ServerListPlayersFix
