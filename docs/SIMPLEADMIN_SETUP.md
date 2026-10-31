@@ -75,8 +75,8 @@ The `MapChooser` section shows because GG1MapChooser is loaded. `RedirectSimpleA
 list GG1's maps (the current mode's pool). `RedirectMapsCommand` is `false`: `!maps` is GameModeManager's menu. Changing the map
 from the panel changes only the map, not the mode.
 
-GameModeManager adds its own "Game Modes" section (Modes, Maps, Settings, Warmup) through SimpleAdmin's API, and those entries
-open its menus. Nothing is needed in this bridge except the icon in `Items`. Turn the section off with `AdminPanel.Enabled` in
+GameModeManager adds its own "Game Modes" section (Modes, Maps, Settings, Warmup) through SimpleAdmin's API, using SimpleAdmin's
+menus so Back works. Nothing is needed in this bridge except the icon in `Items`. Turn the section off with `AdminPanel.Enabled` in
 `GameModeManager.json`.
 
 The VIPCore and Store sections appear only when those plugins are installed (they aren't).
@@ -101,4 +101,4 @@ Recompile and publish the addon again. Players (admins) rejoin to get it. Until 
 2. Server console: `css_plugins list` shows `CS2-SimpleAdmin`, `CS2-SimpleAdmin Fun Commands` and `PMM_SimpleAdmin`;
    `css_pmm_sa status` reports the patches applied; SimpleAdmin's log line for `css_rcon` lists only the alias `css_sa_rcon`.
 3. In game, as an admin: `!admin` opens the panorama panel; kick / mute a bot; `!map <map>` changes the map once;
-   `!maps` opens GameModeManager's menu once, with the current mode's maps; the Game Modes section opens the same menus.
+   `!maps` opens GameModeManager's menu once, with the current mode's maps; the Game Modes section has the same options, and Back works.
