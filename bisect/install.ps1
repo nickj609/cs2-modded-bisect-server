@@ -11,7 +11,10 @@ param(
     [string]$ServerUuid,
     [switch]$UpdateCredentials,
     [switch]$UpdateApiKeyOnly,
-    [switch]$MultiServer
+    [switch]$MultiServer,
+    # Register a server in servers-config.json with its own credentials (no deploy). E.g. -AddServer test -Role test
+    [string]$AddServer,
+    [ValidateSet("", "production", "test")] [string]$Role = ""
 )
 
 # Load credential manager functions
@@ -56,20 +59,90 @@ if ($UpdateApiKeyOnly) {
     exit 0
 }
 
+# Register a server (name, UUID, role, own credentials) without deploying
+if ($AddServer) {
+    if ($AddServer -notmatch '^[A-Za-z0-9_-]+$') {
+        Write-Error-Status "Server name may only contain letters, digits, - and _"
+        exit 1
+    }
+    $existingEntry = Get-ServerEntry -Name $AddServer
+
+    if (-not $Role) {
+        $default = if ($existingEntry) { Get-ServerRole $existingEntry } elseif ($AddServer -match 'test') { "test" } else { "production" }
+        $Role = Read-Host "Role of '$AddServer': production or test (default: $default)"
+        if (-not $Role) { $Role = $default }
+        while ($Role -notin @("production", "test")) { $Role = Read-Host "Type production or test" }
+    }
+
+    if (-not $ServerUuid -and $existingEntry) { $ServerUuid = "$($existingEntry.uuid)" }
+    if (-not $ServerUuid) { $ServerUuid = Read-Host "Server UUID of '$AddServer' (Bisect panel)" }
+    $parsedUuid = [Guid]::Empty
+    while (-not [Guid]::TryParse($ServerUuid, [ref]$parsedUuid)) {
+        Write-Host "Invalid UUID format. Please paste the full server UUID from the Bisect panel." -ForegroundColor Yellow
+        $ServerUuid = Read-Host "Server UUID"
+    }
+
+    # A production server may reuse the credentials stored by the old single-server setup
+    $creds = $null
+    $hasCredentialParams = $ApiKey -or $SftpHost -or $SftpPort -or $SftpUsername -or $SftpPassword
+    if (-not $hasCredentialParams -and $Role -eq "production") {
+        $legacy = Get-LegacyCredentials
+        if ($legacy) {
+            $reuse = Read-Host "Use the credentials already stored for $($legacy.SftpUsername)@$($legacy.SftpHost)? (y/n, default: y)"
+            if (-not $reuse -or $reuse -eq 'y' -or $reuse -eq 'Y') { $creds = $legacy }
+        }
+    }
+    if (-not $creds) {
+        $creds = Read-ServerCredentialsInteractive -Name $AddServer -ApiKey $ApiKey -SftpHost $SftpHost -SftpPort $SftpPort `
+                                                   -SftpUsername $SftpUsername -SftpPassword $SftpPassword
+    }
+
+    Write-Status "Checking the API key against $ServerUuid..."
+    if (-not (Test-BisectApiKey -ApiKey $creds.ApiKey -ServerUuid $ServerUuid)) {
+        Write-Error-Status "The API key can't access server $ServerUuid. Nothing was saved."
+        exit 1
+    }
+    Write-Success "API key works for this server"
+    Write-Status "Checking the SFTP login..."
+    if (Test-SftpConnection -SftpHost $creds.SftpHost -SftpPort $creds.SftpPort -SftpUsername $creds.SftpUsername -SftpPassword $creds.SftpPassword) {
+        Write-Success "SFTP login works"
+    }
+    else {
+        Write-Host "[WARNING] SFTP login could not be checked (WinSCP missing) or failed. Saving anyway; deploys will fail until it works." -ForegroundColor Yellow
+    }
+
+    Save-ServerCredentials -Name $AddServer @creds
+    $configFile = Save-ServerEntry -Name $AddServer -Uuid $ServerUuid -Role $Role
+    Write-Success "Server '$AddServer' ($Role) saved to $configFile, credentials in Credential Manager (cs2-bisect/$AddServer)"
+    Write-Host ""
+    Write-Host "Next:" -ForegroundColor Cyan
+    Write-Host "  .\update.ps1 -Server $AddServer -PlanDeletions          # preview" -ForegroundColor Gray
+    Write-Host "  .\update.ps1 -Server $AddServer -SinceCommit HEAD       # first deploy to a fresh server" -ForegroundColor Gray
+    Write-Host "  .\deploy.ps1                                         # test servers first, then production" -ForegroundColor Gray
+    exit 0
+}
+
 # Check if user wants single or multi-server installation
 Write-Host ""
 Write-Host "Installation Mode:" -ForegroundColor Yellow
 Write-Host "  1. Single Server (deploy to one server)"
 Write-Host "  2. Multiple Servers (deploy to multiple servers via config)"
-$modeChoice = Read-Host "Select mode - 1 or 2 (default: 1)"
-if (!$modeChoice) { $modeChoice = "1" }
+$modeChoice = "1"
+if (-not $MultiServer) {
+    $modeChoice = Read-Host "Select mode - 1 or 2 (default: 1)"
+    if (!$modeChoice) { $modeChoice = "1" }
+}
+if ($modeChoice -eq "2") { $MultiServer = $true }
 
 # Single server mode (original flow)
 Write-Host ""
 
-# Get credentials
+# Get credentials (multi-server mode uses each server's own credentials, loaded per server below)
 $hasCredentialParams = $ApiKey -or $SftpHost -or $SftpPort -or $SftpUsername -or $SftpPassword
-if ($hasCredentialParams) {
+if ($MultiServer) {
+    Write-Status "Multi-server mode: credentials are loaded per server"
+}
+elseif ($hasCredentialParams) {
     Write-Status "Using provided credentials"
     $script:Credentials = Set-BisectCredentials -ApiKey $ApiKey -SftpHost $SftpHost -SftpPort $SftpPort -SftpUsername $SftpUsername -SftpPassword $SftpPassword
     if ($ServerUuid) {
@@ -137,7 +210,7 @@ if ($MultiServer) {
     Write-Host ""
     
     # Check for servers-config.json
-    $configPath = Join-Path $PSScriptRoot "../servers-config.json"
+    $configPath = Get-ServersConfigPath
     
     if (-not (Test-Path $configPath)) {
         Write-Error-Status "servers-config.json not found at $configPath"
@@ -162,7 +235,12 @@ if ($MultiServer) {
     Write-Host ""
 }
 
-# Validate
+# Validate (single-server mode; multi-server mode validates each server's own credentials in the loop)
+if ($MultiServer -and $script:ServersToProcess.Count -eq 0) {
+    Write-Error-Status "No servers in the configuration"
+    exit 1
+}
+if (-not $MultiServer) {
 if (!$script:Credentials.ApiKey -or ($script:ServersToProcess.Count -eq 0)) {
     Write-Error-Status "Missing required API key or server configuration"
     exit 1
@@ -201,6 +279,7 @@ if ($script:Credentials.SftpHost -and $script:Credentials.SftpUsername -and $scr
 else {
     Write-Status "SFTP credentials not yet set, will collect during setup"
 }
+}
 
 # Process each server
 $isMultiServer = ($script:ServersToProcess.Count -gt 1) -or ($modeChoice -eq "2") -or $MultiServer
@@ -212,7 +291,22 @@ foreach ($server in $script:ServersToProcess) {
     Write-Host "=========================================" -ForegroundColor Cyan
     Write-Host "UUID: $($server.uuid)" -ForegroundColor Yellow
     Write-Host ""
-    
+
+    # Multi-server mode: this server's own credentials
+    if ($MultiServer) {
+        try {
+            $script:Credentials = Get-ServerCredentials -Name "$($server.name)" -Role (Get-ServerRole $server)
+        }
+        catch {
+            Write-Error-Status "No credentials for '$($server.name)': $_. Skipping to next server."
+            continue
+        }
+        if (-not (Test-BisectApiKey -ApiKey $script:Credentials.ApiKey -ServerUuid $server.uuid)) {
+            Write-Error-Status "API key of '$($server.name)' can't access $($server.uuid). Skipping to next server."
+            continue
+        }
+    }
+
     # Stop server
     if (!(Stop-BisectServer -ServerUuid $server.uuid -ApiKey $script:Credentials.ApiKey)) {
         if ($isMultiServer) {
@@ -234,7 +328,9 @@ foreach ($server in $script:ServersToProcess) {
                              -SftpUsername $script:Credentials.SftpUsername `
                              -SftpPassword $script:Credentials.SftpPassword `
                              -LocalPath $repoPath `
-                             -RemotePath "/game/csgo") {
+                             -RemotePath "/game/csgo" `
+                             -RepoRoot (Resolve-Path "$PSScriptRoot\..").Path `
+                             -SinceCommit HEAD) {   # fresh install: the server gets HEAD, nothing older to delete
             Write-Success "Files synced to server"
         } else {
             if ($isMultiServer) {
@@ -334,7 +430,11 @@ if ($taskChoice -eq 'y' -or $taskChoice -eq 'Y') {
             }
         }
         else {
-            # Use config values for multi-server
+            # Use config values for multi-server ("Manual": no task; deploy.ps1 -RegisterTask covers test -> production)
+            if (-not $server.schedule -or "$($server.schedule)" -eq "Manual") {
+                Write-Status "No scheduled task for '$($server.name)' (schedule: Manual)"
+                continue
+            }
             $scheduleType = $server.schedule
             $taskDay = $server.day
             $taskTime = $server.time
@@ -360,4 +460,4 @@ foreach ($server in $script:ServersToProcess) {
     Write-Host "$($server.name) ($($server.uuid))"
 }
 Write-Host ""
-Write-Host "Logging to: $script:LogFile" -ForegroundColor Cyan
+Write-Host "Logging to: $script:LogFile" -ForegroundColor Cyan

@@ -3,6 +3,7 @@
 # Uses helper functions from helpers.ps1 for API and SFTP operations
 
 param(
+    [string]$Server,               # name from servers-config.json (uses that server's own credentials)
     [string]$ServerUuid,
     [string]$ApiKey,
     [string]$SftpHost,
@@ -11,7 +12,12 @@ param(
     [string]$SftpPassword,
     [switch]$UpdateCredentials,
     [switch]$CustomFilesOnly,
-    [int]$LogRetention = 5
+    [int]$LogRetention = 5,
+    # Deletions: files removed from the repo since the deployed commit are deleted on the server (WinSCP).
+    [string]$SinceCommit,          # baseline instead of the commit recorded on the server (first deploy: what's on it now, e.g. master)
+    [switch]$AllowLargeDelete,     # allow deleting more than 25% of the tracked files
+    [switch]$PlanDeletions,        # only list what would be deleted; don't stop the server or upload
+    [switch]$NoDeletions           # upload only, like before (the deployed commit is not recorded)
 )
 
 # Load credential manager and helper functions
@@ -44,30 +50,33 @@ Write-Host "========================================`n" -ForegroundColor Cyan
 
 Write-Status "Logging to: $script:LogFile"
 
-# Get credentials
-$hasCredentialParams = $ApiKey -or $SftpHost -or $SftpPort -or $SftpUsername -or $SftpPassword
-if ($hasCredentialParams) {
-    $credentials = Set-BisectCredentials -ApiKey $ApiKey -SftpHost $SftpHost -SftpPort $SftpPort -SftpUsername $SftpUsername -SftpPassword $SftpPassword
+# Work out the server and its credentials (servers-config.json + per-server credentials, or the old single set)
+try {
+    $target = Resolve-TargetServer -Server $Server -ServerUuid $ServerUuid
 }
-elseif ($UpdateCredentials) {
-    $credentials = Set-BisectCredentials
+catch {
+    Write-Error-Status "$_"
+    exit 1
 }
-else {
-    $credentials = Get-BisectCredentials
-}
+$ServerUuid = $target.Uuid
+$credentials = $target.Credentials
+Write-Status "Server: $($target.Name) ($($target.Role)) $ServerUuid"
 
-# Get server UUID if not provided
-if (!$ServerUuid) {
-    $ServerUuid = Get-DefaultServerUuid
-    if ([string]::IsNullOrWhiteSpace($ServerUuid)) {
-        Write-Host ""
-        $ServerUuid = Read-Host "Enter Server UUID"
-        $parsedUuid = [Guid]::Empty
-        while (-not [Guid]::TryParse($ServerUuid, [ref]$parsedUuid)) {
-            Write-Host "Invalid UUID format. Please paste the full server UUID from the Bisect panel." -ForegroundColor Yellow
-            $ServerUuid = Read-Host "Enter Server UUID"
-        }
+$hasCredentialParams = $ApiKey -or $SftpHost -or $SftpPort -or $SftpUsername -or $SftpPassword
+if ($target.Legacy) {
+    # Old single-server behaviour
+    if ($hasCredentialParams) {
+        $credentials = Set-BisectCredentials -ApiKey $ApiKey -SftpHost $SftpHost -SftpPort $SftpPort -SftpUsername $SftpUsername -SftpPassword $SftpPassword
     }
+    elseif ($UpdateCredentials) {
+        $credentials = Set-BisectCredentials
+    }
+}
+elseif ($hasCredentialParams -or $UpdateCredentials) {
+    $credentials = Read-ServerCredentialsInteractive -Name $target.Name -ApiKey $ApiKey -SftpHost $SftpHost -SftpPort $SftpPort `
+                                                     -SftpUsername $SftpUsername -SftpPassword $SftpPassword
+    Save-ServerCredentials -Name $target.Name @credentials
+    Write-Success "Credentials for '$($target.Name)' updated"
 }
 
 # Update log path now that ServerUuid is known
@@ -96,6 +105,23 @@ if (-not (Test-SftpConnection -SftpHost $credentials.SftpHost `
 else {
     Write-Success "SFTP connection validated"
 }
+
+$repoRoot = (Resolve-Path "$PSScriptRoot\..").Path
+$syncRepoRoot = if ($NoDeletions) { $null } else { $repoRoot }
+
+# Preview deletions without touching the server
+if ($PlanDeletions) {
+    Write-Status "Planning deletions (the server is not stopped, nothing is uploaded)..."
+    $ok = Sync-FilesViaSftp -SftpHost $credentials.SftpHost `
+                            -SftpPort $credentials.SftpPort `
+                            -SftpUsername $credentials.SftpUsername `
+                            -SftpPassword $credentials.SftpPassword `
+                            -LocalPath "$repoRoot\game\csgo" `
+                            -RemotePath "/game/csgo" `
+                            -RepoRoot $repoRoot -SinceCommit $SinceCommit -AllowLargeDelete:$AllowLargeDelete -PlanDeletions
+    if ($ok) { exit 0 } else { exit 1 }
+}
+
 # Stop server
 if (!(Stop-BisectServer -ServerUuid $ServerUuid -ApiKey $credentials.ApiKey)) {
     Write-Error-Status "Failed to stop server"
@@ -116,7 +142,10 @@ if (-not $CustomFilesOnly) {
                           -SftpUsername $credentials.SftpUsername `
                           -SftpPassword $credentials.SftpPassword `
                           -LocalPath $repoPath `
-                          -RemotePath "/game/csgo") {
+                          -RemotePath "/game/csgo" `
+                          -RepoRoot $syncRepoRoot `
+                          -SinceCommit $SinceCommit `
+                          -AllowLargeDelete:$AllowLargeDelete) {
         Write-Success "Files synced successfully"
     }
     else {

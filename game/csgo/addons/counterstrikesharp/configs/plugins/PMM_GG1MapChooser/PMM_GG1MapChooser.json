@@ -1,0 +1,65 @@
+{
+  "Enabled": true,
+  "DisableFreeze": true,
+  "ShowVoteCount": true,
+  "ForceMenuType": "",
+  "CloseCheckInterval": 0.25,
+  "OpenGraceSeconds": 1.0,
+  "Debug": false,
+  "Vote": {
+    "Enabled": true,
+    "DefaultMode": "mouse",
+    "AllowPlayerChoice": true,
+    "SettingsCommands": [
+      "css_vm",
+      "css_votemode"
+    ],
+    "Position": "Right",
+    "FreezeTimeVote": true,
+    "FreezeTimeExtra": 3,
+    "ExtendFreezeDirect": true,
+    "FreezeTimeFallback": 15,
+    "ShowVoteCounts": true,
+    "ChatNumbers": true,
+    "ResultStyle": "NextMapCard",
+    "ResultSeconds": 5,
+    "CheckSeconds": 3,
+    "OpenDelay": 0.2,
+    "InputDelay": 0.2,
+    "LayoutPath": "panorama/layout/custom_game/pmm_mapvote.xml"
+  },
+  "Nominate": {
+    "Enabled": true
+  },
+  "Badges": {
+    "Classic": "#4caf50",
+    "Community": "#c86bfa",
+    "New": "#ff9800"
+  },
+  "Maps": {
+    "de_mirage": {
+      "Title": "Mirage",
+      "Image": "builtin",
+      "Badge": "Classic"
+    },
+    "de_inferno": {
+      "Title": "Inferno",
+      "Image": "builtin",
+      "Badge": "Classic"
+    },
+    "de_cache": {
+      "Title": "Cache",
+      "Image": "builtin",
+      "Badge": "Community"
+    }
+  },
+  "Specials": {
+    "extend": {
+      "Icon": "clock"
+    },
+    "novote": {
+      "Icon": "cancel"
+    }
+  },
+  "ConfigVersion": 3
+}

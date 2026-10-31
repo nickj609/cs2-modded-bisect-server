@@ -131,7 +131,10 @@ function New-ScheduledUpdateTask {
         [string]$Schedule,
         [string]$Day,
         [string]$Time,
-        [int]$LogRetention = 5
+        [int]$LogRetention = 5,
+        # Optional: run another script in this folder (e.g. deploy.ps1) with these arguments instead of update.ps1 -ServerUuid
+        [string]$ScriptName = "update.ps1",
+        [string]$Arguments
     )
     
     try {
@@ -174,9 +177,10 @@ function New-ScheduledUpdateTask {
         }
         
         # Create task action
-        $scriptPath = Join-Path $PSScriptRoot "update.ps1"
+        $scriptPath = Join-Path $PSScriptRoot $ScriptName
+        if (-not $Arguments) { $Arguments = "-ServerUuid `"$ServerUuid`" -LogRetention $LogRetention" }
         $action = New-ScheduledTaskAction -Execute "powershell.exe" `
-            -Argument "-NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`" -ServerUuid `"$ServerUuid`" -LogRetention $LogRetention"
+            -Argument "-NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`" $Arguments"
         
         # Task settings
         $settings = New-ScheduledTaskSettingsSet -RunOnlyIfNetworkAvailable `

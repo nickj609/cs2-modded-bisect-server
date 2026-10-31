@@ -1,0 +1,324 @@
+{
+  "Casual": {
+    "cs_agency": {
+      "ws": true,
+      "display": "cs_agency",
+      "mapid": "3339983232",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_alpine": {
+      "ws": false,
+      "display": "cs_alpine",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_assault": {
+      "ws": true,
+      "display": "cs_assault",
+      "mapid": "3070594412",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_insertion2": {
+      "ws": true,
+      "display": "cs_insertion2",
+      "mapid": "3236615060",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_italy": {
+      "ws": false,
+      "display": "cs_italy",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_militia": {
+      "ws": true,
+      "display": "cs_militia",
+      "mapid": "3089953774",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_office": {
+      "ws": false,
+      "display": "cs_office",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_akiba": {
+      "ws": true,
+      "display": "de_akiba",
+      "mapid": "3108513658",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_ancient": {
+      "ws": false,
+      "display": "de_ancient",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_ancient_night": {
+      "ws": false,
+      "display": "de_ancient_night",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_anubis": {
+      "ws": false,
+      "display": "de_anubis",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_assembly": {
+      "ws": true,
+      "display": "de_assembly",
+      "mapid": "3071005299",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_aztec_hr": {
+      "ws": true,
+      "display": "de_aztec_hr",
+      "mapid": "3079692971",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_basalt": {
+      "ws": true,
+      "display": "de_basalt",
+      "mapid": "3329258290",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_biome": {
+      "ws": true,
+      "display": "de_biome",
+      "mapid": "3075706807",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_cache": {
+      "ws": true,
+      "display": "de_cache",
+      "mapid": "3437809122",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_cbble": {
+      "ws": true,
+      "display": "de_cbble",
+      "mapid": "3329387648",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_dust2": {
+      "ws": false,
+      "display": "de_dust2",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_edin": {
+      "ws": true,
+      "display": "de_edin",
+      "mapid": "3328169568",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_ema": {
+      "ws": true,
+      "display": "de_ema",
+      "mapid": "3386116667",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_golden": {
+      "ws": true,
+      "display": "de_golden",
+      "mapid": "3286163323",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_inferno": {
+      "ws": false,
+      "display": "de_inferno",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_mills": {
+      "ws": true,
+      "display": "de_mills",
+      "mapid": "3152430710",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_mirage": {
+      "ws": false,
+      "display": "de_mirage",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_mirage_bricks": {
+      "ws": true,
+      "display": "de_mirage_bricks",
+      "mapid": "3464733042",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_mutiny": {
+      "ws": true,
+      "display": "de_mutiny",
+      "mapid": "3070766070",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_nuke": {
+      "ws": false,
+      "display": "de_nuke",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_overpass": {
+      "ws": false,
+      "display": "de_overpass",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_palacio": {
+      "ws": true,
+      "display": "de_palacio",
+      "mapid": "3249860053",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_pipeline": {
+      "ws": true,
+      "display": "de_pipeline",
+      "mapid": "3079872050",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_rats_remake": {
+      "ws": true,
+      "display": "de_rats_remake",
+      "mapid": "3460962520",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_ruins_d_prefab": {
+      "ws": true,
+      "display": "de_ruins_d_prefab",
+      "mapid": "3072352643",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_season": {
+      "ws": true,
+      "display": "de_season",
+      "mapid": "3073892687",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_stronghold": {
+      "ws": false,
+      "display": "de_stronghold",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_thera": {
+      "ws": true,
+      "display": "de_thera",
+      "mapid": "3121217565",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_train": {
+      "ws": false,
+      "display": "de_train",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_vertigo": {
+      "ws": false,
+      "display": "de_vertigo",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_warden": {
+      "ws": false,
+      "display": "de_warden",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "mp_raid": {
+      "ws": true,
+      "display": "mp_raid",
+      "mapid": "3070346180",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "twofort_cs2": {
+      "ws": true,
+      "display": "twofort_cs2",
+      "mapid": "3345551391",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  }
+}

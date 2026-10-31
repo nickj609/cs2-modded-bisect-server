@@ -3,7 +3,9 @@
 
 param(
     [switch]$ClearCredentials,
-    [string]$ServerUuid
+    [string]$ServerUuid,
+    # Remove one server: its servers-config.json entry, its credentials and its scheduled tasks
+    [string]$RemoveServer
 )
 
 # Load credential manager functions
@@ -35,6 +37,21 @@ Write-Host "========================================`n" -ForegroundColor Cyan
 
 Write-Status "Logging to: $script:LogFile"
 
+if ($RemoveServer) {
+    $entry = Get-ServerEntry -Name $RemoveServer
+    if ($entry) {
+        foreach ($task in @(Get-ScheduledTask -ErrorAction SilentlyContinue | Where-Object { $_.TaskName -like "*($($entry.uuid))*" })) {
+            Unregister-ScheduledTask -TaskName $task.TaskName -Confirm:$false | Out-Null
+            Write-Success "Removed task: $($task.TaskName)"
+        }
+    }
+    if (Remove-ServerEntry -Name $RemoveServer) { Write-Success "Removed '$RemoveServer' from $(Get-ServersConfigPath)" }
+    else { Write-Status "'$RemoveServer' was not in $(Get-ServersConfigPath)" }
+    if (Remove-ServerCredentials -Name $RemoveServer) { Write-Success "Removed credentials cs2-bisect/$RemoveServer" }
+    else { Write-Status "No stored credentials for '$RemoveServer'" }
+    exit 0
+}
+
 # Check if running from servers-config.json or single server
 Write-Host ""
 Write-Host "Uninstall Mode:" -ForegroundColor Yellow
@@ -51,7 +68,7 @@ if ($modeChoice -eq "2") {
     Write-Host ""
     
     # Check if config exists
-    $configPath = "$PSScriptRoot\..\servers-config.json"
+    $configPath = Get-ServersConfigPath
     if (-not (Test-Path $configPath)) {
         Write-Error-Status "servers-config.json not found!"
         exit 1
@@ -219,6 +236,15 @@ if ($ClearCredentials) {
         try {
             $cred = $vault.Retrieve("https://games.bisecthosting.com/api", "DefaultServerUuid")
             if ($cred) { $vault.Remove($cred) }
+        } catch { }
+
+        # Per-server credential sets (cs2-bisect/<name>)
+        try {
+            foreach ($c in $vault.RetrieveAll()) {
+                if ($c.Resource -like "cs2-bisect/*") {
+                    try { $vault.Remove($c) } catch { }
+                }
+            }
         } catch { }
         
         Write-Success "All credentials cleared from Credential Manager"

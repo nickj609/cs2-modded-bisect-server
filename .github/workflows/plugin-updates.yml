@@ -1,0 +1,142 @@
+name: Plugin updates
+
+# Weekly: finds new releases of the plugins in plugins.yaml, applies them (same engine as
+# scripts/Update-Plugins.ps1), checks the result with ServerBundleCheck and opens (or updates) one PR.
+# Nothing is merged or deployed: review the PR, merge it, then deploy from your PC (bisect/deploy.ps1 -Pull).
+#
+# One-time setup (see ci/ServerBundleCheck/README.md, "Weekly update PR"):
+#   Settings > Actions > General > Workflow permissions: "Allow GitHub Actions to create and approve pull requests".
+#   Optional secret PLUGIN_UPDATES_TOKEN (fine-grained PAT: contents + pull requests write on this repo) so that
+#   validate.yml also runs on the PR; PRs opened with the default GITHUB_TOKEN don't trigger other workflows.
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"      # Mondays 06:00 UTC
+  workflow_dispatch:
+    inputs:
+      component:
+        description: "Only this component (name in plugins.yaml); empty = all"
+        required: false
+        default: ""
+      prune:
+        description: "Also delete files from before plugins.lock.json that an updated component no longer ships"
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: plugin-updates
+  cancel-in-progress: false
+
+env:
+  TOOL: ci/ServerBundleCheck/bin/Release/net10.0/ServerBundleCheck.dll
+  WORK_DIR: ${{ github.workspace }}/../plugin-update-work
+  DOTNET_NOLOGO: "1"
+  DOTNET_CLI_TELEMETRY_OPTOUT: "1"
+
+jobs:
+  update:
+    name: Update plugins and open PR
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      # Release lookups and downloads, reused between runs (the updater re-checks them against the release)
+      - name: Cache release downloads
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.WORK_DIR }}
+          key: plugin-updates-${{ github.run_id }}
+          restore-keys: plugin-updates-
+
+      - name: Build ServerBundleCheck
+        run: dotnet build ci/ServerBundleCheck --configuration Release
+
+      - name: Apply updates
+        id: update
+        continue-on-error: true      # a single failing component must not stop the others from being proposed
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMPONENT: ${{ inputs.component }}
+          PRUNE: ${{ inputs.prune }}
+        run: |
+          args=(update --repo . --work-dir "$WORK_DIR" --summary "$RUNNER_TEMP/updates.md" --verbose)
+          if [ -n "$COMPONENT" ]; then args+=(--component "$COMPONENT"); fi
+          if [ "$PRUNE" = "true" ]; then args+=(--prune); fi
+          dotnet "$TOOL" "${args[@]}"
+
+      - name: Check bundle
+        id: check
+        continue-on-error: true
+        run: dotnet "$TOOL" check --repo . --markdown "$RUNNER_TEMP/check.md"
+
+      - name: Write PR description
+        env:
+          UPDATE_OUTCOME: ${{ steps.update.outcome }}
+          CHECK_OUTCOME: ${{ steps.check.outcome }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          {
+            echo "Automated plugin update from [this run]($RUN_URL). Nothing is deployed until you merge and run \`bisect/deploy.ps1\`."
+            echo
+            if [ "$CHECK_OUTCOME" != "success" ]; then
+              echo "> [!CAUTION]"
+              echo "> ServerBundleCheck found errors (below). This PR is a draft: fix them on this branch before merging."
+              echo
+            fi
+            if [ "$UPDATE_OUTCOME" != "success" ]; then
+              echo "> [!WARNING]"
+              echo "> Some components could not be updated (\`error\` rows below); the others are included."
+              echo
+            fi
+            cat "$RUNNER_TEMP/updates.md" 2>/dev/null || echo "_No update summary was written; see the run log._"
+            echo
+            cat "$RUNNER_TEMP/check.md" 2>/dev/null || true
+            echo
+            echo "### Before merging"
+            echo "- Read each plugin's release notes (links above) for config or command changes."
+            echo "- \`!\` lines in the run log list release files no path installs: add a path in \`plugins.yaml\` if one is needed."
+            echo "- If a plugin's ModuleName changed, fix \`css_plugins unload\` lines in \`game/csgo/cfg\` (the check flags them)."
+            echo "- Deploy to the test server first: \`bisect/deploy.ps1 -Pull\`."
+          } > "$RUNNER_TEMP/pr-body.md"
+          cat "$RUNNER_TEMP/pr-body.md" >> "$GITHUB_STEP_SUMMARY"
+
+      # Zip extraction can flip the executable bit on .so files; don't propose mode-only changes.
+      - name: Ignore file mode changes
+        run: git config core.fileMode false
+
+      - name: Open or update PR
+        id: pr
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.PLUGIN_UPDATES_TOKEN || secrets.GITHUB_TOKEN }}
+          branch: automation/plugin-updates
+          delete-branch: true
+          commit-message: "chore: plugin updates"
+          title: "Plugin updates"
+          body-path: ${{ runner.temp }}/pr-body.md
+          labels: plugin-updates
+          draft: ${{ steps.check.outcome != 'success' }}
+          add-paths: |
+            plugins.yaml
+            plugins.lock.json
+            game/csgo
+
+      - name: Result
+        env:
+          PR_URL: ${{ steps.pr.outputs.pull-request-url }}
+          PR_OP: ${{ steps.pr.outputs.pull-request-operation }}
+        run: |
+          if [ -n "$PR_URL" ]; then echo "PR $PR_OP: $PR_URL" | tee -a "$GITHUB_STEP_SUMMARY"
+          else echo "No updates: nothing to propose." | tee -a "$GITHUB_STEP_SUMMARY"; fi

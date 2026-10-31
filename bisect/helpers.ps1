@@ -505,18 +505,35 @@ function Sync-FilesViaSftp {
     
     .PARAMETER RemotePath
     Remote directory path to upload to (default: /)
-    
+
+    .PARAMETER RepoRoot
+    Repository root. When set (WinSCP only): files removed from the repo since the deployed commit are deleted on the
+    server before the upload, and the deployed commit is recorded after it (see Invoke-DeployDeletions).
+
+    .PARAMETER SinceCommit
+    Baseline commit for deletions instead of the one recorded on the server.
+
+    .PARAMETER AllowLargeDelete
+    Allow deleting more than 25% of the tracked files.
+
+    .PARAMETER PlanDeletions
+    Only list the files that would be deleted; upload nothing.
+
     .OUTPUTS
     $true if successful, $false otherwise
     #>
-    
+
     param(
         [string]$SftpHost,
         [string]$SftpPort = "22",
         [string]$SftpUsername,
         [System.Security.SecureString]$SftpPassword,
         [string]$LocalPath,
-        [string]$RemotePath = "/"
+        [string]$RemotePath = "/",
+        [string]$RepoRoot,
+        [string]$SinceCommit,
+        [switch]$AllowLargeDelete,
+        [switch]$PlanDeletions
     )
     
     try {
@@ -606,7 +623,18 @@ function Sync-FilesViaSftp {
                     throw $_
                 }
             }
-            
+
+            # Delete files removed from the repo since the deployed commit (before uploading).
+            $deletions = $null
+            if ($RepoRoot) {
+                $deletions = Invoke-DeployDeletions -Session $session -RepoRoot $RepoRoot -RemoteRoot $RemotePath `
+                                                    -SinceCommit $SinceCommit -AllowLargeDelete:$AllowLargeDelete -PlanOnly:$PlanDeletions
+                if ($PlanDeletions -or -not $deletions.Ok) {
+                    $session.Close()
+                    return [bool]$deletions.Ok
+                }
+            }
+
             # Use synchronization for fast, reliable recursive directory sync
             $transferOptions = New-Object WinSCP.TransferOptions
             $transferOptions.TransferMode = [WinSCP.TransferMode]::Binary
@@ -660,7 +688,23 @@ function Sync-FilesViaSftp {
             Write-Progress -Activity "Uploading files to $RemotePath" -Completed
             
             $synchronizationResult.Check()
-            
+
+            # Record what is now on the server, so the next deploy knows what to delete.
+            if ($RepoRoot) {
+                if ($deletions -and $deletions.RecordCommit) {
+                    $git = Resolve-GitExe
+                    $head = ("$(& $git -C $RepoRoot rev-parse HEAD)").Trim()
+                    $dirty = [bool](& $git -C $RepoRoot status --porcelain -- game/csgo)
+                    Write-DeployedCommit -Session $session -Commit $head -Dirty $dirty
+                    Write-Log "Recorded deployed commit $($head.Substring(0,7)) on the server" -Level Info
+                }
+                else {
+                    Write-Log "Deployed commit not recorded (see the warning above); the next deploy works from the same baseline" -Level Warning
+                }
+            }
+
+            Update-RemoteGameinfo -Session $session -RemoteRoot $RemotePath
+
             $session.Close()
             Write-Log "SFTP sync complete: $($synchronizationResult.Uploads.Count) files uploaded" -Level Success
             return $true
@@ -674,6 +718,10 @@ function Sync-FilesViaSftp {
             
             if (Test-Path $psftp_path) {
                 Write-Log "Using Psftp for SFTP sync" -Level Info
+                if ($RepoRoot) {
+                    Write-Log "Psftp can't delete files removed from the repo; install WinSCP for that. Files deleted from the repo stay on the server." -Level Warning
+                    if ($PlanDeletions) { return $false }
+                }
                 
                 # Create batch script for psftp
                 $batchFile = New-TemporaryFile
@@ -833,13 +881,13 @@ function Read-ServerConfig {
     Returns array of server objects
     
     .OUTPUTS
-    Array of PSCustomObject with properties: name, uuid, schedule, day, time
+    Array of PSCustomObject with properties: name, uuid, role, schedule, day, time
     #>
-    
+
     param([string]$ConfigPath)
-    
+
     if (-not $ConfigPath) {
-        $ConfigPath = Join-Path $PSScriptRoot "../servers-config.json"
+        $ConfigPath = Get-ServersConfigPath
     }
     
     if (-not (Test-Path $ConfigPath)) {
@@ -863,20 +911,21 @@ function Test-ServerConfig {
     
     .DESCRIPTION
     Checks if file exists, is valid JSON, and has required fields
-    Validates each server has: name, uuid, schedule, day, time
-    Optional: logRetention (non-negative integer)
-    
+    Validates each server has: name (letters, digits, - _; unique), uuid
+    Optional: role (production | test, default production), schedule (Weekly | Monthly | Daily | Manual,
+    default Manual; Weekly/Monthly need day, all but Manual need time), logRetention (non-negative integer)
+
     .PARAMETER ConfigPath
     Path to servers-config.json
-    
+
     .OUTPUTS
     PSCustomObject with IsValid (bool), Message (string), ServerCount (int)
     #>
-    
+
     param([string]$ConfigPath)
-    
+
     if (-not $ConfigPath) {
-        $ConfigPath = Join-Path $PSScriptRoot "../servers-config.json"
+        $ConfigPath = Get-ServersConfigPath
     }
     
     $result = @{
@@ -907,9 +956,10 @@ function Test-ServerConfig {
     }
     
     # Validate each server
-    $requiredFields = @("name", "uuid", "schedule", "day", "time")
+    $requiredFields = @("name", "uuid")
     $serverCount = 0
-    
+    $names = @{}
+
     foreach ($server in $config.servers) {
         $serverCount++
         foreach ($field in $requiredFields) {
@@ -919,20 +969,41 @@ function Test-ServerConfig {
             }
         }
 
+        # The name is used for the Credential Manager entry and task names
+        if ("$($server.name)" -notmatch '^[A-Za-z0-9_-]+$') {
+            $result.Message = "Server name '$($server.name)' may only contain letters, digits, - and _"
+            return $result
+        }
+        if ($names.ContainsKey("$($server.name)".ToLowerInvariant())) {
+            $result.Message = "Server name '$($server.name)' is used twice"
+            return $result
+        }
+        $names["$($server.name)".ToLowerInvariant()] = $true
+
         $parsedUuid = [Guid]::Empty
         if (-not [Guid]::TryParse($server.uuid, [ref]$parsedUuid)) {
             $result.Message = "Server '$($server.name)' has invalid UUID format. Use the full UUID from the Bisect panel."
             return $result
         }
-        
-        # Validate schedule value
-        if ($server.schedule -notmatch "^(Weekly|Monthly|Daily)$") {
-            $result.Message = "Server '$($server.name)' has invalid schedule: $($server.schedule). Must be Weekly, Monthly, or Daily"
+
+        if ($server.role -and "$($server.role)" -notmatch '^(production|test)$') {
+            $result.Message = "Server '$($server.name)' has invalid role: $($server.role). Must be production or test"
             return $result
         }
-        
+
+        # Validate schedule value
+        $schedule = if ($server.schedule) { "$($server.schedule)" } else { "Manual" }
+        if ($schedule -notmatch "^(Weekly|Monthly|Daily|Manual)$") {
+            $result.Message = "Server '$($server.name)' has invalid schedule: $($server.schedule). Must be Weekly, Monthly, Daily or Manual"
+            return $result
+        }
+        if ($schedule -in @("Weekly", "Monthly") -and -not $server.day) {
+            $result.Message = "Server '$($server.name)' needs a day for a $schedule schedule"
+            return $result
+        }
+
         # Validate time format
-        if ($server.time -notmatch "^\d{2}:\d{2}$") {
+        if ($schedule -ne "Manual" -and "$($server.time)" -notmatch "^\d{2}:\d{2}$") {
             $result.Message = "Server '$($server.name)' has invalid time format: $($server.time). Use HH:MM"
             return $result
         }
@@ -970,27 +1041,17 @@ function Get-ConfigTemplate {
 {
     "servers": [
         {
-            "name": "Production",
-            "uuid": "your-production-uuid-here",
-            "schedule": "Weekly",
-            "day": "Monday",
-            "time": "02:00",
+            "name": "production",
+            "uuid": "00000000-0000-0000-0000-000000000000",
+            "role": "production",
+            "schedule": "Manual",
             "logRetention": 5
         },
         {
-            "name": "Staging",
-            "uuid": "your-staging-uuid-here",
-            "schedule": "Weekly",
-            "day": "Tuesday",
-            "time": "02:00",
-            "logRetention": 5
-        },
-        {
-            "name": "Testing",
-            "uuid": "your-testing-uuid-here",
-            "schedule": "Weekly",
-            "day": "Wednesday",
-            "time": "02:00",
+            "name": "test",
+            "uuid": "00000000-0000-0000-0000-000000000000",
+            "role": "test",
+            "schedule": "Manual",
             "logRetention": 5
         }
     ]
@@ -1163,4 +1224,687 @@ function Set-DefaultServerUuid {
     catch {
         return $false
     }
+}
+
+# ---------------------------------------------------------------------------
+# Deploy deletions
+#
+# Sync-FilesViaSftp only uploads, so a file removed from the repo used to stay on the server forever.
+# These helpers remove exactly the files git tracked under game/csgo at the last deployed commit that are
+# no longer in the local folder. Files that were never in git (logs, databases, custom_files, workshop
+# downloads) are never touched. The deployed commit is recorded on the server after a successful sync.
+# ---------------------------------------------------------------------------
+
+# Remote file (relative to the SFTP root, /home/container) holding the last deployed commit.
+$script:DeployedCommitMarker = "/.cs2-deployed-commit"
+
+function Resolve-GitExe {
+    <#
+    .SYNOPSIS
+    Finds git: PATH first, then the copy bundled with GitHub Desktop.
+    #>
+    $cmd = Get-Command git -ErrorAction SilentlyContinue
+    if ($cmd) { return $cmd.Source }
+
+    $desktop = Get-ChildItem "$env:LOCALAPPDATA\GitHubDesktop" -Directory -Filter "app-*" -ErrorAction SilentlyContinue |
+        Sort-Object Name -Descending |
+        ForEach-Object { Join-Path $_.FullName "resources\app\git\cmd\git.exe" } |
+        Where-Object { Test-Path $_ } |
+        Select-Object -First 1
+    return $desktop
+}
+
+function Get-DeploymentDeletions {
+    <#
+    .SYNOPSIS
+    Lists files to delete on the server: tracked under GameDir at Baseline, missing locally now.
+
+    .PARAMETER RepoRoot
+    Local repository root (folder containing game/csgo).
+
+    .PARAMETER Baseline
+    Commit (or ref) that is currently deployed on the server.
+
+    .PARAMETER GameDir
+    Repo-relative folder that is uploaded to /game/csgo.
+
+    .OUTPUTS
+    PSCustomObject: Baseline (full SHA), Head, Dirty, Tracked (count at baseline), Files (paths relative to GameDir)
+    #>
+    param(
+        [Parameter(Mandatory)] [string]$RepoRoot,
+        [Parameter(Mandatory)] [string]$Baseline,
+        [string]$GameDir = "game/csgo"
+    )
+
+    $git = Resolve-GitExe
+    if (-not $git) { throw "git not found (install Git or GitHub Desktop)" }
+
+    # Windows PowerShell decodes native output with the console code page; git writes UTF-8 paths.
+    $previousEncoding = [Console]::OutputEncoding
+    [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+    try {
+
+    $sha = (& $git -C $RepoRoot rev-parse --verify --quiet "$Baseline^{commit}") 2>$null
+    if ($LASTEXITCODE -ne 0 -or -not $sha) {
+        throw "Commit '$Baseline' is not in the local repository. Fetch it, or pass -SinceCommit with the commit that is on the server."
+    }
+    $sha = "$sha".Trim()
+    $head = ("$(& $git -C $RepoRoot rev-parse HEAD)").Trim()
+    $dirty = [bool](& $git -C $RepoRoot status --porcelain -- $GameDir)
+
+    # -z: NUL separated, so names with spaces or unicode come through unquoted.
+    $raw = & $git -C $RepoRoot -c core.quotepath=off ls-tree -r -z --name-only $sha -- $GameDir
+    if ($LASTEXITCODE -ne 0) { throw "git ls-tree failed for $sha" }
+    $tracked = @(("$raw" -split "`0") | Where-Object { $_ })
+
+    $prefix = $GameDir.TrimEnd('/') + '/'
+    $missing = New-Object System.Collections.Generic.List[string]
+    foreach ($path in $tracked) {
+        $local = Join-Path $RepoRoot ($path -replace '/', '\')
+        if (-not (Test-Path -LiteralPath $local)) {
+            $missing.Add($path.Substring($prefix.Length))
+        }
+    }
+
+    return [PSCustomObject]@{
+        Baseline = $sha
+        Head     = $head
+        Dirty    = $dirty
+        Tracked  = $tracked.Count
+        Files    = $missing.ToArray()
+    }
+
+    }
+    finally {
+        [Console]::OutputEncoding = $previousEncoding
+    }
+}
+
+function Add-MetamodToGameinfo {
+    <#
+    .SYNOPSIS
+    Returns gameinfo.gi text with the Metamod search path added after the Game_LowViolence line (same as
+    scripts/patch-gameinfo.sh). $null when it's already there; the same text back when that line can't be found.
+    #>
+    param([Parameter(Mandatory)] [string]$Text)
+
+    if ($Text -match '(?m)^[ \t]*Game[ \t]+csgo/addons/metamod') { return $null }
+    $eol = if ($Text.Contains("`r`n")) { "`r`n" } else { "`n" }
+    return ([regex]'(?m)^([ \t]*Game_LowViolence[ \t]+csgo_lv[^\r\n]*)(\r?\n)').Replace($Text, {
+        param($m) $m.Groups[1].Value + $eol + "`t`t`tGame`tcsgo/addons/metamod" + $m.Groups[2].Value
+    }, 1)
+}
+
+function Update-RemoteGameinfo {
+    <#
+    .SYNOPSIS
+    Makes sure the server's gameinfo.gi loads Metamod, without which no plugin runs. It isn't part of the repo: a new
+    server doesn't have the line, and a CS2 update can remove it. A problem here only warns; the deploy has succeeded.
+    #>
+    param(
+        [Parameter(Mandatory)] $Session,
+        [string]$RemoteRoot = "/game/csgo"
+    )
+
+    $remote = "$RemoteRoot/gameinfo.gi"
+    $tmp = Join-Path ([System.IO.Path]::GetTempPath()) ("cs2-gameinfo-" + [Guid]::NewGuid().ToString("N"))
+    New-Item -ItemType Directory -Path $tmp | Out-Null
+    try {
+        if (-not $Session.FileExists($remote)) {
+            Write-Log "$remote not found (is CS2 installed on this server?): Metamod can't load until it's patched" -Level Warning
+            return
+        }
+        $Session.GetFiles($Session.EscapeFileMask($remote), "$tmp\").Check()
+        $local = Join-Path $tmp "gameinfo.gi"
+        $text = [System.IO.File]::ReadAllText($local)
+        $patched = Add-MetamodToGameinfo -Text $text
+        if ($null -eq $patched) { return }
+        if ($patched -eq $text) {
+            Write-Log "gameinfo.gi has no Game_LowViolence line to add Metamod after: add 'Game csgo/addons/metamod' by hand" -Level Warning
+            return
+        }
+        [System.IO.File]::WriteAllText($local, $patched, (New-Object System.Text.UTF8Encoding($false)))
+        $Session.PutFiles($Session.EscapeFileMask($local), $remote).Check()
+        Write-Log "gameinfo.gi patched to load Metamod" -Level Success
+    }
+    catch { Write-Log "Could not check gameinfo.gi: $_" -Level Warning }
+    finally { Remove-Item -LiteralPath $tmp -Recurse -Force -ErrorAction SilentlyContinue }
+}
+
+function Read-DeployedCommit {
+    <#
+    .SYNOPSIS
+    Reads the commit recorded on the server by the last successful deploy ($null if none).
+    #>
+    param([Parameter(Mandatory)] $Session)
+
+    if (-not $Session.FileExists($script:DeployedCommitMarker)) { return $null }
+    $tmp = Join-Path ([System.IO.Path]::GetTempPath()) ("cs2-deployed-" + [Guid]::NewGuid().ToString("N"))
+    New-Item -ItemType Directory -Path $tmp | Out-Null
+    try {
+        $Session.GetFiles($Session.EscapeFileMask($script:DeployedCommitMarker), "$tmp\").Check()
+        $text = Get-Content -LiteralPath (Join-Path $tmp (Split-Path $script:DeployedCommitMarker -Leaf)) -Raw
+        $line = ($text -split "`r?`n" | Where-Object { $_ -match '^[0-9a-f]{40}$' } | Select-Object -First 1)
+        return $line
+    }
+    finally {
+        Remove-Item -LiteralPath $tmp -Recurse -Force -ErrorAction SilentlyContinue
+    }
+}
+
+function Write-DeployedCommit {
+    <#
+    .SYNOPSIS
+    Records the deployed commit on the server (first line: SHA; then when and whether the tree had local changes).
+    #>
+    param(
+        [Parameter(Mandatory)] $Session,
+        [Parameter(Mandatory)] [string]$Commit,
+        [bool]$Dirty = $false
+    )
+
+    $tmp = Join-Path ([System.IO.Path]::GetTempPath()) ("cs2-deployed-" + [Guid]::NewGuid().ToString("N"))
+    New-Item -ItemType Directory -Path $tmp | Out-Null
+    try {
+        $file = Join-Path $tmp (Split-Path $script:DeployedCommitMarker -Leaf)
+        $body = "$Commit`ndeployed $(Get-Date -Format o) from $env:COMPUTERNAME`nuncommitted changes: $Dirty`n"
+        [System.IO.File]::WriteAllText($file, $body)
+        $Session.PutFiles($Session.EscapeFileMask($file), $script:DeployedCommitMarker).Check()
+    }
+    finally {
+        Remove-Item -LiteralPath $tmp -Recurse -Force -ErrorAction SilentlyContinue
+    }
+}
+
+function Remove-RemoteFiles {
+    <#
+    .SYNOPSIS
+    Deletes files under RemoteRoot, then folders the deletion left empty. Files already gone are not errors.
+
+    .OUTPUTS
+    PSCustomObject: Removed, Missing, Failed (list of "path: reason"), FoldersRemoved
+    #>
+    param(
+        [Parameter(Mandatory)] $Session,
+        [Parameter(Mandatory)] [string]$RemoteRoot,
+        [Parameter(Mandatory)] [string[]]$Files
+    )
+
+    $root = $RemoteRoot.TrimEnd('/')
+    $removed = 0; $missing = 0; $foldersRemoved = 0
+    $failed = New-Object System.Collections.Generic.List[string]
+    $folders = New-Object System.Collections.Generic.HashSet[string]
+    $i = 0
+
+    foreach ($rel in $Files) {
+        $i++
+        Write-Progress -Activity "Removing deleted files from $root" -Status "$i/$($Files.Count)" -PercentComplete ([int](($i / $Files.Count) * 100))
+        $remote = "$root/$rel"
+        $parent = $remote.Substring(0, $remote.LastIndexOf('/'))
+        [void]$folders.Add($parent)
+        try {
+            if (-not $Session.FileExists($remote)) { $missing++; continue }
+            $result = $Session.RemoveFiles($Session.EscapeFileMask($remote))
+            if ($result.IsSuccess) { $removed++ }
+            else { $failed.Add("${rel}: $($result.Failures[0].Message)") }
+        }
+        catch {
+            $failed.Add("${rel}: $_")
+        }
+    }
+    Write-Progress -Activity "Removing deleted files from $root" -Completed
+
+    # Deepest folders first; stop climbing at the first folder that still has content.
+    $sorted = $folders | Sort-Object { ($_ -split '/').Count } -Descending
+    $seen = New-Object System.Collections.Generic.HashSet[string]
+    foreach ($dir in $sorted) {
+        $d = $dir
+        while ($d.Length -gt $root.Length -and $seen.Add($d)) {
+            try {
+                if (-not $Session.FileExists($d)) { $d = $d.Substring(0, $d.LastIndexOf('/')); continue }
+                $entries = @($Session.ListDirectory($d).Files | Where-Object { $_.Name -ne '.' -and $_.Name -ne '..' })
+                if ($entries.Count -gt 0) { break }
+                $Session.RemoveFiles($Session.EscapeFileMask($d)).Check()
+                $foldersRemoved++
+            }
+            catch { break }
+            $d = $d.Substring(0, $d.LastIndexOf('/'))
+        }
+    }
+
+    return [PSCustomObject]@{
+        Removed        = $removed
+        Missing        = $missing
+        Failed         = $failed.ToArray()
+        FoldersRemoved = $foldersRemoved
+    }
+}
+
+function Invoke-DeployDeletions {
+    <#
+    .SYNOPSIS
+    Plans (and unless PlanOnly, applies) deploy deletions on an open WinSCP session.
+
+    .PARAMETER SinceCommit
+    Baseline to use instead of the commit recorded on the server (needed for the first deploy with this feature:
+    pass the commit that is on the server now, usually the branch you last deployed, e.g. master).
+
+    .PARAMETER AllowLargeDelete
+    Allow deleting more than 25% of the files tracked at the baseline.
+
+    .OUTPUTS
+    PSCustomObject: Ok (bool), Plan (from Get-DeploymentDeletions or $null)
+    #>
+    param(
+        [Parameter(Mandatory)] $Session,
+        [Parameter(Mandatory)] [string]$RepoRoot,
+        [string]$RemoteRoot = "/game/csgo",
+        [string]$SinceCommit,
+        [switch]$AllowLargeDelete,
+        [switch]$PlanOnly
+    )
+
+    $baseline = $SinceCommit
+    if (-not $baseline) {
+        $baseline = Read-DeployedCommit -Session $Session
+        if (-not $baseline) {
+            Write-Log "No deployed commit recorded on the server yet: nothing is deleted and no commit is recorded. Run once with -SinceCommit <commit that is on the server now> (e.g. master) to start tracking." -Level Warning
+            return [PSCustomObject]@{ Ok = $true; Plan = $null; RecordCommit = $false }
+        }
+        Write-Log "Server was last deployed from $baseline" -Level Info
+    }
+
+    try { $plan = Get-DeploymentDeletions -RepoRoot $RepoRoot -Baseline $baseline }
+    catch {
+        Write-Log "Cannot work out deleted files: $_" -Level Error
+        return [PSCustomObject]@{ Ok = $false; Plan = $null }
+    }
+
+    if ($plan.Dirty) {
+        Write-Log "game/csgo has uncommitted changes: they are deployed as they are on disk. Commit before deploying so the server matches a commit." -Level Warning
+    }
+    Write-Log "$($plan.Files.Count) file(s) removed since $($plan.Baseline.Substring(0,7)) (of $($plan.Tracked) tracked then)" -Level Info
+
+    if ($plan.Files.Count -gt 0 -and $plan.Tracked -gt 0 -and ($plan.Files.Count / $plan.Tracked) -gt 0.25 -and -not $AllowLargeDelete) {
+        Write-Log "Refusing to delete $($plan.Files.Count) of $($plan.Tracked) files (over 25%). Check the list with -PlanDeletions, then re-run with -AllowLargeDelete." -Level Error
+        return [PSCustomObject]@{ Ok = $false; Plan = $plan }
+    }
+
+    if ($PlanOnly) {
+        foreach ($f in $plan.Files) { Write-Host "  delete $RemoteRoot/$f" }
+        return [PSCustomObject]@{ Ok = $true; Plan = $plan }
+    }
+    if ($plan.Files.Count -eq 0) { return [PSCustomObject]@{ Ok = $true; Plan = $plan; RecordCommit = $true } }
+
+    $result = Remove-RemoteFiles -Session $Session -RemoteRoot $RemoteRoot -Files $plan.Files
+    Write-Log "Deleted $($result.Removed) file(s) and $($result.FoldersRemoved) empty folder(s); $($result.Missing) were already gone" -Level Success
+    if ($result.Failed.Count -gt 0) {
+        foreach ($f in $result.Failed) { Write-Log "Could not delete $f" -Level Warning }
+        Write-Log "$($result.Failed.Count) file(s) could not be deleted. The deployed commit is NOT updated, so the next deploy retries them." -Level Warning
+    }
+    return [PSCustomObject]@{ Ok = $true; Plan = $plan; RecordCommit = ($result.Failed.Count -eq 0) }
+}
+
+
+# ---------------------------------------------------------------------------
+# Per-server credentials
+#
+# Each server in servers-config.json (by "name") has its own API key and SFTP login in Credential Manager,
+# under the resource "cs2-bisect/<name>". The old single (global) credential set is still read for
+# -ServerUuid / no-config use, and is copied to a production server the first time it is needed.
+# ---------------------------------------------------------------------------
+
+$script:ServerCredentialPrefix = "cs2-bisect/"
+$script:ServerCredentialFields = @("ApiKey", "SftpHost", "SftpPort", "SftpUsername", "SftpPassword")
+
+function Get-ServersConfigPath {
+    <#
+    .SYNOPSIS
+    servers-config.json next to these scripts (bisect/), or the repo root for older setups.
+    #>
+    $here = Join-Path $PSScriptRoot "servers-config.json"
+    $root = Join-Path $PSScriptRoot "../servers-config.json"
+    if (Test-Path $here) { return $here }
+    if (Test-Path $root) { return $root }
+    return $here
+}
+
+function Get-ServerRole {
+    param($Entry)
+    if ($Entry.role) { return "$($Entry.role)".ToLowerInvariant() }
+    return "production"
+}
+
+function Get-ServerEntry {
+    <#
+    .SYNOPSIS
+    Finds a server in servers-config.json by name or UUID ($null if not there).
+    #>
+    param([string]$Name, [string]$Uuid)
+
+    $servers = @(Read-ServerConfig -ConfigPath (Get-ServersConfigPath))
+    foreach ($s in $servers) {
+        if (-not $s) { continue }
+        if ($Name -and "$($s.name)" -ieq $Name) { return $s }
+        if ($Uuid -and "$($s.uuid)" -ieq $Uuid) { return $s }
+    }
+    return $null
+}
+
+function Test-ServerCredentials {
+    <#
+    .SYNOPSIS
+    True when Credential Manager holds a credential set for this server name.
+    #>
+    param([Parameter(Mandatory)] [string]$Name)
+
+    $vault = New-PasswordVault
+    if (-not $vault) { return $false }
+    try { [void]$vault.Retrieve("$($script:ServerCredentialPrefix)$Name", "ApiKey"); return $true }
+    catch { return $false }
+}
+
+function Save-ServerCredentials {
+    <#
+    .SYNOPSIS
+    Stores a credential set for one server (replaces any existing one).
+    #>
+    param(
+        [Parameter(Mandatory)] [string]$Name,
+        [Parameter(Mandatory)] [string]$ApiKey,
+        [Parameter(Mandatory)] [string]$SftpHost,
+        [string]$SftpPort = "22",
+        [Parameter(Mandatory)] [string]$SftpUsername,
+        [Parameter(Mandatory)] [System.Security.SecureString]$SftpPassword
+    )
+
+    $vault = New-PasswordVault
+    if (-not $vault) { throw "Windows Credential Manager (PasswordVault) is not available" }
+
+    Remove-ServerCredentials -Name $Name | Out-Null
+    $resource = "$($script:ServerCredentialPrefix)$Name"
+    $plain = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto(
+        [System.Runtime.InteropServices.Marshal]::SecureStringToCoTaskMemUnicode($SftpPassword))
+    try {
+        $vault.Add([Windows.Security.Credentials.PasswordCredential]::new($resource, "ApiKey", $ApiKey))
+        $vault.Add([Windows.Security.Credentials.PasswordCredential]::new($resource, "SftpHost", $SftpHost))
+        $vault.Add([Windows.Security.Credentials.PasswordCredential]::new($resource, "SftpPort", $(if ($SftpPort) { $SftpPort } else { "22" })))
+        $vault.Add([Windows.Security.Credentials.PasswordCredential]::new($resource, "SftpUsername", $SftpUsername))
+        $vault.Add([Windows.Security.Credentials.PasswordCredential]::new($resource, "SftpPassword", $plain))
+    }
+    finally {
+        $plain = $null
+    }
+}
+
+function Remove-ServerCredentials {
+    <#
+    .SYNOPSIS
+    Deletes the credential set of one server. Returns $true if anything was removed.
+    #>
+    param([Parameter(Mandatory)] [string]$Name)
+
+    $vault = New-PasswordVault
+    if (-not $vault) { return $false }
+    $removed = $false
+    foreach ($field in $script:ServerCredentialFields) {
+        try {
+            $cred = $vault.Retrieve("$($script:ServerCredentialPrefix)$Name", $field)
+            if ($cred) { $vault.Remove($cred); $removed = $true }
+        }
+        catch { }
+    }
+    return $removed
+}
+
+function Read-ServerCredentialsInteractive {
+    <#
+    .SYNOPSIS
+    Prompts for a server's API key and SFTP login (values passed in are not asked again).
+    #>
+    param(
+        [Parameter(Mandatory)] [string]$Name,
+        [string]$ApiKey,
+        [string]$SftpHost,
+        [string]$SftpPort,
+        [string]$SftpUsername,
+        [string]$SftpPassword
+    )
+
+    Write-Host ""
+    Write-Host "Credentials for server '$Name' (Bisect panel: Account > API, and the server's SFTP details)" -ForegroundColor Yellow
+    Write-Host "(stored in Windows Credential Manager, DPAPI-encrypted)" -ForegroundColor Gray
+    if (-not $ApiKey) { $ApiKey = Read-Host "Bisect API key" }
+    if (-not $SftpHost) { $SftpHost = Read-Host "SFTP host" }
+    if (-not $SftpPort) {
+        $SftpPort = Read-Host "SFTP port (default: 22)"
+        if (-not $SftpPort) { $SftpPort = "22" }
+    }
+    if (-not $SftpUsername) { $SftpUsername = Read-Host "SFTP username" }
+    $secure = if ($SftpPassword) { ConvertTo-SecureString -String $SftpPassword -AsPlainText -Force } else { Read-Host "SFTP password" -AsSecureString }
+
+    return @{
+        ApiKey       = $ApiKey
+        SftpHost     = $SftpHost
+        SftpPort     = $SftpPort
+        SftpUsername = $SftpUsername
+        SftpPassword = $secure
+    }
+}
+
+function Get-ServerCredentials {
+    <#
+    .SYNOPSIS
+    Credentials of one server, as the hashtable the other helpers use (ApiKey, SftpHost, SftpPort, SftpUsername,
+    SftpPassword as SecureString).
+
+    .DESCRIPTION
+    1. The server's own set ("cs2-bisect/<name>").
+    2. For a production server with no set yet: the old single credential set, copied to the server's name.
+    3. Otherwise: prompts (unless -NoPrompt) and stores what is entered.
+    #>
+    param(
+        [Parameter(Mandatory)] [string]$Name,
+        [string]$Role = "production",
+        [switch]$NoPrompt
+    )
+
+    $vault = New-PasswordVault
+    if ($vault -and (Test-ServerCredentials -Name $Name)) {
+        $resource = "$($script:ServerCredentialPrefix)$Name"
+        $values = @{}
+        foreach ($field in $script:ServerCredentialFields) {
+            try { $values[$field] = $vault.Retrieve($resource, $field).Password } catch { $values[$field] = $null }
+        }
+        if (-not $values.SftpPort) { $values.SftpPort = "22" }
+        return @{
+            ApiKey       = $values.ApiKey
+            SftpHost     = $values.SftpHost
+            SftpPort     = $values.SftpPort
+            SftpUsername = $values.SftpUsername
+            SftpPassword = ConvertTo-SecureString -String "$($values.SftpPassword)" -AsPlainText -Force
+        }
+    }
+
+    if ($Role -eq "production") {
+        $global = Get-LegacyCredentials
+        if ($global) {
+            Save-ServerCredentials -Name $Name -ApiKey $global.ApiKey -SftpHost $global.SftpHost -SftpPort $global.SftpPort `
+                                   -SftpUsername $global.SftpUsername -SftpPassword $global.SftpPassword
+            Write-Log "Copied the existing (single) credentials to server '$Name'" -Level Info
+            return $global
+        }
+    }
+
+    if ($NoPrompt) { throw "No stored credentials for server '$Name'. Run: .\install.ps1 -AddServer $Name" }
+    $entered = Read-ServerCredentialsInteractive -Name $Name
+    Save-ServerCredentials -Name $Name @entered
+    return $entered
+}
+
+function Get-LegacyCredentials {
+    <#
+    .SYNOPSIS
+    The old single credential set, without prompting ($null if there is none).
+    #>
+    $vault = New-PasswordVault
+    if (-not $vault) { return $null }
+    try {
+        $apiKey = $vault.Retrieve("https://games.bisecthosting.com/api", "ApiKey").Password
+        $sftpHost = $vault.Retrieve("https://games.bisecthosting.com/api", "SftpHost").Password
+        $sftpPort = $vault.Retrieve("https://games.bisecthosting.com/api", "SftpPort").Password
+        $user = $vault.Retrieve("sftp://${sftpHost}:${sftpPort}", "username").Password
+        $pass = $vault.Retrieve("sftp://${sftpHost}:${sftpPort}", "password").Password
+        return @{
+            ApiKey       = $apiKey
+            SftpHost     = $sftpHost
+            SftpPort     = $sftpPort
+            SftpUsername = $user
+            SftpPassword = ConvertTo-SecureString -String $pass -AsPlainText -Force
+        }
+    }
+    catch { return $null }
+}
+
+function Resolve-TargetServer {
+    <#
+    .SYNOPSIS
+    Works out which server a script acts on, and its credentials.
+
+    .DESCRIPTION
+    -Server <name>    : that entry of servers-config.json, with its own credentials.
+    -ServerUuid <id>  : the config entry with that UUID (its credentials), else the old single credential set.
+    neither           : the only production server in servers-config.json; with no config, the old default UUID
+                        and single credential set (prompting as before).
+
+    .OUTPUTS
+    Hashtable: Name, Uuid, Role, Credentials, Legacy (bool)
+    #>
+    param([string]$Server, [string]$ServerUuid, [switch]$NoPrompt)
+
+    if ($Server) {
+        $entry = Get-ServerEntry -Name $Server
+        if (-not $entry) { throw "No server named '$Server' in $(Get-ServersConfigPath). Add it with: .\install.ps1 -AddServer $Server" }
+        $role = Get-ServerRole $entry
+        return @{ Name = "$($entry.name)"; Uuid = "$($entry.uuid)"; Role = $role; Legacy = $false
+                  Credentials = (Get-ServerCredentials -Name "$($entry.name)" -Role $role -NoPrompt:$NoPrompt) }
+    }
+
+    if ($ServerUuid) {
+        $entry = Get-ServerEntry -Uuid $ServerUuid
+        if ($entry) {
+            $role = Get-ServerRole $entry
+            return @{ Name = "$($entry.name)"; Uuid = "$($entry.uuid)"; Role = $role; Legacy = $false
+                      Credentials = (Get-ServerCredentials -Name "$($entry.name)" -Role $role -NoPrompt:$NoPrompt) }
+        }
+        return @{ Name = "default"; Uuid = $ServerUuid; Role = "production"; Legacy = $true; Credentials = (Get-BisectCredentials) }
+    }
+
+    $production = @(@(Read-ServerConfig -ConfigPath (Get-ServersConfigPath)) | Where-Object { $_ -and (Get-ServerRole $_) -eq "production" })
+    if ($production.Count -eq 1) {
+        $entry = $production[0]
+        return @{ Name = "$($entry.name)"; Uuid = "$($entry.uuid)"; Role = "production"; Legacy = $false
+                  Credentials = (Get-ServerCredentials -Name "$($entry.name)" -Role "production" -NoPrompt:$NoPrompt) }
+    }
+    if ($production.Count -gt 1) {
+        throw "servers-config.json has several production servers: pass -Server <name>"
+    }
+
+    # No config: the original single-server behaviour.
+    $uuid = Get-DefaultServerUuid
+    if ([string]::IsNullOrWhiteSpace($uuid)) {
+        if ($NoPrompt) { throw "No server configured. Run: .\install.ps1 -AddServer production" }
+        $uuid = Read-Host "Enter Server UUID"
+        $parsed = [Guid]::Empty
+        while (-not [Guid]::TryParse($uuid, [ref]$parsed)) {
+            Write-Host "Invalid UUID format. Please paste the full server UUID from the Bisect panel." -ForegroundColor Yellow
+            $uuid = Read-Host "Enter Server UUID"
+        }
+    }
+    return @{ Name = "default"; Uuid = $uuid; Role = "production"; Legacy = $true; Credentials = (Get-BisectCredentials) }
+}
+
+function Save-ServerEntry {
+    <#
+    .SYNOPSIS
+    Adds or replaces a server (by name) in servers-config.json. Placeholder entries (no valid UUID) are dropped.
+    #>
+    param(
+        [Parameter(Mandatory)] [string]$Name,
+        [Parameter(Mandatory)] [string]$Uuid,
+        [ValidateSet("production", "test")] [string]$Role = "production",
+        [string]$Schedule = "Manual",
+        [string]$Day,
+        [string]$Time,
+        [int]$LogRetention = 5
+    )
+
+    $path = Get-ServersConfigPath
+    $existing = @()
+    if (Test-Path $path) {
+        try { $existing = @((Get-Content $path -Raw | ConvertFrom-Json).servers) } catch { $existing = @() }
+    }
+
+    $list = New-Object System.Collections.ArrayList
+    foreach ($s in $existing) {
+        if (-not $s) { continue }
+        $parsed = [Guid]::Empty
+        if (-not [Guid]::TryParse("$($s.uuid)", [ref]$parsed)) { continue }   # template placeholder
+        if ("$($s.name)" -ieq $Name) { continue }
+        [void]$list.Add($s)
+    }
+
+    $entry = [ordered]@{ name = $Name; uuid = $Uuid; role = $Role; schedule = $Schedule }
+    if ($Day) { $entry.day = $Day }
+    if ($Time) { $entry.time = $Time }
+    $entry.logRetention = $LogRetention
+    [void]$list.Add([PSCustomObject]$entry)
+
+    $json = ConvertTo-Json -InputObject ([ordered]@{ servers = @($list.ToArray()) }) -Depth 5
+    [System.IO.File]::WriteAllText($path, $json + "`r`n")
+    return $path
+}
+
+function Remove-ServerEntry {
+    <#
+    .SYNOPSIS
+    Removes a server (by name) from servers-config.json. Returns $true if it was there.
+    #>
+    param([Parameter(Mandatory)] [string]$Name)
+
+    $path = Get-ServersConfigPath
+    if (-not (Test-Path $path)) { return $false }
+    $servers = @((Get-Content $path -Raw | ConvertFrom-Json).servers | Where-Object { $_ })
+    $keep = @($servers | Where-Object { "$($_.name)" -ine $Name })
+    if ($keep.Count -eq $servers.Count) { return $false }
+    $json = ConvertTo-Json -InputObject ([ordered]@{ servers = $keep }) -Depth 5
+    [System.IO.File]::WriteAllText($path, $json + "`r`n")
+    return $true
+}
+
+function Wait-BisectServerRunning {
+    <#
+    .SYNOPSIS
+    Waits until the Bisect API reports the server as running. $true if it did within the timeout.
+    #>
+    param(
+        [Parameter(Mandatory)] [string]$ServerUuid,
+        [Parameter(Mandatory)] [string]$ApiKey,
+        [int]$TimeoutSeconds = 300
+    )
+
+    $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
+    $state = "unknown"
+    while ($stopwatch.Elapsed.TotalSeconds -lt $TimeoutSeconds) {
+        Start-Sleep -Seconds 5
+        try {
+            $resources = Invoke-BisectApi -Endpoint "/servers/$ServerUuid/resources" -ApiKey $ApiKey
+            $state = "$($resources.attributes.current_state)"
+            if ($state -eq "running") { return $true }
+        }
+        catch { $state = "error: $_" }
+    }
+    Write-Log "Server $ServerUuid not running after $TimeoutSeconds s (state: $state)" -Level Warning
+    return $false
 }

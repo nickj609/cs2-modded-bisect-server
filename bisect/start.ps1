@@ -2,6 +2,7 @@
 # Starts a server using the Bisect Hosting API
 
 param(
+    [string]$Server,      # name from servers-config.json
     [string]$ServerUuid,
     [string]$ApiKey
 )
@@ -36,22 +37,16 @@ Write-Host "========================================`n" -ForegroundColor Cyan
 
 Write-Status "Logging to: $script:LogFile"
 
-# Get credentials
-$credentials = Get-BisectCredentials
-
-# Get server UUID if not provided
-if (!$ServerUuid) {
-    $ServerUuid = Get-DefaultServerUuid
-    if ([string]::IsNullOrWhiteSpace($ServerUuid)) {
-        Write-Host ""
-        $ServerUuid = Read-Host "Enter Server UUID"
-        $parsedUuid = [Guid]::Empty
-        while (-not [Guid]::TryParse($ServerUuid, [ref]$parsedUuid)) {
-            Write-Host "Invalid UUID format. Please paste the full server UUID from the Bisect panel." -ForegroundColor Yellow
-            $ServerUuid = Read-Host "Enter Server UUID"
-        }
-    }
+# Work out the server and its credentials
+try {
+    $target = Resolve-TargetServer -Server $Server -ServerUuid $ServerUuid
 }
+catch {
+    Write-Error-Status "$_"
+    exit 1
+}
+$ServerUuid = $target.Uuid
+$credentials = $target.Credentials
 
 # Update log path now that ServerUuid is known
 $script:LogFile = Set-LogPath -BaseDir $PSScriptRoot -ServerUuid $ServerUuid -LogTag $script:LogTag -MaxFiles 5

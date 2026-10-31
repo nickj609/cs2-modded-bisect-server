@@ -1,0 +1,33 @@
+name: Validate server bundle
+
+# Checks plugins.yaml against what is in game/csgo: every plugin is listed, DLLs match the bundled
+# CounterStrikeSharp / .NET runtime, cfg plugin loads/unloads point at real plugins, configs parse,
+# and no secrets are committed. See ci/ServerBundleCheck/README.md.
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: ServerBundleCheck
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Build checker
+        run: dotnet build ci/ServerBundleCheck --configuration Release
+
+      - name: Check bundle
+        run: dotnet ci/ServerBundleCheck/bin/Release/net10.0/ServerBundleCheck.dll check --repo .

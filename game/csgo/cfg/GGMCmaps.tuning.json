@@ -1,0 +1,3482 @@
+{
+  "1v1 Arenas": {
+    "aim_redline_fp": {
+      "ws": true,
+      "display": "aim_redline_fp",
+      "mapid": "3070253400",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "Aim": {
+    "1v1aim_map_longdustversion_d": {
+      "ws": true,
+      "display": "1v1aim_map_longdustversion_d",
+      "mapid": "3082605693",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "1v1v1v1beta04": {
+      "ws": true,
+      "display": "1v1v1v1beta04",
+      "mapid": "3433012420",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "aim_ag_texture2": {
+      "ws": true,
+      "display": "aim_ag_texture2",
+      "mapid": "3074961197",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "aim_ag_texture_city_advanced": {
+      "ws": true,
+      "display": "aim_ag_texture_city_advanced",
+      "mapid": "3082113929",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "aim_ag_texture_jungle": {
+      "ws": true,
+      "display": "aim_ag_texture_jungle",
+      "mapid": "3095778105",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "aim_ak-colt_CS2": {
+      "ws": true,
+      "display": "aim_ak-colt_CS2",
+      "mapid": "3078701726",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "aim_deagle": {
+      "ws": true,
+      "display": "aim_deagle",
+      "mapid": "3075996446",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "aim_map": {
+      "ws": true,
+      "display": "aim_map",
+      "mapid": "3084291314",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "aim_plywood": {
+      "ws": true,
+      "display": "aim_plywood",
+      "mapid": "3118710028",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "aim_shotty2_gg1": {
+      "ws": true,
+      "display": "aim_shotty2_gg1",
+      "mapid": "3360120483",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "aim_usp": {
+      "ws": true,
+      "display": "aim_usp",
+      "mapid": "3085962528",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "ar_blue_arena": {
+      "ws": true,
+      "display": "ar_blue_arena",
+      "mapid": "3361478861",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "ar_combat_arena": {
+      "ws": true,
+      "display": "ar_combat_arena",
+      "mapid": "3455068243",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "ar_ds_cornered_gg1": {
+      "ws": true,
+      "display": "ar_ds_cornered_gg1",
+      "mapid": "3329405459",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "ar_pool_day": {
+      "ws": false,
+      "display": "ar_pool_day",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs2_bloodstrike": {
+      "ws": true,
+      "display": "cs2_bloodstrike",
+      "mapid": "3071890065",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "daymare": {
+      "ws": true,
+      "display": "daymare",
+      "mapid": "3072640420",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_indoor": {
+      "ws": true,
+      "display": "de_indoor",
+      "mapid": "3535917558",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_splat": {
+      "ws": true,
+      "display": "de_splat",
+      "mapid": "3439120481",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "freebet_aim_map": {
+      "ws": true,
+      "display": "freebet_aim_map",
+      "mapid": "3146122036",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "fy_hangemhigh": {
+      "ws": true,
+      "display": "fy_hangemhigh",
+      "mapid": "3437226954",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "gg_festspeedball": {
+      "ws": true,
+      "display": "gg_festspeedball",
+      "mapid": "3111527644",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "gg_strafe_gg1": {
+      "ws": true,
+      "display": "gg_strafe_gg1",
+      "mapid": "3331570055",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "shipment_version_1_0": {
+      "ws": true,
+      "display": "shipment_version_1_0",
+      "mapid": "3086555291",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "speedball": {
+      "ws": true,
+      "display": "speedball",
+      "mapid": "3443206318",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "trainingoutside": {
+      "ws": true,
+      "display": "trainingoutside",
+      "mapid": "3475270536",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "Arms Race (Valve)": {
+    "ar_baggage": {
+      "ws": false,
+      "display": "ar_baggage",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "ar_pool_day": {
+      "ws": false,
+      "display": "ar_pool_day",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "ar_shoots": {
+      "ws": false,
+      "display": "ar_shoots",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "ar_shoots_night": {
+      "ws": false,
+      "display": "ar_shoots_night",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "Awp Only": {
+    "awp_bhop_rocket": {
+      "ws": true,
+      "display": "awp_bhop_rocket",
+      "mapid": "3142070597",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "Battle Ball": {
+    "battleball": {
+      "ws": true,
+      "display": "battleball",
+      "mapid": "3280650663",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "Battle Royale": {
+    "br_electrified": {
+      "ws": true,
+      "display": "br_electrified",
+      "mapid": "3330484099",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "br_flood": {
+      "ws": true,
+      "display": "br_flood",
+      "mapid": "3267454508",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "br_stacks": {
+      "ws": true,
+      "display": "br_stacks",
+      "mapid": "3297489255",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "br_t2": {
+      "ws": true,
+      "display": "br_t2",
+      "mapid": "3462095803",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "minecraft": {
+      "ws": true,
+      "display": "minecraft",
+      "mapid": "3186779271",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "minecraft_hungergame": {
+      "ws": true,
+      "display": "minecraft_hungergame",
+      "mapid": "3240933254",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "Bhop": {
+    "bhop_1derland": {
+      "ws": true,
+      "display": "bhop_1derland",
+      "mapid": "3077596014",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "bhop_arcturus": {
+      "ws": true,
+      "display": "bhop_arcturus",
+      "mapid": "3088973190",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "bhop_at_night": {
+      "ws": true,
+      "display": "bhop_at_night",
+      "mapid": "3077211069",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "bhop_cherryblossom": {
+      "ws": true,
+      "display": "bhop_cherryblossom",
+      "mapid": "3082038560",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "bhop_kiwi_cwfx": {
+      "ws": true,
+      "display": "bhop_kiwi_cwfx",
+      "mapid": "3095219437",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "bhop_ragnarok": {
+      "ws": true,
+      "display": "bhop_ragnarok",
+      "mapid": "3077153735",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "bhop_whiteshit": {
+      "ws": true,
+      "display": "bhop_whiteshit",
+      "mapid": "3078523849",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "bhop_zunron": {
+      "ws": true,
+      "display": "bhop_zunron",
+      "mapid": "3077475505",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "Capture The Flag": {
+    "ctf_2fort": {
+      "ws": true,
+      "display": "ctf_2fort",
+      "mapid": "3555531615",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "ctf_applejack": {
+      "ws": true,
+      "display": "ctf_applejack",
+      "mapid": "3611844411",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "ctf_doublecross": {
+      "ws": true,
+      "display": "ctf_doublecross",
+      "mapid": "3555532817",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "ctf_landfall": {
+      "ws": true,
+      "display": "ctf_landfall",
+      "mapid": "3611843310",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "ctf_sawmill": {
+      "ws": true,
+      "display": "ctf_sawmill",
+      "mapid": "3611854449",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "ctf_turbine": {
+      "ws": true,
+      "display": "ctf_turbine",
+      "mapid": "3555534037",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "Casual": {
+    "cs_agency": {
+      "ws": true,
+      "display": "cs_agency",
+      "mapid": "3339983232",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_alpine": {
+      "ws": false,
+      "display": "cs_alpine",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_assault": {
+      "ws": true,
+      "display": "cs_assault",
+      "mapid": "3070594412",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_insertion2": {
+      "ws": true,
+      "display": "cs_insertion2",
+      "mapid": "3236615060",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_italy": {
+      "ws": false,
+      "display": "cs_italy",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_militia": {
+      "ws": true,
+      "display": "cs_militia",
+      "mapid": "3089953774",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_office": {
+      "ws": false,
+      "display": "cs_office",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_akiba": {
+      "ws": true,
+      "display": "de_akiba",
+      "mapid": "3108513658",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_ancient": {
+      "ws": false,
+      "display": "de_ancient",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_ancient_night": {
+      "ws": false,
+      "display": "de_ancient_night",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_anubis": {
+      "ws": false,
+      "display": "de_anubis",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_assembly": {
+      "ws": true,
+      "display": "de_assembly",
+      "mapid": "3071005299",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_aztec_hr": {
+      "ws": true,
+      "display": "de_aztec_hr",
+      "mapid": "3079692971",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_basalt": {
+      "ws": true,
+      "display": "de_basalt",
+      "mapid": "3329258290",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_biome": {
+      "ws": true,
+      "display": "de_biome",
+      "mapid": "3075706807",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_cache": {
+      "ws": true,
+      "display": "de_cache",
+      "mapid": "3437809122",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_cbble": {
+      "ws": true,
+      "display": "de_cbble",
+      "mapid": "3329387648",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_dust2": {
+      "ws": false,
+      "display": "de_dust2",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_edin": {
+      "ws": true,
+      "display": "de_edin",
+      "mapid": "3328169568",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_ema": {
+      "ws": true,
+      "display": "de_ema",
+      "mapid": "3386116667",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_golden": {
+      "ws": true,
+      "display": "de_golden",
+      "mapid": "3286163323",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_inferno": {
+      "ws": false,
+      "display": "de_inferno",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_mills": {
+      "ws": true,
+      "display": "de_mills",
+      "mapid": "3152430710",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_mirage": {
+      "ws": false,
+      "display": "de_mirage",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_mirage_bricks": {
+      "ws": true,
+      "display": "de_mirage_bricks",
+      "mapid": "3464733042",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_mutiny": {
+      "ws": true,
+      "display": "de_mutiny",
+      "mapid": "3070766070",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_nuke": {
+      "ws": false,
+      "display": "de_nuke",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_overpass": {
+      "ws": false,
+      "display": "de_overpass",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_palacio": {
+      "ws": true,
+      "display": "de_palacio",
+      "mapid": "3249860053",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_pipeline": {
+      "ws": true,
+      "display": "de_pipeline",
+      "mapid": "3079872050",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_rats_remake": {
+      "ws": true,
+      "display": "de_rats_remake",
+      "mapid": "3460962520",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_ruins_d_prefab": {
+      "ws": true,
+      "display": "de_ruins_d_prefab",
+      "mapid": "3072352643",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_season": {
+      "ws": true,
+      "display": "de_season",
+      "mapid": "3073892687",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_stronghold": {
+      "ws": false,
+      "display": "de_stronghold",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_thera": {
+      "ws": true,
+      "display": "de_thera",
+      "mapid": "3121217565",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_train": {
+      "ws": false,
+      "display": "de_train",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_vertigo": {
+      "ws": false,
+      "display": "de_vertigo",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_warden": {
+      "ws": false,
+      "display": "de_warden",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "mp_raid": {
+      "ws": true,
+      "display": "mp_raid",
+      "mapid": "3070346180",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "twofort_cs2": {
+      "ws": true,
+      "display": "twofort_cs2",
+      "mapid": "3345551391",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "Casual (1.6)": {
+    "as_oilrig": {
+      "ws": true,
+      "display": "as_oilrig",
+      "mapid": "3104677430",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_assult_classic": {
+      "ws": true,
+      "display": "cs_assult_classic",
+      "mapid": "3215705579",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_italy_classic": {
+      "ws": true,
+      "display": "cs_italy_classic",
+      "mapid": "3212419403",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_militia_classic": {
+      "ws": true,
+      "display": "cs_militia_classic",
+      "mapid": "3144773563",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_office_classic": {
+      "ws": true,
+      "display": "cs_office_classic",
+      "mapid": "3216844784",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_aztec_classic": {
+      "ws": true,
+      "display": "de_aztec_classic",
+      "mapid": "3213800338",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_dust2_classic": {
+      "ws": true,
+      "display": "de_dust2_classic",
+      "mapid": "3201205818",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_dust_classic": {
+      "ws": true,
+      "display": "de_dust_classic",
+      "mapid": "3078095785",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_nuke_classic": {
+      "ws": true,
+      "display": "de_nuke_classic",
+      "mapid": "3205793205",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_survivor_classic_m": {
+      "ws": true,
+      "display": "de_survivor_classic_m",
+      "mapid": "3217247541",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "Competitive": {
+    "cs_agency": {
+      "ws": true,
+      "display": "cs_agency",
+      "mapid": "3339983232",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_alpine": {
+      "ws": false,
+      "display": "cs_alpine",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_assault": {
+      "ws": true,
+      "display": "cs_assault",
+      "mapid": "3070594412",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_insertion2": {
+      "ws": true,
+      "display": "cs_insertion2",
+      "mapid": "3236615060",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_italy": {
+      "ws": false,
+      "display": "cs_italy",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_militia": {
+      "ws": true,
+      "display": "cs_militia",
+      "mapid": "3089953774",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_office": {
+      "ws": false,
+      "display": "cs_office",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_akiba": {
+      "ws": true,
+      "display": "de_akiba",
+      "mapid": "3108513658",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_ancient_night": {
+      "ws": false,
+      "display": "de_ancient_night",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_anubis": {
+      "ws": false,
+      "display": "de_anubis",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_assembly": {
+      "ws": true,
+      "display": "de_assembly",
+      "mapid": "3071005299",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_aztec_hr": {
+      "ws": true,
+      "display": "de_aztec_hr",
+      "mapid": "3079692971",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_basalt": {
+      "ws": true,
+      "display": "de_basalt",
+      "mapid": "3329258290",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_biome": {
+      "ws": true,
+      "display": "de_biome",
+      "mapid": "3075706807",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_cache": {
+      "ws": true,
+      "display": "de_cache",
+      "mapid": "3437809122",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_cbble": {
+      "ws": true,
+      "display": "de_cbble",
+      "mapid": "3329387648",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_dust2": {
+      "ws": false,
+      "display": "de_dust2",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_edin": {
+      "ws": true,
+      "display": "de_edin",
+      "mapid": "3328169568",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_ema": {
+      "ws": true,
+      "display": "de_ema",
+      "mapid": "3386116667",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_golden": {
+      "ws": true,
+      "display": "de_golden",
+      "mapid": "3286163323",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_inferno": {
+      "ws": false,
+      "display": "de_inferno",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_mills": {
+      "ws": true,
+      "display": "de_mills",
+      "mapid": "3152430710",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_mirage": {
+      "ws": false,
+      "display": "de_mirage",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_mirage_bricks": {
+      "ws": true,
+      "display": "de_mirage_bricks",
+      "mapid": "3464733042",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_mutiny": {
+      "ws": true,
+      "display": "de_mutiny",
+      "mapid": "3070766070",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_nuke": {
+      "ws": false,
+      "display": "de_nuke",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_overpass": {
+      "ws": false,
+      "display": "de_overpass",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_palacio": {
+      "ws": true,
+      "display": "de_palacio",
+      "mapid": "3249860053",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_pipeline": {
+      "ws": true,
+      "display": "de_pipeline",
+      "mapid": "3079872050",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_rats_remake": {
+      "ws": true,
+      "display": "de_rats_remake",
+      "mapid": "3460962520",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_ruins_d_prefab": {
+      "ws": true,
+      "display": "de_ruins_d_prefab",
+      "mapid": "3072352643",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_season": {
+      "ws": true,
+      "display": "de_season",
+      "mapid": "3073892687",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_stronghold": {
+      "ws": false,
+      "display": "de_stronghold",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_thera": {
+      "ws": true,
+      "display": "de_thera",
+      "mapid": "3121217565",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_train": {
+      "ws": false,
+      "display": "de_train",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_vertigo": {
+      "ws": false,
+      "display": "de_vertigo",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_warden": {
+      "ws": false,
+      "display": "de_warden",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "mp_raid": {
+      "ws": true,
+      "display": "mp_raid",
+      "mapid": "3070346180",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "twofort_cs2": {
+      "ws": true,
+      "display": "twofort_cs2",
+      "mapid": "3345551391",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "Competitive (Valve)": {
+    "cs_alpine": {
+      "ws": false,
+      "display": "cs_alpine",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_italy": {
+      "ws": false,
+      "display": "cs_italy",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_office": {
+      "ws": false,
+      "display": "cs_office",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_ancient_night": {
+      "ws": false,
+      "display": "de_ancient_night",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_anubis": {
+      "ws": false,
+      "display": "de_anubis",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_dust2": {
+      "ws": false,
+      "display": "de_dust2",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_inferno": {
+      "ws": false,
+      "display": "de_inferno",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_mirage": {
+      "ws": false,
+      "display": "de_mirage",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_nuke": {
+      "ws": false,
+      "display": "de_nuke",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_overpass": {
+      "ws": false,
+      "display": "de_overpass",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_stronghold": {
+      "ws": false,
+      "display": "de_stronghold",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_train": {
+      "ws": false,
+      "display": "de_train",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_vertigo": {
+      "ws": false,
+      "display": "de_vertigo",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_warden": {
+      "ws": false,
+      "display": "de_warden",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "Competitive 45\u00B0": {
+    "de_anubis_silly": {
+      "ws": true,
+      "display": "de_anubis_silly",
+      "mapid": "3245985233",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_mirage45": {
+      "ws": true,
+      "display": "de_mirage45",
+      "mapid": "3270516952",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_nuke_silly": {
+      "ws": true,
+      "display": "de_nuke_silly",
+      "mapid": "3245245780",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_overpass_45": {
+      "ws": true,
+      "display": "de_overpass_45",
+      "mapid": "3270066070",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_train_twyxe": {
+      "ws": true,
+      "display": "de_train_twyxe",
+      "mapid": "3406937162",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_vertigo_45": {
+      "ws": true,
+      "display": "de_vertigo_45",
+      "mapid": "3276886893",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "Course": {
+    "cr_devisland_p1_v1": {
+      "ws": true,
+      "display": "cr_devisland_p1_v1",
+      "mapid": "3076483842",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cr_minecraft_jb_v2": {
+      "ws": true,
+      "display": "cr_minecraft_jb_v2",
+      "mapid": "3070896876",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "mg_acrophobia_run_v2": {
+      "ws": true,
+      "display": "mg_acrophobia_run_v2",
+      "mapid": "3070463620",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "mg_alley_course_v2": {
+      "ws": true,
+      "display": "mg_alley_course_v2",
+      "mapid": "3070455802",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "mg_circle_course_v3": {
+      "ws": true,
+      "display": "mg_circle_course_v3",
+      "mapid": "3070434475",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "mg_glave_course_v2": {
+      "ws": true,
+      "display": "mg_glave_course_v2",
+      "mapid": "3070445185",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "mg_metal_course_v2": {
+      "ws": true,
+      "display": "mg_metal_course_v2",
+      "mapid": "3070464208",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "mg_metro_course_s2": {
+      "ws": true,
+      "display": "mg_metro_course_s2",
+      "mapid": "3071040020",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "mg_metro_course_v1": {
+      "ws": true,
+      "display": "mg_metro_course_v1",
+      "mapid": "3070463151",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "mg_office_course_v3": {
+      "ws": true,
+      "display": "mg_office_course_v3",
+      "mapid": "3070459211",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "mg_simpsons_course_v2": {
+      "ws": true,
+      "display": "mg_simpsons_course_v2",
+      "mapid": "3070447697",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "mg_sky_realm_v3": {
+      "ws": true,
+      "display": "mg_sky_realm_v3",
+      "mapid": "3070451616",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "mg_sonic_course_v2": {
+      "ws": true,
+      "display": "mg_sonic_course_v2",
+      "mapid": "3070452642",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "mg_switch_course_v2": {
+      "ws": true,
+      "display": "mg_switch_course_v2",
+      "mapid": "3070439729",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "Deathmatch": {
+    "de_dust2": {
+      "ws": false,
+      "display": "de_dust2",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_inferno": {
+      "ws": false,
+      "display": "de_inferno",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_mirage": {
+      "ws": false,
+      "display": "de_mirage",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_vertigo": {
+      "ws": false,
+      "display": "de_vertigo",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "Deathmatch FFA (Valve)": {
+    "cs_alpine": {
+      "ws": false,
+      "display": "cs_alpine",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_italy": {
+      "ws": false,
+      "display": "cs_italy",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_office": {
+      "ws": false,
+      "display": "cs_office",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_ancient_night": {
+      "ws": false,
+      "display": "de_ancient_night",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_anubis": {
+      "ws": false,
+      "display": "de_anubis",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_dust2": {
+      "ws": false,
+      "display": "de_dust2",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_inferno": {
+      "ws": false,
+      "display": "de_inferno",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_mirage": {
+      "ws": false,
+      "display": "de_mirage",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_nuke": {
+      "ws": false,
+      "display": "de_nuke",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_overpass": {
+      "ws": false,
+      "display": "de_overpass",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_stronghold": {
+      "ws": false,
+      "display": "de_stronghold",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_train": {
+      "ws": false,
+      "display": "de_train",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_vertigo": {
+      "ws": false,
+      "display": "de_vertigo",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_warden": {
+      "ws": false,
+      "display": "de_warden",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "Deathrun": {
+    "deathrun_civilization": {
+      "ws": true,
+      "display": "deathrun_civilization",
+      "mapid": "3188021118",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "deathrun_egypt": {
+      "ws": true,
+      "display": "deathrun_egypt",
+      "mapid": "3311285877",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "deathrun_iceworld_cs2": {
+      "ws": true,
+      "display": "deathrun_iceworld_cs2",
+      "mapid": "3083325292",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "deathrun_playground": {
+      "ws": true,
+      "display": "deathrun_playground",
+      "mapid": "3164611860",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "Executes": {
+    "de_mirage": {
+      "ws": false,
+      "display": "de_mirage",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "Gun Game": {
+    "1v1aim_map_longdustversion_d": {
+      "ws": true,
+      "display": "1v1aim_map_longdustversion_d",
+      "mapid": "3082605693",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "1v1v1v1beta04": {
+      "ws": true,
+      "display": "1v1v1v1beta04",
+      "mapid": "3433012420",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "aim_ag_texture2": {
+      "ws": true,
+      "display": "aim_ag_texture2",
+      "mapid": "3074961197",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "aim_ag_texture_city_advanced": {
+      "ws": true,
+      "display": "aim_ag_texture_city_advanced",
+      "mapid": "3082113929",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "aim_ag_texture_jungle": {
+      "ws": true,
+      "display": "aim_ag_texture_jungle",
+      "mapid": "3095778105",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "aim_plywood": {
+      "ws": true,
+      "display": "aim_plywood",
+      "mapid": "3118710028",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "aim_shotty2_gg1": {
+      "ws": true,
+      "display": "aim_shotty2_gg1",
+      "mapid": "3360120483",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "aim_theorem": {
+      "ws": true,
+      "display": "aim_theorem",
+      "mapid": "3070348309",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "ar_baggage": {
+      "ws": false,
+      "display": "ar_baggage",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "ar_blue_arena": {
+      "ws": true,
+      "display": "ar_blue_arena",
+      "mapid": "3361478861",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "ar_churches_s2r": {
+      "ws": true,
+      "display": "ar_churches_s2r",
+      "mapid": "3070291913",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "ar_combat_arena": {
+      "ws": true,
+      "display": "ar_combat_arena",
+      "mapid": "3455068243",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "ar_ds_cornered_gg1": {
+      "ws": true,
+      "display": "ar_ds_cornered_gg1",
+      "mapid": "3329405459",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "ar_pool_day": {
+      "ws": false,
+      "display": "ar_pool_day",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "ar_shoots": {
+      "ws": false,
+      "display": "ar_shoots",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "ar_shoots_night": {
+      "ws": false,
+      "display": "ar_shoots_night",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs2_bloodstrike": {
+      "ws": true,
+      "display": "cs2_bloodstrike",
+      "mapid": "3071890065",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "daymare": {
+      "ws": true,
+      "display": "daymare",
+      "mapid": "3072640420",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_assembly": {
+      "ws": true,
+      "display": "de_assembly",
+      "mapid": "3071005299",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_bank": {
+      "ws": true,
+      "display": "de_bank",
+      "mapid": "3070581293",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_ema": {
+      "ws": true,
+      "display": "de_ema",
+      "mapid": "3386116667",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_indoor": {
+      "ws": true,
+      "display": "de_indoor",
+      "mapid": "3535917558",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_lake": {
+      "ws": true,
+      "display": "de_lake",
+      "mapid": "3070563536",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_mirage_bricks": {
+      "ws": true,
+      "display": "de_mirage_bricks",
+      "mapid": "3464733042",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_rats_remake": {
+      "ws": true,
+      "display": "de_rats_remake",
+      "mapid": "3460962520",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_safehouse": {
+      "ws": true,
+      "display": "de_safehouse",
+      "mapid": "3070550406",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_splat": {
+      "ws": true,
+      "display": "de_splat",
+      "mapid": "3439120481",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "fun_bounce": {
+      "ws": true,
+      "display": "fun_bounce",
+      "mapid": "3088183343",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "fy_hangemhigh": {
+      "ws": true,
+      "display": "fy_hangemhigh",
+      "mapid": "3437226954",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "fy_iceworld": {
+      "ws": true,
+      "display": "fy_iceworld",
+      "mapid": "3070238628",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "gg_festspeedball": {
+      "ws": true,
+      "display": "gg_festspeedball",
+      "mapid": "3111527644",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "gg_lego_arena": {
+      "ws": true,
+      "display": "gg_lego_arena",
+      "mapid": "3267768230",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "gg_simpsons_vs_flanders_v2": {
+      "ws": true,
+      "display": "gg_simpsons_vs_flanders_v2",
+      "mapid": "3109232789",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "gg_strafe_gg1": {
+      "ws": true,
+      "display": "gg_strafe_gg1",
+      "mapid": "3331570055",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "gulag": {
+      "ws": true,
+      "display": "gulag",
+      "mapid": "3326465469",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "kloce": {
+      "ws": true,
+      "display": "kloce",
+      "mapid": "3248340515",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "mcdonalds": {
+      "ws": true,
+      "display": "mcdonalds",
+      "mapid": "3134466699",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "paintit": {
+      "ws": true,
+      "display": "paintit",
+      "mapid": "3360723913",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "school_d_environment_prefab": {
+      "ws": true,
+      "display": "school_d_environment_prefab",
+      "mapid": "3343693110",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "shipment_version_1_0": {
+      "ws": true,
+      "display": "shipment_version_1_0",
+      "mapid": "3086555291",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "speedball": {
+      "ws": true,
+      "display": "speedball",
+      "mapid": "3443206318",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "trainingoutside": {
+      "ws": true,
+      "display": "trainingoutside",
+      "mapid": "3475270536",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "twofort_cs2": {
+      "ws": true,
+      "display": "twofort_cs2",
+      "mapid": "3345551391",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "Hide N Seek": {
+    "de_inferno_prophunt": {
+      "ws": true,
+      "display": "de_inferno_prophunt",
+      "mapid": "3348038890",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_mirage_prophunt": {
+      "ws": true,
+      "display": "de_mirage_prophunt",
+      "mapid": "3287578956",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_nuke_prophunt": {
+      "ws": true,
+      "display": "de_nuke_prophunt",
+      "mapid": "3366748499",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_overpass_prophunt": {
+      "ws": true,
+      "display": "de_overpass_prophunt",
+      "mapid": "3382166635",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_vertigo_prophunt": {
+      "ws": true,
+      "display": "de_vertigo_prophunt",
+      "mapid": "3292648008",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "Kreedz Climbing": {
+    "ewii_challenge": {
+      "ws": true,
+      "display": "ewii_challenge",
+      "mapid": "3170668869",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "hellcasecyrilchallenge": {
+      "ws": true,
+      "display": "hellcasecyrilchallenge",
+      "mapid": "3145779590",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "kz_checkmate": {
+      "ws": true,
+      "display": "kz_checkmate",
+      "mapid": "3070194623",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "kz_dima": {
+      "ws": true,
+      "display": "kz_dima",
+      "mapid": "3343029934",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "kz_ggsh": {
+      "ws": true,
+      "display": "kz_ggsh",
+      "mapid": "3072744536",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "kz_ltt": {
+      "ws": true,
+      "display": "kz_ltt",
+      "mapid": "3072699538",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "kz_nomibo": {
+      "ws": true,
+      "display": "kz_nomibo",
+      "mapid": "3077122656",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "kz_rc_stonehenge": {
+      "ws": true,
+      "display": "kz_rc_stonehenge",
+      "mapid": "3072219045",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "kz_rc_twotowers": {
+      "ws": true,
+      "display": "kz_rc_twotowers",
+      "mapid": "3083509404",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "kz_simplyhard": {
+      "ws": true,
+      "display": "kz_simplyhard",
+      "mapid": "3078311932",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "kz_sxb2_biewan": {
+      "ws": true,
+      "display": "kz_sxb2_biewan",
+      "mapid": "3076000218",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "kz_sxb2_cxz": {
+      "ws": true,
+      "display": "kz_sxb2_cxz",
+      "mapid": "3083714192",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "kz_victoria": {
+      "ws": true,
+      "display": "kz_victoria",
+      "mapid": "3086304337",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "only_up": {
+      "ws": true,
+      "display": "only_up",
+      "mapid": "3074758439",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "Minigames": {
+    "mg_lego_course_2": {
+      "ws": true,
+      "display": "mg_lego_course_2",
+      "mapid": "3202752274",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "mg_skeet_multigames_v7": {
+      "ws": true,
+      "display": "mg_skeet_multigames_v7",
+      "mapid": "3082120895",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "mg_warmcup_headshot": {
+      "ws": true,
+      "display": "mg_warmcup_headshot",
+      "mapid": "3076765511",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "One In The Chamber": {
+    "1v1aim_map_longdustversion_d": {
+      "ws": true,
+      "display": "1v1aim_map_longdustversion_d",
+      "mapid": "3082605693",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "1v1v1v1beta04": {
+      "ws": true,
+      "display": "1v1v1v1beta04",
+      "mapid": "3433012420",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "aim_ag_texture2": {
+      "ws": true,
+      "display": "aim_ag_texture2",
+      "mapid": "3074961197",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "aim_ag_texture_city_advanced": {
+      "ws": true,
+      "display": "aim_ag_texture_city_advanced",
+      "mapid": "3082113929",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "aim_ag_texture_jungle": {
+      "ws": true,
+      "display": "aim_ag_texture_jungle",
+      "mapid": "3095778105",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "aim_plywood": {
+      "ws": true,
+      "display": "aim_plywood",
+      "mapid": "3118710028",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "aim_shotty2_gg1": {
+      "ws": true,
+      "display": "aim_shotty2_gg1",
+      "mapid": "3360120483",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "aim_theorem": {
+      "ws": true,
+      "display": "aim_theorem",
+      "mapid": "3070348309",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "ar_baggage": {
+      "ws": false,
+      "display": "ar_baggage",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "ar_blue_arena": {
+      "ws": true,
+      "display": "ar_blue_arena",
+      "mapid": "3361478861",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "ar_churches_s2r": {
+      "ws": true,
+      "display": "ar_churches_s2r",
+      "mapid": "3070291913",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "ar_combat_arena": {
+      "ws": true,
+      "display": "ar_combat_arena",
+      "mapid": "3455068243",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "ar_ds_cornered_gg1": {
+      "ws": true,
+      "display": "ar_ds_cornered_gg1",
+      "mapid": "3329405459",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "ar_pool_day": {
+      "ws": false,
+      "display": "ar_pool_day",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "ar_shoots": {
+      "ws": false,
+      "display": "ar_shoots",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "ar_shoots_night": {
+      "ws": false,
+      "display": "ar_shoots_night",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs2_bloodstrike": {
+      "ws": true,
+      "display": "cs2_bloodstrike",
+      "mapid": "3071890065",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "daymare": {
+      "ws": true,
+      "display": "daymare",
+      "mapid": "3072640420",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_assembly": {
+      "ws": true,
+      "display": "de_assembly",
+      "mapid": "3071005299",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_bank": {
+      "ws": true,
+      "display": "de_bank",
+      "mapid": "3070581293",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_ema": {
+      "ws": true,
+      "display": "de_ema",
+      "mapid": "3386116667",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_indoor": {
+      "ws": true,
+      "display": "de_indoor",
+      "mapid": "3535917558",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_lake": {
+      "ws": true,
+      "display": "de_lake",
+      "mapid": "3070563536",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_mirage_bricks": {
+      "ws": true,
+      "display": "de_mirage_bricks",
+      "mapid": "3464733042",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_rats_remake": {
+      "ws": true,
+      "display": "de_rats_remake",
+      "mapid": "3460962520",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_safehouse": {
+      "ws": true,
+      "display": "de_safehouse",
+      "mapid": "3070550406",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_splat": {
+      "ws": true,
+      "display": "de_splat",
+      "mapid": "3439120481",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "fun_bounce": {
+      "ws": true,
+      "display": "fun_bounce",
+      "mapid": "3088183343",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "fy_hangemhigh": {
+      "ws": true,
+      "display": "fy_hangemhigh",
+      "mapid": "3437226954",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "fy_iceworld": {
+      "ws": true,
+      "display": "fy_iceworld",
+      "mapid": "3070238628",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "gg_festspeedball": {
+      "ws": true,
+      "display": "gg_festspeedball",
+      "mapid": "3111527644",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "gg_lego_arena": {
+      "ws": true,
+      "display": "gg_lego_arena",
+      "mapid": "3267768230",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "gg_simpsons_vs_flanders_v2": {
+      "ws": true,
+      "display": "gg_simpsons_vs_flanders_v2",
+      "mapid": "3109232789",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "gg_strafe_gg1": {
+      "ws": true,
+      "display": "gg_strafe_gg1",
+      "mapid": "3331570055",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "gulag": {
+      "ws": true,
+      "display": "gulag",
+      "mapid": "3326465469",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "kloce": {
+      "ws": true,
+      "display": "kloce",
+      "mapid": "3248340515",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "mcdonalds": {
+      "ws": true,
+      "display": "mcdonalds",
+      "mapid": "3134466699",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "paintit": {
+      "ws": true,
+      "display": "paintit",
+      "mapid": "3360723913",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "school_d_environment_prefab": {
+      "ws": true,
+      "display": "school_d_environment_prefab",
+      "mapid": "3343693110",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "shipment_version_1_0": {
+      "ws": true,
+      "display": "shipment_version_1_0",
+      "mapid": "3086555291",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "speedball": {
+      "ws": true,
+      "display": "speedball",
+      "mapid": "3443206318",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "trainingoutside": {
+      "ws": true,
+      "display": "trainingoutside",
+      "mapid": "3475270536",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "twofort_cs2": {
+      "ws": true,
+      "display": "twofort_cs2",
+      "mapid": "3345551391",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "Practice Mode": {
+    "cs_agency": {
+      "ws": true,
+      "display": "cs_agency",
+      "mapid": "3339983232",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_alpine": {
+      "ws": false,
+      "display": "cs_alpine",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_assault": {
+      "ws": true,
+      "display": "cs_assault",
+      "mapid": "3070594412",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_insertion2": {
+      "ws": true,
+      "display": "cs_insertion2",
+      "mapid": "3236615060",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_italy": {
+      "ws": false,
+      "display": "cs_italy",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_militia": {
+      "ws": true,
+      "display": "cs_militia",
+      "mapid": "3089953774",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_office": {
+      "ws": false,
+      "display": "cs_office",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_akiba": {
+      "ws": true,
+      "display": "de_akiba",
+      "mapid": "3108513658",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_ancient_night": {
+      "ws": false,
+      "display": "de_ancient_night",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_anubis": {
+      "ws": false,
+      "display": "de_anubis",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_assembly": {
+      "ws": true,
+      "display": "de_assembly",
+      "mapid": "3071005299",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_aztec_hr": {
+      "ws": true,
+      "display": "de_aztec_hr",
+      "mapid": "3079692971",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_basalt": {
+      "ws": true,
+      "display": "de_basalt",
+      "mapid": "3329258290",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_biome": {
+      "ws": true,
+      "display": "de_biome",
+      "mapid": "3075706807",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_cache": {
+      "ws": true,
+      "display": "de_cache",
+      "mapid": "3437809122",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_cbble": {
+      "ws": true,
+      "display": "de_cbble",
+      "mapid": "3329387648",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_dust2": {
+      "ws": false,
+      "display": "de_dust2",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_edin": {
+      "ws": true,
+      "display": "de_edin",
+      "mapid": "3328169568",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_ema": {
+      "ws": true,
+      "display": "de_ema",
+      "mapid": "3386116667",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_golden": {
+      "ws": true,
+      "display": "de_golden",
+      "mapid": "3286163323",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_inferno": {
+      "ws": false,
+      "display": "de_inferno",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_mills": {
+      "ws": true,
+      "display": "de_mills",
+      "mapid": "3152430710",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_mirage": {
+      "ws": false,
+      "display": "de_mirage",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_mirage_bricks": {
+      "ws": true,
+      "display": "de_mirage_bricks",
+      "mapid": "3464733042",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_mutiny": {
+      "ws": true,
+      "display": "de_mutiny",
+      "mapid": "3070766070",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_nuke": {
+      "ws": false,
+      "display": "de_nuke",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_overpass": {
+      "ws": false,
+      "display": "de_overpass",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_palacio": {
+      "ws": true,
+      "display": "de_palacio",
+      "mapid": "3249860053",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_pipeline": {
+      "ws": true,
+      "display": "de_pipeline",
+      "mapid": "3079872050",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_rats_remake": {
+      "ws": true,
+      "display": "de_rats_remake",
+      "mapid": "3460962520",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_ruins_d_prefab": {
+      "ws": true,
+      "display": "de_ruins_d_prefab",
+      "mapid": "3072352643",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_season": {
+      "ws": true,
+      "display": "de_season",
+      "mapid": "3073892687",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_stronghold": {
+      "ws": false,
+      "display": "de_stronghold",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_thera": {
+      "ws": true,
+      "display": "de_thera",
+      "mapid": "3121217565",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_train": {
+      "ws": false,
+      "display": "de_train",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_vertigo": {
+      "ws": false,
+      "display": "de_vertigo",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_warden": {
+      "ws": false,
+      "display": "de_warden",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "mp_raid": {
+      "ws": true,
+      "display": "mp_raid",
+      "mapid": "3070346180",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "twofort_cs2": {
+      "ws": true,
+      "display": "twofort_cs2",
+      "mapid": "3345551391",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "Prefire": {
+    "de_ancient": {
+      "ws": false,
+      "display": "de_ancient",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_anubis": {
+      "ws": false,
+      "display": "de_anubis",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_dust2": {
+      "ws": false,
+      "display": "de_dust2",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_inferno": {
+      "ws": false,
+      "display": "de_inferno",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_mirage": {
+      "ws": false,
+      "display": "de_mirage",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_nuke": {
+      "ws": false,
+      "display": "de_nuke",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_overpass": {
+      "ws": false,
+      "display": "de_overpass",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_train": {
+      "ws": false,
+      "display": "de_train",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_vertigo": {
+      "ws": false,
+      "display": "de_vertigo",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "Retakes": {
+    "de_ancient": {
+      "ws": false,
+      "display": "de_ancient",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_anubis": {
+      "ws": false,
+      "display": "de_anubis",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_dust2": {
+      "ws": false,
+      "display": "de_dust2",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_inferno": {
+      "ws": false,
+      "display": "de_inferno",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_mirage": {
+      "ws": false,
+      "display": "de_mirage",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_nuke": {
+      "ws": false,
+      "display": "de_nuke",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_overpass": {
+      "ws": false,
+      "display": "de_overpass",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_train": {
+      "ws": false,
+      "display": "de_train",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_vertigo": {
+      "ws": false,
+      "display": "de_vertigo",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "Retakes (Valve)": {
+    "de_ancient_night": {
+      "ws": false,
+      "display": "de_ancient_night",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_anubis": {
+      "ws": false,
+      "display": "de_anubis",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_dust2": {
+      "ws": false,
+      "display": "de_dust2",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_inferno": {
+      "ws": false,
+      "display": "de_inferno",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_mirage": {
+      "ws": false,
+      "display": "de_mirage",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_nuke": {
+      "ws": false,
+      "display": "de_nuke",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_overpass": {
+      "ws": false,
+      "display": "de_overpass",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_train": {
+      "ws": false,
+      "display": "de_train",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_vertigo": {
+      "ws": false,
+      "display": "de_vertigo",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "ScoutzKnivez": {
+    "ar_dizzy": {
+      "ws": true,
+      "display": "ar_dizzy",
+      "mapid": "3070553020",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "scoutzknivez_pure_cs2": {
+      "ws": true,
+      "display": "scoutzknivez_pure_cs2",
+      "mapid": "3073929825",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "Soccer": {
+    "field": {
+      "ws": true,
+      "display": "field",
+      "mapid": "3238565662",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "Surf": {
+    "surf_ace": {
+      "ws": true,
+      "display": "surf_ace",
+      "mapid": "3088413071",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "surf_beginner": {
+      "ws": true,
+      "display": "surf_beginner",
+      "mapid": "3070321829",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "surf_benevolent": {
+      "ws": true,
+      "display": "surf_benevolent",
+      "mapid": "3098972556",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "surf_boreas": {
+      "ws": true,
+      "display": "surf_boreas",
+      "mapid": "3133346713",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "surf_deathstar": {
+      "ws": true,
+      "display": "surf_deathstar",
+      "mapid": "3080544577",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "surf_kitsune": {
+      "ws": true,
+      "display": "surf_kitsune",
+      "mapid": "3076153623",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "surf_mesa_revo": {
+      "ws": true,
+      "display": "surf_mesa_revo",
+      "mapid": "3076980482",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "surf_nyx": {
+      "ws": true,
+      "display": "surf_nyx",
+      "mapid": "3129698096",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "surf_rookie": {
+      "ws": true,
+      "display": "surf_rookie",
+      "mapid": "3082548297",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "surf_ski_2": {
+      "ws": true,
+      "display": "surf_ski_2",
+      "mapid": "3079877518",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "surf_utopia_njv": {
+      "ws": true,
+      "display": "surf_utopia_njv",
+      "mapid": "3073875025",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "surf_whiteout": {
+      "ws": true,
+      "display": "surf_whiteout",
+      "mapid": "3296258256",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "Wingman": {
+    "ar_pool_day": {
+      "ws": false,
+      "display": "ar_pool_day",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "cs_assault": {
+      "ws": true,
+      "display": "cs_assault",
+      "mapid": "3070594412",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_assembly": {
+      "ws": true,
+      "display": "de_assembly",
+      "mapid": "3071005299",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_bank": {
+      "ws": true,
+      "display": "de_bank",
+      "mapid": "3070581293",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_biome": {
+      "ws": true,
+      "display": "de_biome",
+      "mapid": "3075706807",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_cache": {
+      "ws": true,
+      "display": "de_cache",
+      "mapid": "3437809122",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_cbble": {
+      "ws": true,
+      "display": "de_cbble",
+      "mapid": "3329387648",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_dust2_wingman": {
+      "ws": true,
+      "display": "de_dust2_wingman",
+      "mapid": "3413800427",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_ema": {
+      "ws": true,
+      "display": "de_ema",
+      "mapid": "3386116667",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_inferno": {
+      "ws": false,
+      "display": "de_inferno",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_lake": {
+      "ws": true,
+      "display": "de_lake",
+      "mapid": "3070563536",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_memento": {
+      "ws": true,
+      "display": "de_memento",
+      "mapid": "3165559377",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_mirage_bricks": {
+      "ws": true,
+      "display": "de_mirage_bricks",
+      "mapid": "3464733042",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_mirage_d": {
+      "ws": true,
+      "display": "de_mirage_d",
+      "mapid": "3402437047",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_mutiny": {
+      "ws": true,
+      "display": "de_mutiny",
+      "mapid": "3070766070",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_nuke": {
+      "ws": false,
+      "display": "de_nuke",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_overpass": {
+      "ws": false,
+      "display": "de_overpass",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_palais": {
+      "ws": true,
+      "display": "de_palais",
+      "mapid": "3257582863",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_pipeline": {
+      "ws": true,
+      "display": "de_pipeline",
+      "mapid": "3079872050",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_poseidon": {
+      "ws": false,
+      "display": "de_poseidon",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_rooftop": {
+      "ws": true,
+      "display": "de_rooftop",
+      "mapid": "3536622725",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_ruins_d_prefab": {
+      "ws": true,
+      "display": "de_ruins_d_prefab",
+      "mapid": "3072352643",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_safehouse": {
+      "ws": true,
+      "display": "de_safehouse",
+      "mapid": "3070550406",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_sakura": {
+      "ws": true,
+      "display": "de_sakura",
+      "mapid": "3082340867",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_sanctum": {
+      "ws": false,
+      "display": "de_sanctum",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_shortdust": {
+      "ws": true,
+      "display": "de_shortdust",
+      "mapid": "3070612859",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_splat": {
+      "ws": true,
+      "display": "de_splat",
+      "mapid": "3439120481",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_vertigo": {
+      "ws": false,
+      "display": "de_vertigo",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_whistle": {
+      "ws": true,
+      "display": "de_whistle",
+      "mapid": "3308613773",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "gd_rialto": {
+      "ws": true,
+      "display": "gd_rialto",
+      "mapid": "3085490518",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "mp_raid": {
+      "ws": true,
+      "display": "mp_raid",
+      "mapid": "3070346180",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "paintit": {
+      "ws": true,
+      "display": "paintit",
+      "mapid": "3360723913",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "skatepark": {
+      "ws": true,
+      "display": "skatepark",
+      "mapid": "3309665004",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  },
+  "Wingman (Valve)": {
+    "de_inferno": {
+      "ws": false,
+      "display": "de_inferno",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_nuke": {
+      "ws": false,
+      "display": "de_nuke",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_overpass": {
+      "ws": false,
+      "display": "de_overpass",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_poseidon": {
+      "ws": false,
+      "display": "de_poseidon",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_sanctum": {
+      "ws": false,
+      "display": "de_sanctum",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    },
+    "de_vertigo": {
+      "ws": false,
+      "display": "de_vertigo",
+      "mapid": "",
+      "minplayers": 0,
+      "maxplayers": 0,
+      "weight": 1
+    }
+  }
+}

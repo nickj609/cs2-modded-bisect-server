@@ -1,5 +1,5 @@
 "Metamod Plugin"
 {
-	"alias"	"multiaddonmanager"
+	"alias"	"MultiAddonManager"
 	"file"	"addons/multiaddonmanager/bin/multiaddonmanager"
 }

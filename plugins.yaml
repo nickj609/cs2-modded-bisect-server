@@ -1,0 +1,609 @@
+# Everything installed on the server, where its files live, and where updates come from.
+# Checked by ci/ServerBundleCheck (validate.yml). Paths are relative to server.game_dir; folders end with "/".
+#
+# kind:    core (Metamod, CounterStrikeSharp) | metamod (Metamod plugin) | plugin (CSS plugin) | shared | content
+# module:  the plugin's ModuleName as shown by `css_plugins list` (what `css_plugins unload "..."` uses)
+# always_loaded: loaded on every mode; a cfg must never unload it
+# paths:   files the component owns (replaced on update); configs: files it creates (only added if missing)
+# version: installed release. asset (release file glob) is added per component when the updater (A3) is built.
+
+schema: 1
+
+server:
+  platform: linux          # Bisect containers are Linux
+  css_api: "1.0.378"  # CounterStrikeSharp in game/csgo/addons/counterstrikesharp/api
+  game_dir: game/csgo
+
+ignore:
+  - addons/windows/**      # Windows-only overrides used by win.bat; not deployed to Bisect
+
+components:
+
+  # ---------------- core ----------------
+
+  - name: Metamod:Source
+    kind: core
+    source:
+      url: "https://www.metamodsource.net/downloads.php?branch=dev"
+      pattern: 'https?://[^"''\s<>]+/mmsource-(?<version>[\d.]+-git\d+)-linux\.tar\.gz'
+    version: 2.0.0-git1483
+    paths:
+      - addons/metamod/
+      - addons/metamod.vdf
+      - addons/metamod_x64.vdf
+
+  - name: CounterStrikeSharp
+    kind: core
+    source: { github: roflmuffin/CounterStrikeSharp }
+    asset: counterstrikesharp-with-runtime-linux-*.zip   # with-runtime: CSS loads dotnet/host/fxr/<exact version>
+    version: v1.0.378
+    requires: [Metamod:Source]
+    paths:
+      - addons/counterstrikesharp/api/
+      - addons/counterstrikesharp/bin/
+      - addons/counterstrikesharp/dotnet/
+      - addons/counterstrikesharp/gamedata/
+      - addons/counterstrikesharp/lang/
+      - addons/counterstrikesharp/source/
+      - addons/metamod/counterstrikesharp.vdf
+    configs:
+      - addons/counterstrikesharp/configs/core.json
+      - addons/counterstrikesharp/configs/admins.json
+      - addons/counterstrikesharp/configs/admin_groups.json
+      - addons/counterstrikesharp/configs/admin_overrides.json
+
+  # ---------------- Metamod plugins ----------------
+
+  - name: MultiAddonManager
+    kind: metamod
+    source: { github: Source2ZE/MultiAddonManager }
+    asset: '*-steamrt3.tar.gz'   # steamrt3 builds also run on steamrt4 servers; steamrt4 builds may not run on steamrt3
+    version: v1.7.2
+    paths:
+      - addons/multiaddonmanager/
+      - addons/multiaddonmanager/multiaddonmanager.vdf
+    install:
+      # Off by default (kus layout): the release puts the vdf in addons/metamod/, we keep it beside the plugin.
+      # Enable it on a server by copying it to custom_files/addons/metamod/multiaddonmanager.vdf.
+      - { from: addons/metamod/multiaddonmanager.vdf, to: addons/multiaddonmanager/multiaddonmanager.vdf }
+    configs: [cfg/multiaddonmanager/]
+
+  - name: ServerListPlayersFix
+    kind: metamod
+    source: { github: Source2ZE/ServerListPlayersFix }
+    asset: '*-steamrt3.tar.gz'   # see MultiAddonManager
+    version: v2.1
+    paths:
+      - addons/serverlistplayersfix_mm/
+      - addons/metamod/serverlistplayersfix_mm.vdf
+
+  - name: MovementUnlocker
+    kind: metamod
+    source: { github: Source2ZE/MovementUnlocker }
+    asset: '*-steamrt3.tar.gz'   # see MultiAddonManager
+    version: v2.0.1
+    requires: [Metamod:Source]   # v2.0.1+ needs Metamod 2.0-1461 or later
+    paths: [addons/MovementUnlocker/]
+    notes: Loaded by cfg/settings/enable_surf.cfg (meta load). The release's addons/metamod/*.vdf is deliberately not installed (it would load it on every mode).
+
+  - name: CS2Fixes-RampbugFix
+    kind: metamod
+    source: { github: Interesting-exe/CS2Fixes-RampbugFix }
+    version: 5-1
+    paths: [addons/cs2fixes-rampbugfix/]
+    notes: Loaded by cfg/settings/enable_surf.cfg (meta load). The release's addons/metamod/*.vdf is deliberately not installed (it would load it on every mode).
+
+  - name: Surf metamod toggles
+    kind: content
+    paths: [addons/surf/]
+    notes: vdf files for MovementUnlocker and RampbugFix, kept from kus's layout.
+
+  # ---------------- always-loaded CSS plugins (plugins/) ----------------
+
+  - name: CS2_ExecAfter
+    kind: plugin
+    source: { github: kus/CS2_ExecAfter }
+    version: 1.0.0
+    module: CS2_ExecAfter
+    always_loaded: true
+    paths: [addons/counterstrikesharp/plugins/CS2_ExecAfter/]
+
+  - name: PanoramaMenuManager
+    kind: plugin
+    source: { github: RRimmer/PanoramaMenuManagerCS2 }   # upstream; the nickj609 fork has no releases
+    asset: MenuManagerCS2-*.zip
+    version: MenuManagerCS2-1.3.00
+    pin: true                # Harmony bridges (PMM_GG1MapChooser, PMM_SimpleAdmin) are built against specific PMM versions
+    module: "[FORK] MenuManager"
+    always_loaded: true
+    requires: [MultiAddonManager]
+    paths:
+      - addons/counterstrikesharp/plugins/MenuManagerCore/
+      - addons/counterstrikesharp/shared/MenuManagerApi/
+    configs:
+      - addons/counterstrikesharp/configs/plugins/MenuManagerCore/
+    notes: >-
+      Menu engine (capability menu:nfcore) for GameModeManager 2.0+, PMM_GG1MapChooser and PMM_SimpleAdmin.
+      Its release also ships empty PlayerSettings / PlayerSettingsApi / AnyBaseLib stubs; they are NOT installed because
+      SpectatorList uses the real PlayerSettings API (PMM's README: don't overwrite real copies).
+      On start it writes shared/CS2MenuManager/CS2MenuManager.dll on the server ("CS2MenuManagerCompat"); that file is
+      not in the repo. Players need its panorama files from the client workshop addon: see docs/PANORAMA_MENU_SETUP.md.
+
+  # GG1MapChooser + its PanoramaMenu bridge: GameModeManager 2.0 hands map voting to GG1. See docs/GG1_MAPCHOOSER_SETUP.md.
+  - name: GG1MapChooser
+    kind: plugin
+    source: { github: ssypchenko/GG1MapChooser }
+    asset: GG1MapChooser.*.zip
+    version: "1.8.1"
+    pin: true                # PMM_GG1MapChooser 0.1.0 Harmony-patches GG1 1.8.1 exactly
+    module: GG1_MapChooser
+    always_loaded: true
+    paths:
+      - addons/counterstrikesharp/plugins/GG1MapChooser/
+      - addons/counterstrikesharp/plugins/GG1MapChooser/Newtonsoft.Json.dll
+      - addons/counterstrikesharp/shared/ggmcAPI/
+    install:
+      # The release puts Newtonsoft.Json in shared/, which CSS would share with every plugin. Only GG1MapChooser.dll
+      # uses it (ggmcAPI doesn't), so it stays private next to the plugin like the other plugins' copies (all 13.0.0.0).
+      - { from: csgo/addons/counterstrikesharp/shared/Newtonsoft.Json/Newtonsoft.Json.dll, to: addons/counterstrikesharp/plugins/GG1MapChooser/Newtonsoft.Json.dll }
+    configs:
+      - addons/counterstrikesharp/configs/plugins/GG1MapChooser/
+      - cfg/GGMCmaps.json
+    notes: >-
+      Map votes, RTV, nominate, extend, map pools. Map list: cfg/GGMCmaps.json, generated by
+      GameModeManager from its map groups. API capability ggmc:api (shared/ggmcAPI).
+
+  - name: PMM_GG1MapChooser
+    kind: plugin
+    source: { github: RRimmer/PMM-GG1MapChooser }   # upstream; the nickj609 fork has no releases
+    asset: PMM_GG1MapChooser-*.zip
+    version: PMM_GG1MapChooser-0.1.0
+    pin: true                # built for GG1MapChooser 1.8.1 + PMM 1.2.05+
+    module: PMM_GG1MapChooser
+    always_loaded: true
+    requires: [GG1MapChooser, PanoramaMenuManager]
+    paths:
+      - addons/counterstrikesharp/plugins/PMM_GG1MapChooser/
+    configs:
+      - addons/counterstrikesharp/configs/plugins/PMM_GG1MapChooser/
+    notes: >-
+      Draws GG1's votes / nominate on PanoramaMenu (Harmony; restart the server after updating it, a reload is not enough).
+      Its panorama files (pmm_mapvote.xml / .css / _maps.css) go into the client addon: docs/PANORAMA_MENU_SETUP.md.
+
+  - name: CS2-SimpleAdmin
+    kind: plugin
+    source: { github: daffyyyy/CS2-SimpleAdmin }
+    asset: CS2-SimpleAdmin-*.zip
+    version: build-1.9.1
+    pin: true                # PMM_SimpleAdmin 0.1.0 Harmony-patches SimpleAdmin 1.9.x
+    module: CS2-SimpleAdmin
+    always_loaded: true
+    requires: [PanoramaMenuManager]
+    paths:
+      - addons/counterstrikesharp/plugins/CS2-SimpleAdmin/
+      - addons/counterstrikesharp/shared/CS2-SimpleAdminApi/
+      # CS2-SimpleAdmin_StealthModule (hides admins from players) is in the release but not installed
+    configs:
+      - addons/counterstrikesharp/configs/plugins/CS2-SimpleAdmin/
+    notes: >-
+      Admin system (bans, mutes, admins in its own database). Replaces connercsbn/SimpleAdmin. Commands.json renames
+      css_rcon, which CS2Rcon owns. See docs/SIMPLEADMIN_SETUP.md.
+
+  - name: CS2-SimpleAdmin_FunCommands
+    kind: plugin
+    source: { github: daffyyyy/CS2-SimpleAdmin }   # same release as CS2-SimpleAdmin: update them together
+    asset: CS2-SimpleAdmin-*.zip
+    version: build-1.9.1
+    pin: true
+    module: CS2-SimpleAdmin Fun Commands
+    always_loaded: true
+    requires: [CS2-SimpleAdmin]
+    paths:
+      - addons/counterstrikesharp/plugins/CS2-SimpleAdmin_FunCommands/
+    configs:
+      - addons/counterstrikesharp/configs/plugins/CS2-SimpleAdmin_FunCommands/
+    notes: god, noclip, freeze, respawn, resize ... (a module of CS2-SimpleAdmin since 1.9).
+
+  - name: PMM_SimpleAdmin
+    kind: plugin
+    source: { github: RRimmer/PMM_SimpleAdmin }   # upstream; the nickj609 fork has no releases
+    asset: PMM_SimpleAdmin-*.zip
+    version: PMM_SimpleAdmin-0.1.1
+    pin: true                # built for CS2-SimpleAdmin 1.9.x + PMM 1.2.04+
+    module: PMM_SimpleAdmin
+    always_loaded: true
+    requires: [CS2-SimpleAdmin, PanoramaMenuManager]
+    paths:
+      - addons/counterstrikesharp/plugins/PMM_SimpleAdmin/
+    configs:
+      - addons/counterstrikesharp/configs/plugins/PMM_SimpleAdmin/
+    notes: >-
+      Draws SimpleAdmin's menus on a PanoramaMenu panel (Harmony; full restart after updates). Its panorama files
+      (pmm_admin.xml / .css) go into the client addon: docs/PANORAMA_MENU_SETUP.md.
+
+  - name: GameModeManager
+    kind: plugin
+    source: { github: nickj609/GameModeManager }
+    asset: GameModeManager_v*.zip
+    version: 2.0.0-test.0f354d1
+    module: GameModeManager
+    always_loaded: true
+    requires: [PanoramaMenuManager, GG1MapChooser]
+    paths:
+      - addons/counterstrikesharp/plugins/GameModeManager/
+      - addons/counterstrikesharp/shared/GameModeManager.Shared/
+    configs:
+      - addons/counterstrikesharp/configs/plugins/GameModeManager/
+      - cfg/settings/
+      - cfg/warmup/
+
+  - name: PlayerSettings
+    kind: plugin
+    source: { github: NickFox007/PlayerSettingsCS2 }
+    version: 0.9.3
+    pin: true                # only SpectatorList needs it
+    module: PlayerSettings [Core]
+    always_loaded: true
+    requires: [AnyBaseLib]
+    paths:
+      - addons/counterstrikesharp/plugins/PlayerSettings/
+      - addons/counterstrikesharp/shared/PlayerSettingsApi/
+    notes: Dependency of SpectatorList.
+
+  - name: AnyBaseLib
+    kind: shared
+    source: { github: NickFox007/AnyBaseLibCS2 }
+    version: 1.0.0
+    pin: true                # only PlayerSettings needs it
+    paths: [addons/counterstrikesharp/shared/AnyBaseLib/]
+    notes: >-
+      Needed by PlayerSettings (it was missing from the server). Copied from nickj609/MenuManagerAPI lib/shared/AnyBaseLib
+      (commit a5fe5e7). PanoramaMenuManager ships its own stub, not installed.
+
+  - name: Inventory Simulator
+    kind: plugin
+    source: { github: ianlucas/cs2-css-inventory-simulator }
+    version: "3.7.2"
+    module: InventorySimulator
+    always_loaded: true
+    paths:
+      - addons/counterstrikesharp/plugins/InventorySimulator/
+      - addons/counterstrikesharp/gamedata/inventory-simulator.json
+
+  - name: MapConfigurator
+    kind: plugin
+    version: 1.0.2
+    module: "[Custom] Map Configurator"
+    always_loaded: true
+    paths: [addons/counterstrikesharp/plugins/MapConfigurator/]
+    configs: [cfg/mapconfigs/]
+    notes: ManifestManah/MapConfigurator has no GitHub releases, so no source is set; it can't be updated automatically.
+
+  - name: CS2Rcon
+    kind: plugin
+    source: { github: LordFetznschaedl/CS2Rcon }
+    version: 1.2.0
+    module: CS2Rcon
+    paths: [addons/counterstrikesharp/plugins/CS2Rcon/]
+    notes: In plugins/ but unloaded by MatchZy modes and reloaded by unload_plugins.cfg.
+
+  - name: AnnouncementBroadcaster
+    kind: plugin
+    source: { github: lengran/CS2AnnouncementBroadcaster }
+    version: "0.5"
+    module: CS2 Announcement Broadcaster
+    always_loaded: true
+    paths: [addons/counterstrikesharp/plugins/CS2AnnouncementBroadcaster/]
+    keep: [addons/counterstrikesharp/plugins/CS2AnnouncementBroadcaster/cfg/messages.json]
+
+  - name: CS2-FixRandomSpawn
+    kind: plugin
+    source: { github: qstage/CS2-FixRandomSpawn }
+    version: v1.2.0
+    module: FixRandomSpawn
+    always_loaded: true
+    paths:
+      - addons/counterstrikesharp/plugins/FixRandomSpawn/
+      - addons/counterstrikesharp/gamedata/FixRandomSpawn.json
+    notes: >-
+      README says 1.1.4.1 (release tag); the DLL reports 1.1.4. Latest release is v1.2.0, whose asset was renamed
+      FixRandomSpawn.zip -> CS2-FixRandomSpawn.zip.
+
+  - name: CS2-BotAI
+    kind: plugin
+    source: { github: Austinbots/CS2-BotAI }
+    version: V1.3
+    module: Patches - Bot AI
+    always_loaded: true
+    paths: [addons/counterstrikesharp/plugins/BotAI/]
+
+  - name: Bot AI scripts
+    kind: content
+    paths: [addons/scripts/]
+    notes: Bot behaviour trees and buy scripts (addons/scripts/ai). Not part of the CS2-BotAI release zip; kept as repo content.
+
+  # ---------------- mode plugins (plugins/disabled/, loaded by mode cfgs) ----------------
+
+  - name: CS2 Remove Map Weapons
+    kind: plugin
+    source: { github: kus/CS2-Remove-Map-Weapons }
+    version: 1.0.1
+    module: Remove Map Weapons
+    paths: [addons/counterstrikesharp/plugins/disabled/CS2-Remove-Map-Weapons/]
+
+  - name: MatchZy
+    kind: plugin
+    source: { github: shobhit-pathak/MatchZy }
+    version: "0.9.2"
+    module: MatchZy
+    paths:
+      - addons/counterstrikesharp/plugins/disabled/MatchZy/
+      - addons/counterstrikesharp/gamedata/matchzy.json      # new in 0.9.x; created by the first update
+    configs: [cfg/MatchZy/]
+
+  - name: K4-DamageInfo
+    kind: plugin
+    source: { github: K4ryuu/K4-DamageInfo }
+    version: 2.4.0
+    module: Damage Informations
+    paths: [addons/counterstrikesharp/plugins/disabled/K4-DamageInfo/]
+
+  - name: SharpTimer
+    kind: plugin
+    source: { github: SharpTimer/SharpTimer }
+    version: 0.3.1x
+    pin: true
+    module: SharpTimer
+    paths:
+      - addons/counterstrikesharp/plugins/disabled/SharpTimer/
+      - addons/counterstrikesharp/shared/SharpTimerAPI/
+      - addons/counterstrikesharp/gamedata/stgamedata.json
+    configs: [cfg/SharpTimer/]
+    notes: >-
+      Repository moved from Letaryat/poor-sharptimer. Pinned at 0.3.1x: v0.4.x requires the cs2-tags plugin (TagsApi),
+      whose repository is archived (CounterStrike2-Plugins-Archive/cs2-tags). Unpin after adding cs2-tags as a component.
+      Database/ holds SQL migrations shipped with the plugin (not player data), so it is updated with the plugin.
+
+  - name: STFixes
+    kind: plugin
+    source: { github: rcnoob/STFixes }
+    version: 1.0.5
+    module: ST-Fixes
+    paths:
+      - addons/counterstrikesharp/plugins/disabled/STFixes/
+      - addons/counterstrikesharp/gamedata/cssharpfixes.json
+    notes: ModuleName comes from another class (STFixes/Config/ModuleInformation.cs), so the checker can't read it; set here.
+
+  - name: GunGame
+    kind: plugin
+    source: { github: ssypchenko/cs2-gungame }
+    version: v1.2.4
+    module: CS2_GunGame
+    paths:
+      - addons/counterstrikesharp/plugins/disabled/GG2/
+      - addons/counterstrikesharp/shared/GunGameAPI/
+    configs: [cfg/gungame/, cfg/gungame-db.json]
+
+  - name: K4-Arenas
+    kind: plugin
+    source: { github: K4ryuu/K4-Arenas }
+    asset: K4-Arenas.zip
+    version: 2.0.8
+    module: K4-Arenas
+    requires: [KitsuneMenu]
+    paths:
+      - addons/counterstrikesharp/plugins/disabled/K4-Arenas/
+      - addons/counterstrikesharp/shared/K4-ArenaSharedApi/
+    configs: [addons/counterstrikesharp/configs/plugins/K4-Arenas/]
+
+  - name: K4-Arenas-Bots
+    kind: plugin
+    source: { github: K4ryuu/K4-Arenas }
+    asset: K4-Arenas-Bots.zip
+    version: v2.0.8
+    module: K4-Arenas Addon - Bots Support
+    requires: [K4-Arenas]
+    paths: [addons/counterstrikesharp/plugins/disabled/K4-Arenas-Bots/]
+    notes: Not in the README table. Ships as K4-Arenas-Bots.zip in the K4-Arenas release; version follows the K4-Arenas tag.
+
+  - name: KitsuneMenu
+    kind: shared
+    version: unknown
+    paths: [addons/counterstrikesharp/shared/KitsuneMenu/]
+    notes: >-
+      Not in the README table; used by K4 plugins. KitsuneLab-Development/KitsuneMenu has no releases, so no source is
+      set. Find where it is published (it may ship inside K4 plugin releases) and add a source.
+
+  - name: CS2 Retakes
+    kind: plugin
+    source: { github: B3none/cs2-retakes }
+    asset: 're:^RetakesPlugin-[\d.]+\.zip$'     # the full zip, not -no-map-configs (map configs are add-only)
+    version: "3.1.1"
+    module: Retakes Plugin
+    paths:
+      - addons/counterstrikesharp/plugins/disabled/RetakesPlugin/
+      - addons/counterstrikesharp/shared/RetakesPluginShared/
+    configs: [cfg/cs2-retakes/]
+
+  - name: CS2 Instadefuse
+    kind: plugin
+    source: { github: B3none/cs2-instadefuse }
+    version: 2.0.0
+    module: Instadefuse Plugin
+    paths: [addons/counterstrikesharp/plugins/disabled/InstadefusePlugin/]
+
+  - name: CS2 Retakes Allocator
+    kind: plugin
+    source: { github: yonilerner/cs2-retakes-allocator }
+    version: 2.4.2
+    module: Retakes Allocator Plugin
+    requires: [CS2 Retakes]
+    paths:
+      - addons/counterstrikesharp/plugins/disabled/RetakesAllocator/
+      - addons/counterstrikesharp/gamedata/RetakesAllocator.json
+
+  - name: CS2 Whitelist
+    kind: plugin
+    source: { github: PhantomYopta/CS2_WhiteList }
+    version: 1.0.0
+    module: WhiteList
+    paths: [addons/counterstrikesharp/plugins/disabled/WhiteList/]
+
+  - name: CS2 Executes
+    kind: plugin
+    source: { github: zwolof/cs2-executes }
+    asset: 're:^cs2-executes-[\d.]+\.zip$'
+    version: 1.1.1
+    module: Executes Plugin
+    paths: [addons/counterstrikesharp/plugins/disabled/ExecutesPlugin/]
+    configs: [cfg/cs2-executes/]
+    keep: [addons/counterstrikesharp/plugins/disabled/ExecutesPlugin/map_config/**]
+
+  - name: CS2 Advertisement
+    kind: plugin
+    source: { github: partiusfabaa/cs2-advertisement }
+    version: 1.0.8-recompile
+    module: Advertisement
+    paths: [addons/counterstrikesharp/plugins/disabled/Advertisement/]
+
+  - name: CS2 Deathmatch
+    kind: plugin
+    source: { github: NockyCZ/CS2-Deathmatch }
+    version: v1.3.6
+    module: Deathmatch          # was "Deathmatch Core" before 1.3.6
+    paths:
+      - addons/counterstrikesharp/plugins/disabled/Deathmatch/
+      - addons/counterstrikesharp/shared/DeathmatchAPI/
+      - addons/counterstrikesharp/gamedata/Deathmatch.json
+    configs: [addons/counterstrikesharp/configs/plugins/Deathmatch/]
+    keep: [addons/counterstrikesharp/plugins/disabled/Deathmatch/spawns/**]
+
+  - name: OpenPrefirePrac
+    kind: plugin
+    source: { github: lengran/OpenPrefirePrac }
+    version: 0.1.47
+    module: Open Prefire Prac
+    paths: [addons/counterstrikesharp/plugins/disabled/OpenPrefirePrac/]
+
+  - name: deathrun-manager
+    kind: plugin
+    source: { github: leoskiline/cs2-deathrun-manager }
+    version: 0.5.1
+    module: Deathrun Manager Plugin
+    paths: [addons/counterstrikesharp/plugins/disabled/DeathrunManager/]
+    configs: [addons/counterstrikesharp/configs/plugins/DeathrunManager/]
+
+  - name: CS2-GameModifiers
+    kind: plugin
+    source: { github: vinicius-trev/CS2-GameModifiers-Plugin }
+    version: v1.0.4
+    module: Game Modifiers
+    paths: [addons/counterstrikesharp/plugins/disabled/GameModifiers/]
+    configs: [addons/counterstrikesharp/configs/plugins/GameModifiers/]
+    keep:
+      - addons/counterstrikesharp/plugins/disabled/GameModifiers/ConVarModifiers/**
+      - addons/counterstrikesharp/plugins/disabled/GameModifiers/ModifierConfig/**
+    notes: README says 1.0.4; the installed DLL is 1.0.3.
+
+  - name: CS2FunMatchPlugin
+    kind: plugin
+    source: { github: TitaniumLithium/CS2FunMatchPlugin }
+    version: 1.1.1
+    module: Fun Match Plugin
+    paths: [addons/counterstrikesharp/plugins/disabled/FunMatchPlugin/]
+
+  - name: RollTheDice
+    kind: plugin
+    source: { github: Kandru/cs2-roll-the-dice }
+    version: "26.10.12"
+    module: Roll The Dice
+    paths: [addons/counterstrikesharp/plugins/disabled/RollTheDice/]
+    configs: [addons/counterstrikesharp/configs/plugins/RollTheDice/]
+
+  - name: CS2-MutualScoringPlayers
+    kind: plugin
+    source: { github: qstage/CS2-MutualScoringPlayers }
+    version: 1.0.3
+    module: MutualScoringPlayers
+    paths: [addons/counterstrikesharp/plugins/disabled/MutualScoringPlayers/]
+
+  - name: CS2WarcraftMod
+    kind: plugin
+    source: { github: Wngui/CS2WarcraftMod }
+    version: 3.3.5
+    module: Warcraft
+    paths: [addons/counterstrikesharp/plugins/disabled/WarcraftPlugin/]
+
+  - name: cs2-advanced-weapon-system
+    kind: plugin
+    source: { github: CounterStrike2-Plugins-Archive/cs2-advanced-weapon-system }
+    version: "1.11"
+    module: Advanced Weapon System
+    paths: [addons/counterstrikesharp/plugins/disabled/cs2-advanced-weapon-system/]
+    configs: [addons/counterstrikesharp/configs/plugins/cs2-advanced-weapon-system/]
+    notes: Repository moved to an archive organisation (no longer maintained). Look for a replacement.
+
+  - name: cs2-OneInTheChamber
+    kind: plugin
+    source: { github: ShookEagle/cs2-OneInTheChamber }
+    version: 1.0.0
+    module: OneInTheChamber
+    paths: [addons/counterstrikesharp/plugins/disabled/cs2-OneInTheChamber/]
+
+  - name: cs2-quake-sounds
+    kind: plugin
+    source: { github: Kandru/cs2-quake-sounds }
+    version: "26.08.1"
+    module: CS2 QuakeSounds
+    paths: [addons/counterstrikesharp/plugins/disabled/QuakeSounds/]
+    configs: [addons/counterstrikesharp/configs/plugins/QuakeSounds/]
+
+  - name: CS2-WeaponSpeed
+    kind: plugin
+    source: { github: akanora/CS2-WeaponSpeed }
+    version: "1.3"
+    module: Weapon Speed
+    paths: [addons/counterstrikesharp/plugins/disabled/WeaponSpeed/]
+    configs: [addons/counterstrikesharp/configs/plugins/WeaponSpeed/]
+
+  - name: SpectatorList-CS2
+    kind: plugin
+    source: { github: srwiruwiru/SpectatorList-CS2 }
+    version: "16"
+    module: SpectatorList
+    requires: [PlayerSettings]
+    paths: [addons/counterstrikesharp/plugins/disabled/SpectatorList/]
+    configs: [addons/counterstrikesharp/configs/plugins/SpectatorList/]
+    notes: README says 16 (release tag); the DLL reports 1.0.5.
+
+  - name: CS2-PlayerModelChanger
+    kind: plugin
+    source: { github: samyycX/CS2-PlayerModelChanger }
+    version: 1.8.6
+    module: Player Model Changer
+    paths: [addons/counterstrikesharp/plugins/disabled/PlayerModelChanger/]
+    configs: [addons/counterstrikesharp/configs/plugins/PlayerModelChanger/]
+
+  - name: SLAYER_Football
+    kind: plugin
+    source: { github: zakriamansoor47/SLAYER_Football }
+    version: "1.1"
+    module: SLAYER Football
+    paths: [addons/counterstrikesharp/plugins/disabled/SLAYER_Football/]
+    configs: [addons/counterstrikesharp/configs/plugins/SLAYER_Football/]
+
+  - name: SLAYER_Revive
+    kind: plugin
+    source: { github: zakriamansoor47/SLAYER_Revive }
+    version: 1.3.2
+    module: SLAYER_Revive
+    paths: [addons/counterstrikesharp/plugins/disabled/SLAYER_Revive/]
+    configs: [addons/counterstrikesharp/configs/plugins/SLAYER_Revive/]
+
+  - name: cs2-TeleportKill
+    kind: plugin
+    source: { github: rodopoulos1/cs2-TeleportKill }
+    version: 1.0.1
+    module: Teleport Kill
+    paths: [addons/counterstrikesharp/plugins/disabled/TeleportKill/]
+    configs: [addons/counterstrikesharp/configs/plugins/TeleportKill/]
