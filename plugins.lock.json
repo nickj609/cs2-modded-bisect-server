@@ -1067,16 +1067,16 @@
       }
     },
     "GameModeManager": {
-      "version": "2.0.0-test.d1bd647",
+      "version": "v2.0.0",
       "asset": "GameModeManager_v2.0.0.zip",
       "url": "local build",
-      "installed": "2026-11-01T16:26:15.1544215Z",
+      "installed": "2026-11-01T17:33:40.1276052Z",
       "baseline": false,
       "files": {
         "addons/counterstrikesharp/plugins/GameModeManager/Gameloop.Vdf.dll": "c703e1d542c5c316",
         "addons/counterstrikesharp/plugins/GameModeManager/GameModeManager.deps.json": "763bd1f0f2810c78",
-        "addons/counterstrikesharp/plugins/GameModeManager/GameModeManager.dll": "e41d5d455f99a68f",
-        "addons/counterstrikesharp/plugins/GameModeManager/GameModeManager.pdb": "f9adc30e7b60a7dc",
+        "addons/counterstrikesharp/plugins/GameModeManager/GameModeManager.dll": "81134a94c07deff4",
+        "addons/counterstrikesharp/plugins/GameModeManager/GameModeManager.pdb": "7cc02bfe7fb4ba18",
         "addons/counterstrikesharp/plugins/GameModeManager/lang/de.json": "80bae109b9b91028",
         "addons/counterstrikesharp/plugins/GameModeManager/lang/en.json": "c2cfb0c341e4bb54",
         "addons/counterstrikesharp/plugins/GameModeManager/lang/es.json": "377a2ee10f3d7800",
@@ -1091,8 +1091,8 @@
         "addons/counterstrikesharp/plugins/GameModeManager/lang/ua.json": "d26fe38c3666611e",
         "addons/counterstrikesharp/plugins/GameModeManager/lang/zh-Hans.json": "83205630991fbb4f",
         "addons/counterstrikesharp/shared/GameModeManager.Shared/GameModeManager.Shared.deps.json": "c2c0e8fe791f5fc7",
-        "addons/counterstrikesharp/shared/GameModeManager.Shared/GameModeManager.Shared.dll": "5921b5a1a5c307c7",
-        "addons/counterstrikesharp/shared/GameModeManager.Shared/GameModeManager.Shared.pdb": "53d38bc4b5a974fe"
+        "addons/counterstrikesharp/shared/GameModeManager.Shared/GameModeManager.Shared.dll": "c28fa57bb16d5975",
+        "addons/counterstrikesharp/shared/GameModeManager.Shared/GameModeManager.Shared.pdb": "3f83a5521409c67f"
       }
     },
     "GG1MapChooser": {
