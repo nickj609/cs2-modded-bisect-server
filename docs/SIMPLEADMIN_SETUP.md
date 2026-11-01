@@ -75,7 +75,7 @@ The `MapChooser` section shows because GG1MapChooser is loaded. `RedirectSimpleA
 list GG1's maps (the current mode's pool). `RedirectMapsCommand` is `false`: `!maps` is GameModeManager's menu. Changing the map
 from the panel changes only the map, not the mode.
 
-GameModeManager adds its own "Game Modes" section (Modes, Maps, Settings, Warmup) through SimpleAdmin's API, using SimpleAdmin's
+GameModeManager adds its own "Manage game" section (Maps, Modes, Settings, Warmup, Rotation) through SimpleAdmin's API, using SimpleAdmin's
 menus so Back works. Nothing is needed in this bridge except the icon in `Items`. Turn the section off with `AdminPanel.Enabled` in
 `GameModeManager.json`.
 

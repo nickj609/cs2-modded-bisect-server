@@ -1,7 +1,7 @@
 # Troubleshooting
 
 ## Credentials
-- Re‑enter credentials: `scripts\install.ps1 -UpdateCredentials`
+- Re‑enter credentials: `bisect\install.ps1 -UpdateCredentials`
 - If Credential Manager fails, run PowerShell as Administrator.
 
 ## SFTP / WinSCP

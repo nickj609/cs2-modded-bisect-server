@@ -67,7 +67,7 @@ if (-not $GameModeManagerRepo) { $GameModeManagerRepo = Join-Path $repoRoot "..\
 if (-not (Test-Path (Join-Path $GameModeManagerRepo "GameModeManager.sln"))) { Stop-WithError "GameModeManager repo not found at $GameModeManagerRepo" }
 $GameModeManagerRepo = (Resolve-Path $GameModeManagerRepo).Path
 $packager = Join-Path $GameModeManagerRepo ".github\scripts\package-release.ps1"
-if (-not (Test-Path $packager)) { Stop-WithError "$packager not found: is GameModeManager on the pmm-migration branch?" }
+if (-not (Test-Path $packager)) { Stop-WithError "$packager not found: is the GameModeManager repo on a 2.0 branch?" }
 
 $workDir = Join-Path ([System.IO.Path]::GetTempPath()) "cs2-test-build"
 Write-Status "Building GameModeManager from $GameModeManagerRepo ($("$(& $git -C $GameModeManagerRepo rev-parse --abbrev-ref HEAD)".Trim()))..."

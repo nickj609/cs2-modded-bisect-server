@@ -17,7 +17,7 @@ re-upload.
 ## 1. Client addon (CS2 Workshop Tools, on your PC)
 
 Source files: the `Content-addonmanager/` folder of the PMM release zip
-(`MenuManagerCS2-1.3.00-cssharp376.zip` from https://github.com/RRimmer/PanoramaMenuManagerCS2/releases). It contains:
+(`MenuManagerCS2-1.3.01 zip` from https://github.com/RRimmer/PanoramaMenuManagerCS2/releases). It contains:
 
 ```
 panorama/layout/custom_game/menu_ui.xml      required: the menu panel

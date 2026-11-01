@@ -7,24 +7,24 @@
 
 ## Single server
 ```powershell
-cd scripts
+cd bisect
 .\install.ps1
 ```
 Follow prompts for credentials, UUID, and optional scheduled task.
 
 ## Multi‑server
 ```powershell
-Copy-Item scripts\servers-config.json.example servers-config.json
+Copy-Item bisect\servers-config.json.example servers-config.json
 # Edit servers-config.json with your servers
 
-cd scripts
+cd bisect
 .\install.ps1
 ```
 Select option 2 and follow prompts.
 
 ## Manual update
 ```powershell
-cd scripts
+cd bisect
 .\update.ps1
 # or
 .\update.ps1 -ServerUuid "your-uuid"
