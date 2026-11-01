@@ -1,10 +1,10 @@
 <#
 .SYNOPSIS
-Reports new plugin releases, GameModeManager bundle drift and new commits in kus's repo. Changes nothing in the repos.
+Reports new plugin releases, GameModeManager bundle drift, new commits in kus's repo and out-of-date visuals. Changes nothing in the repos.
 
 .DESCRIPTION
 Writes a short report to %USERPROFILE%\Documents\CS2\updates\latest.md and prints one result line:
-"NO UPDATES" or "UPDATES: <n> plugin(s), <n> bundle, <n> kus commit(s)". The review skill only reads the report when
+"NO UPDATES" or "UPDATES: <n> plugin(s), <n> bundle, <n> kus commit(s), <n> visual(s)". The review skill only reads the report when
 there is something in it, so a quiet week costs almost nothing.
 
 .PARAMETER MarkKusReviewed
@@ -31,8 +31,10 @@ $marker = Join-Path $PSScriptRoot "kus-reviewed.txt"
 # Define what GameModeManager is built on: a new release of these needs a real review
 $integrated = @("CounterStrikeSharp", "PanoramaMenuManager", "GG1MapChooser", "PMM_GG1MapChooser", "CS2-SimpleAdmin", "PMM_SimpleAdmin", "MultiAddonManager")
 
-# Define what the report leaves out. GameModeManager's own release is older than its test builds until 2.0 is published.
-$ignored = @("GameModeManager")
+# Define what the report leaves out: a GameModeManager test build is newer than its latest release
+$ignored = @()
+$repoVersion = (Get-Content (Join-Path $repo "plugins.yaml") -Raw)
+if ($repoVersion -match 'name: GameModeManager\s[\s\S]*?version:\s*"?[^\s"]*-test') { $ignored = @("GameModeManager") }
 
 # Define the files GameModeManager's release carries, by component, and the DLL that shows each one's version
 $bundled = [ordered]@{
@@ -133,6 +135,12 @@ if ($kusCount -gt 0) {
     [void]$sections.Add("## Kus: $kusCount new commit(s) since $($kusBase.Substring(0, 8))`n`n" + (($commits | ForEach-Object { "- $_" }) -join "`n") + "`n`nCfg and map files changed ($($files.Count), at most 60 listed):`n`n" + (($files | ForEach-Object { "- $_" }) -join "`n") + "`n")
 }
 
+# The Workshop addon, its pictures, the screenshots and the README's versions
+$visuals = @(& (Join-Path $PSScriptRoot "Check-Visuals.ps1"))
+if ($visuals.Count -gt 0) {
+    [void]$sections.Add("## Workshop addon and visuals`n`n" + (($visuals | ForEach-Object { "- $_" }) -join "`n") + "`n")
+}
+
 New-Item -ItemType Directory -Force -Path (Split-Path -Parent $ReportPath) | Out-Null
 $title = "# Update report $(Get-Date -Format 'yyyy-MM-dd')`n`n"
 [IO.File]::WriteAllText($ReportPath, $title + ($sections -join "`n"), (New-Object Text.UTF8Encoding($false)))
@@ -141,5 +149,5 @@ if ($sections.Count -eq 0) {
     Write-Output "NO UPDATES"
 }
 else {
-    Write-Output "UPDATES: $($new.Count) plugin(s), $($drift.Count) bundle, $kusCount kus commit(s). Report: $ReportPath"
+    Write-Output "UPDATES: $($new.Count) plugin(s), $($drift.Count) bundle, $kusCount kus commit(s), $($visuals.Count) visual(s). Report: $ReportPath"
 }

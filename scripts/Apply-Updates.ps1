@@ -103,5 +103,8 @@ Write-Host "`nBuilding GameModeManager..." -ForegroundColor Cyan
 if ($LASTEXITCODE -ne 0) { $failed = $true }
 & dotnet clean (Join-Path $gmm "GameModeManager.sln") -c Release --nologo -v quiet | Out-Null
 
+Write-Host "`nChecking the addon and visuals..." -ForegroundColor Cyan
+& (Join-Path $PSScriptRoot "Check-Visuals.ps1") | ForEach-Object { Write-Output "TO DO: $_" }
+
 if ($failed) { Write-Output "RESULT: PROBLEMS FOUND"; exit 1 }
 Write-Output "RESULT: OK. Not committed or deployed."

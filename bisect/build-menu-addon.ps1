@@ -261,6 +261,8 @@ if ($missing.Count -gt 0 -or $exitCode -ne 0) {
     Stop-WithError "Compile failed (exit code $exitCode). Not written: $($missing -join ', ')"
 }
 
+. (Join-Path (Split-Path -Parent $PSScriptRoot) "scripts\Visuals-Common.ps1")
+Write-Stamp $script:AddonStamp (Get-AddonInputsHash (Split-Path -Parent $PSScriptRoot))
 Write-Host "[OK] Addon '$AddonName' is built: $($sourceFiles.Count) files and $($imageFiles.Count) pictures compiled to $gameDir" -ForegroundColor Green
 Write-Host ""
 Write-Host "Next, publish it by hand:" -ForegroundColor Cyan

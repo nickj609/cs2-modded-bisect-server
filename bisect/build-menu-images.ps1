@@ -14,9 +14,9 @@ param(
 
 $ErrorActionPreference = "Stop"
 Add-Type -AssemblyName System.Drawing
+. (Join-Path (Split-Path -Parent $PSScriptRoot) "scripts\Visuals-Common.ps1")
 
 $repo = Split-Path -Parent $PSScriptRoot
-$poolsFile = Join-Path $repo "game\csgo\cfg\GGMCmaps.tuning.json"
 $configFile = Join-Path $repo "game\csgo\addons\counterstrikesharp\configs\plugins\PMM_GG1MapChooser\PMM_GG1MapChooser.json"
 $modesFile = Join-Path $repo "game\csgo\addons\counterstrikesharp\configs\plugins\GameModeManager\GameModeManager.json"
 $mapsDir = Join-Path $OutDir "maps"
@@ -77,16 +77,11 @@ function Add-Cover($graphics, [string]$path) {
     finally { $image.Dispose() }
 }
 
-$pools = [IO.File]::ReadAllText($poolsFile, [Text.Encoding]::UTF8) | ConvertFrom-Json
-
 # Maps: key -> workshop ID
 $workshop = [ordered]@{}
-foreach ($mode in $pools.PSObject.Properties) {
-    foreach ($entry in $mode.Value.PSObject.Properties) {
-        if ($entry.Value.ws -and "$($entry.Value.mapid)" -match '^\d+$') {
-            $workshop[$entry.Name] = "$($entry.Value.mapid)"
-        }
-    }
+$serverMaps = Get-ServerMaps $repo
+foreach ($map in $serverMaps.Keys) {
+    if ($serverMaps[$map]) { $workshop[$map] = $serverMaps[$map] }
 }
 
 $keys = @($workshop.Keys)
@@ -157,7 +152,7 @@ $utf8 = New-Object Text.UTF8Encoding($false)
 $classes = [ordered]@{}
 foreach ($mode in $cards.Keys) { $classes[$mode] = $cards[$mode] }
 foreach ($map in $extraOfficialMaps.Keys) { $classes[$map] = "s2r://panorama/images/map_icons/screenshots/360p/$($extraOfficialMaps[$map])_png.vtex" }
-$manifest = [ordered]@{ maps = $made; modes = $classes }
+$manifest = [ordered]@{ maps = $made; modes = $classes; noPreview = @($keys | Where-Object { -not $made.Contains($_) -and -not $extraOfficialMaps.Contains($_) }) }
 [IO.File]::WriteAllText((Join-Path $OutDir "images.json"), ($manifest | ConvertTo-Json -Depth 4), $utf8)
 
 # Tell the bridge which picture each entry has. Entries set by hand are kept.

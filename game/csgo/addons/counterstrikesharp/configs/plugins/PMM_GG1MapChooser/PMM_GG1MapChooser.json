@@ -38,7 +38,57 @@
     "New": "#ff9800"
   },
   "Maps": {
-    "Hide N Seek": {
+    "de_warden": {
+      "Title": "",
+      "Image": "maps/de_warden.png",
+      "Badge": ""
+    },
+    "de_stronghold": {
+      "Title": "",
+      "Image": "maps/de_stronghold.png",
+      "Badge": ""
+    },
+    "cs_alpine": {
+      "Title": "",
+      "Image": "maps/cs_alpine.png",
+      "Badge": ""
+    },
+    "de_splinter": {
+      "Title": "",
+      "Image": "maps/de_splinter.png",
+      "Badge": ""
+    },
+    "factory": {
+      "Title": "",
+      "Image": "maps/factory.png",
+      "Badge": ""
+    },
+    "project_phoenix": {
+      "Title": "",
+      "Image": "maps/project_phoenix.png",
+      "Badge": ""
+    },
+    "ultimate_free_nuke": {
+      "Title": "",
+      "Image": "maps/ultimate_free_nuke.png",
+      "Badge": ""
+    },
+    "de_sanctum": {
+      "Title": "",
+      "Image": "maps/de_sanctum.png",
+      "Badge": ""
+    },
+    "awp_lego_2_destructible": {
+      "Title": "",
+      "Image": "maps/awp_lego_2_destructible.png",
+      "Badge": ""
+    },
+    "bump_arena": {
+      "Title": "",
+      "Image": "maps/bump_arena.png",
+      "Badge": ""
+    },
+"Hide N Seek": {
       "Title": "Hide N Seek",
       "Image": "s2r://panorama/images/map_icons/screenshots/360p/de_inferno_png.vtex",
       "Badge": "Mode"
