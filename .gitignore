@@ -8,3 +8,5 @@ tmp
 console.log
 settings.local.json
 CLAUDE.md
+
+bisect/servers-config.json
