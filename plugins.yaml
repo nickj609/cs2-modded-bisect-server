@@ -224,7 +224,7 @@ components:
     kind: plugin
     source: { github: nickj609/GameModeManager }
     asset: GameModeManager_v*.zip
-    version: 2.0.0-test.b11e098
+    version: 2.0.0-test.d1bd647
     module: GameModeManager
     always_loaded: true
     requires: [PanoramaMenuManager, GG1MapChooser]

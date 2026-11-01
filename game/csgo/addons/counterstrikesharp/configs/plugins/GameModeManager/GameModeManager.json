@@ -16,7 +16,7 @@
     "Cooldown": 60,
     "AllowSpectators": false,
     "AllowInWarmup": false,
-    "NativeTitleToken": "#SFUI_vote_panorama_vote_default"
+    "NativeTitleToken": ""
 
   },
   "MapChooser": {
