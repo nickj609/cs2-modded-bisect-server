@@ -42,6 +42,29 @@ else {
     }
 }
 
+# Server names: a new mode, or one sharing another's cfg, would show the wrong name
+$overrides = Join-Path $repo "custom_files\game\csgo\cfg"
+$modesConfig = [IO.File]::ReadAllText((Join-Path $repo "game\csgo\addons\counterstrikesharp\configs\plugins\GameModeManager\GameModeManager.json"), [Text.Encoding]::UTF8)
+$modesSection = $modesConfig.Substring($modesConfig.IndexOf('"MapGroupFile"'))
+$seenNames = @{}
+foreach ($mode in [regex]::Matches($modesSection, '"Name":\s*"([^"]+)",\s*"Config":\s*"([^"]+)"')) {
+    $cfg = Join-Path $repo "game\csgo\cfg\$($mode.Groups[2].Value)"
+    if (-not (Test-Path $cfg)) { continue }
+    $text = [IO.File]::ReadAllText($cfg)
+    $inner = [regex]::Match($text, '(?m)^\s*exec\s+"?(\w[\w.-]*)')
+    $custom = [regex]::Match($text, '(?m)^\s*exec\s+"?(custom_[^\s"]+)').Groups[1].Value
+    if (-not $custom -and $inner.Success -and (Test-Path (Join-Path $repo "game\csgo\cfg\$($inner.Groups[1].Value)"))) {
+        $custom = [regex]::Match([IO.File]::ReadAllText((Join-Path $repo "game\csgo\cfg\$($inner.Groups[1].Value)")), '(?m)^\s*exec\s+"?(custom_[^\s"]+)').Groups[1].Value
+    }
+    if (-not $custom -or -not (Test-Path (Join-Path $overrides $custom))) {
+        Write-Output "Mode '$($mode.Groups[1].Value)' has no server name. Add custom_files\game\csgo\cfg\$(if ($custom) { $custom } else { 'custom_<mode>.cfg, and exec it from its cfg' })."
+    }
+    elseif ($seenNames.ContainsKey($custom)) {
+        Write-Output "Modes '$($seenNames[$custom])' and '$($mode.Groups[1].Value)' share $custom, so they show the same server name."
+    }
+    else { $seenNames[$custom] = $mode.Groups[1].Value }
+}
+
 # The addon: built from the current files, and uploaded since
 $stamp = Read-Stamp $script:AddonStamp
 if (-not $stamp -or $stamp.hash -ne (Get-AddonInputsHash $repo)) {

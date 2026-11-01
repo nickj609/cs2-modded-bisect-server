@@ -204,11 +204,12 @@ function New-ScheduledUpdateTask {
 function Sync-CustomFiles {
     <#
     .SYNOPSIS
-    Copies remote custom_files into /home/container
+    Uploads custom_files/game from this repo, and copies remote custom_files into /home/container
     
     .DESCRIPTION
-    Checks /home/container/custom_files on the server and copies its contents
-    into /home/container using a remote command.
+    Uploads the repo's custom_files/game over /home/container/game: the overrides for every server, such as server names.
+    Then checks /home/container/custom_files on the server and copies its contents
+    into /home/container using a remote command, for overrides kept only on one server.
     
     .PARAMETER SftpHost
     SFTP server hostname
@@ -293,6 +294,17 @@ function Sync-CustomFiles {
         }
         catch {
             Write-Status "Warning: Failed to back up remote custom_files (continuing)"
+        }
+
+        # Straight into game: not every host's SFTP runs the remote command below. Always overwrites, because the main sync
+        # goes by date and leaves the repo's older copy of these files alone.
+        $repoOverrides = Join-Path (Split-Path -Parent $PSScriptRoot) "custom_files\game"
+        if (Test-Path $repoOverrides) {
+            $overrideOptions = New-Object WinSCP.TransferOptions
+            $overrideOptions.TransferMode = [WinSCP.TransferMode]::Binary
+            $overrideResult = $session.PutFiles((Join-Path $repoOverrides "*"), "/home/container/game/", $false, $overrideOptions)
+            $overrideResult.Check()
+            Write-Status "Uploaded $($overrideResult.Transfers.Count) override(s) from custom_files/game"
         }
 
         Write-Status "Applying remote custom_files into /home/container..."

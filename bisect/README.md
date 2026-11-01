@@ -28,6 +28,11 @@ This repository automates install/update of [cs2-modded-server](https://github.c
 - **stop.ps1** – stop a server via API
 - **uninstall.ps1** – remove scheduled tasks and optionally clear credentials
 
+## Custom files in this repo
+Every deploy uploads `custom_files/game` over `/home/container/game`. Put overrides for all your servers here, like
+`custom_files/game/csgo/cfg/custom_surf.cfg`, which holds that mode's server name. Everything else in `custom_files` is ignored by git
+and isn't uploaded.
+
 ## Remote custom files (important)
 Custom overrides live **on the server** at:
 ```
