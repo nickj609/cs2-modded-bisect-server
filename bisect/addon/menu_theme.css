@@ -162,6 +162,8 @@
 .utils-item.k-empty
 {
 	visibility: collapse;
+	background-color: #00000000;
+	border: 0px solid transparent;
 }
 
 .utils-buttons

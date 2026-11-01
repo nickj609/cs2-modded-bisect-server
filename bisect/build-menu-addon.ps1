@@ -190,6 +190,44 @@ if (Test-Path $manifestPath) {
     Write-Host "  Added $($imageFiles.Count) map picture(s)"
 }
 
+# BEGIN vote footers
+# Keycaps on the vote, nominate and settings panels, for the WASD and number key styles, from what each panel's text hint says.
+# The hint stays in the file: it's the "done" message after voting. The bridge isn't changed, only the addon's copy of its layout.
+$voteXmlPath = Join-Path $contentDir "panorama\layout\custom_game\pmm_mapvote.xml"
+$voteXml = [IO.File]::ReadAllText($voteXmlPath)
+$dash = [string][char]0x2013
+$voteFooters = [ordered]@{
+    "mv_hint_wasd"   = @("wasd", @("Move", "/", "W", "S"), @("Vote", "", "E"), @("Mode", "", "R"))
+    "mv_hint_digits" = @("digits", @("Vote", $dash, "1", "9"), @("Mode", "", "0"))
+    "nm_hint_wasd"   = @("wasd", @("Move", "/", "W", "S"), @("Page", "/", "A", "D"), @("Nominate", "", "E"), @("Close", "", "R"))
+    "nm_hint_digits" = @("digits", @("Nominate", $dash, "1", "6"), @("Page", "/", "8", "9"), @("Close", "", "0"))
+    "st_hint_wasd"   = @("wasd", @("Move", "/", "W", "S"), @("Choose", "", "E"), @("Back", "", "R"))
+    "st_hint_digits" = @("digits", @("Choose", $dash, "1", "5"), @("Back", "", "0"))
+}
+foreach ($hint in $voteFooters.Keys) {
+    $spec = @($voteFooters[$hint])
+    $line = "<Label class=`"mv-hint mv-hint-$($spec[0]) stratum-medium-tf`" text=`"{s:$hint}`" />"
+    if (-not $voteXml.Contains($line)) { Stop-WithError "pmm_mapvote.xml has changed: $line not found" }
+    $keys = New-Object Text.StringBuilder
+    [void]$keys.AppendLine($line)
+    [void]$keys.AppendLine("`t`t`t`t`t<Panel class=`"gmm-vote-keys gmm-vote-keys-$($spec[0])`" hittest=`"false`">")
+    foreach ($group in ($spec | Select-Object -Skip 1)) {
+        $caps = @($group | Select-Object -Skip 2)
+        foreach ($cap in $caps) {
+            if ($cap -ne $caps[0]) { [void]$keys.AppendLine("`t`t`t`t`t`t<Label class=`"gmm-vote-key-or stratum-medium-tf`" text=`"$($group[1])`" />") }
+            $class = if ($group[0] -eq "Close") { "gmm-vote-key gmm-vote-key-close" } else { "gmm-vote-key" }
+            [void]$keys.AppendLine("`t`t`t`t`t`t<Label class=`"$class stratum-bold-tf`" text=`"$cap`" />")
+        }
+        [void]$keys.AppendLine("`t`t`t`t`t`t<Label class=`"gmm-vote-key-name stratum-medium-tf`" text=`"$($group[0])`" />")
+    }
+    [void]$keys.Append("`t`t`t`t`t</Panel>")
+    $voteXml = $voteXml.Replace($line, $keys.ToString())
+}
+[IO.File]::WriteAllText($voteXmlPath, $voteXml, (New-Object Text.UTF8Encoding($false)))
+[IO.File]::AppendAllText((Join-Path $contentDir "panorama\styles\custom_game\pmm_mapvote.css"), [IO.File]::ReadAllText((Join-Path $PSScriptRoot "addon\vote_footer.css")), (New-Object Text.UTF8Encoding($false)))
+Write-Host "  Added the vote panel footers"
+# END vote footers
+
 # Add the MODE badge color used by GameModeManager's mode entries in the vote
 $mapsCss = Join-Path $contentDir "panorama\styles\custom_game\pmm_mapvote_maps.css"
 if ((Get-Content -LiteralPath $mapsCss -Raw) -notmatch [regex]::Escape(".bd-mode")) {
