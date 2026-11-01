@@ -37,10 +37,17 @@ $bundleFolders = [ordered]@{
 $keepRuntimes = @("linux-x64", "linux-musl-x64", "win", "win-x64")
 
 # Define the private members GameModeManager reaches by reflection. A new release that renames one breaks it at run time,
-# which a build can't see. Names are looked for in the DLL's metadata; nothing is loaded.
+# which a build can't see. Names are looked for in the DLL's metadata; nothing is loaded. The bundled plugins' lists are in
+# GameModeManager's Core/ReflectedMembers.cs. CS2-SimpleAdmin isn't bundled, so its list is here.
+$reflectedSource = Get-Content (Join-Path $gmm "GameModeManager/Core/ReflectedMembers.cs") -Raw
+function Get-ReflectedList([string]$Name) {
+    $list = [regex]::Match($reflectedSource, "string\[\] $Name\s*=\s*\{(.*?)\}", 'Singleline')
+    if (-not $list.Success) { throw "No $Name list in GameModeManager's ReflectedMembers.cs" }
+    return @([regex]::Matches($list.Groups[1].Value, '"([^"]+)"') | ForEach-Object { $_.Groups[1].Value })
+}
 $reflected = [ordered]@{
-    "plugins/GG1MapChooser/GG1MapChooser.dll"         = @("_roundEndMap", "nominatedMaps", "players", "selectedMaps", "ProposedMaps", "_playedMaps", "_recentlyNominatedMaps", "RememberNominatedMaps", "MapsInVote", "AllowNominate", "MinPlayers", "MaxPlayers", "MapMenuCommand", "Nominate", "TryNominate", "BeginMapVote", "GetVoteMenuMode", "VotingTime", "ReloadMapcycle", "GetActiveMapPool", "GetRealClientCount", "ExtendMapInVote", "VoteDependsOnRoundWins", "_mapChooser", "GGMC_IsVoteInProgress", "MCAPICapability")
-    "plugins/PMM_GG1MapChooser/PMM_GG1MapChooser.dll" = @("Instance", "Maps", "Title", "Badge")
+    "plugins/GG1MapChooser/GG1MapChooser.dll"         = Get-ReflectedList "GG1MapChooser"
+    "plugins/PMM_GG1MapChooser/PMM_GG1MapChooser.dll" = Get-ReflectedList "PMM_GG1MapChooser"
     "plugins/CS2-SimpleAdmin/CS2-SimpleAdmin.dll"     = @("RegisterMenuCategory", "RegisterMenu", "UnregisterMenu", "CreateMenuWithBack", "AddMenuOption", "AddSubMenu", "LogCommand")
 }
 
