@@ -38,7 +38,62 @@
     "New": "#ff9800"
   },
   "Maps": {
-    "Awp Only": {
+    "Hide N Seek": {
+      "Title": "Hide N Seek",
+      "Image": "s2r://panorama/images/map_icons/screenshots/360p/de_inferno_png.vtex",
+      "Badge": "Mode"
+    },
+    "de_inferno_prophunt": {
+      "Title": "",
+      "Image": "s2r://panorama/images/map_icons/screenshots/360p/de_inferno_png.vtex",
+      "Badge": ""
+    },
+    "de_mirage_prophunt": {
+      "Title": "",
+      "Image": "s2r://panorama/images/map_icons/screenshots/360p/de_mirage_png.vtex",
+      "Badge": ""
+    },
+    "de_nuke_prophunt": {
+      "Title": "",
+      "Image": "s2r://panorama/images/map_icons/screenshots/360p/de_nuke_png.vtex",
+      "Badge": ""
+    },
+    "de_overpass_prophunt": {
+      "Title": "",
+      "Image": "s2r://panorama/images/map_icons/screenshots/360p/de_overpass_png.vtex",
+      "Badge": ""
+    },
+    "de_vertigo_prophunt": {
+      "Title": "",
+      "Image": "s2r://panorama/images/map_icons/screenshots/360p/de_vertigo_png.vtex",
+      "Badge": ""
+    },
+    "de_mirage45": {
+      "Title": "",
+      "Image": "s2r://panorama/images/map_icons/screenshots/360p/de_mirage_png.vtex",
+      "Badge": ""
+    },
+    "de_train_twyxe": {
+      "Title": "",
+      "Image": "s2r://panorama/images/map_icons/screenshots/360p/de_train_png.vtex",
+      "Badge": ""
+    },
+"Rush": {
+      "Title": "Rush",
+      "Image": "s2r://panorama/images/map_icons/screenshots/360p/rush_001_png.vtex",
+      "Badge": "Mode"
+    },
+    "Rush (Valve)": {
+      "Title": "Rush (Valve)",
+      "Image": "s2r://panorama/images/map_icons/screenshots/360p/rush_001_png.vtex",
+      "Badge": "Mode"
+    },
+    "rush_001": {
+      "Title": "",
+      "Image": "s2r://panorama/images/map_icons/screenshots/360p/rush_001_png.vtex",
+      "Badge": ""
+    },
+"Awp Only": {
       "Title": "Awp Only",
       "Image": "maps/awp_bhop_rocket.png",
       "Badge": "Mode"

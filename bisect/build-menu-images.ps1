@@ -23,16 +23,37 @@ $mapsDir = Join-Path $OutDir "maps"
 $sourceDir = Join-Path $OutDir "steam-previews"
 New-Item -ItemType Directory -Force -Path $mapsDir, $sourceDir | Out-Null
 
-# Define the picture size: the panel draws 80x45, and twice that stays sharp without adding much to the download
-$width = 160
-$height = 90
+# Define the picture size: vote rows draw 80x45, but the next map card draws the same picture at about 390 wide
+$width = 400
+$height = 225
 
 # Define the official maps CS2 has a screenshot for (BuiltinMaps in PMM_GG1MapChooser)
 $officialMaps = @("ar_baggage", "ar_pool_day", "ar_shoots", "ar_shoots_night", "cs_italy", "cs_office", "cs_shelter", "de_ancient", "de_ancient_night", "de_anubis", "de_boulder", "de_cache", "de_debris", "de_dust", "de_dust2", "de_eldorado", "de_fachwerk", "de_inferno", "de_mirage", "de_nuke", "de_overpass", "de_poseidon", "de_train", "de_vertigo")
 
+# Maps the bridge has no picture for, and the CS2 screenshot each one shows. rush_001 is official, and the others are versions of
+# an official map whose Steam preview is missing.
+$extraOfficialMaps = [ordered]@{
+    "rush_001" = "rush_001"
+    "de_inferno_prophunt" = "de_inferno"
+    "de_mirage_prophunt" = "de_mirage"
+    "de_nuke_prophunt" = "de_nuke"
+    "de_overpass_prophunt" = "de_overpass"
+    "de_vertigo_prophunt" = "de_vertigo"
+    "de_mirage45" = "de_mirage"
+    "de_train_twyxe" = "de_train"
+}
+
 # The same rule as PMM_GG1MapChooser's San(): this makes the file name and its CSS class
 function Get-SafeName([string]$name) {
     return (-join ($name.Trim().ToLowerInvariant().ToCharArray() | ForEach-Object { if ($_ -match '[a-z0-9_-]') { $_ } else { '_' } }))
+}
+
+# A picture from an older size gets made again
+function Test-Current([string]$path) {
+    if (-not (Test-Path $path)) { return $false }
+    $image = [Drawing.Image]::FromFile($path)
+    try { return $image.Width -eq $width -and $image.Height -eq $height }
+    finally { $image.Dispose() }
 }
 
 function New-Canvas {
@@ -97,7 +118,7 @@ foreach ($key in $keys) {
     $source = Join-Path $sourceDir "$safe.img"
     $target = Join-Path $mapsDir "$safe.png"
     if (-not (Test-Path $source)) { continue }
-    if (-not (Test-Path $target)) {
+    if (-not (Test-Current $target)) {
         try {
             $bitmap, $graphics = New-Canvas
             Add-Cover $graphics $source
@@ -127,12 +148,16 @@ foreach ($mode in [regex]::Matches($section, '"Name":\s*"([^"]+)"[^{}]*?"Default
     if ($byId) { $map = $byId }
     if ($made.Contains($map)) { $cards[$name] = "maps/$($made[$map])" }
     elseif ($officialMaps -contains $map.ToLowerInvariant()) { $cards[$name] = "s2r://panorama/images/map_icons/screenshots/360p/$($map.ToLowerInvariant())_png.vtex" }
+    elseif ($extraOfficialMaps.Contains($map.ToLowerInvariant())) { $cards[$name] = "s2r://panorama/images/map_icons/screenshots/360p/$($extraOfficialMaps[$map.ToLowerInvariant()])_png.vtex" }
     else { [void]$noPicture.Add("$name ($map)") }
 }
 
 # The list build-menu-addon.ps1 reads
 $utf8 = New-Object Text.UTF8Encoding($false)
-$manifest = [ordered]@{ maps = $made; modes = $cards }
+$classes = [ordered]@{}
+foreach ($mode in $cards.Keys) { $classes[$mode] = $cards[$mode] }
+foreach ($map in $extraOfficialMaps.Keys) { $classes[$map] = "s2r://panorama/images/map_icons/screenshots/360p/$($extraOfficialMaps[$map])_png.vtex" }
+$manifest = [ordered]@{ maps = $made; modes = $classes }
 [IO.File]::WriteAllText((Join-Path $OutDir "images.json"), ($manifest | ConvertTo-Json -Depth 4), $utf8)
 
 # Tell the bridge which picture each entry has. Entries set by hand are kept.
@@ -148,6 +173,9 @@ if ($Limit -eq 0) {
     foreach ($mode in $cards.Keys) {
         $name = $mode -replace '"', '\"'
         if ($existing -notcontains $mode) { $block += "    `"$name`": {$nl      `"Title`": `"$name`",$nl      `"Image`": `"$($cards[$mode])`",$nl      `"Badge`": `"Mode`"$nl    },$nl" }
+    }
+    foreach ($map in $extraOfficialMaps.Keys) {
+        if ($existing -notcontains $map) { $block += "    `"$map`": {$nl      `"Title`": `"`",$nl      `"Image`": `"$($classes[$map])`",$nl      `"Badge`": `"`"$nl    },$nl" }
     }
     $anchor = [regex]::Match($text, '"Maps":\s*\{\s*')
     if (-not $anchor.Success) { throw "No Maps section in $configFile" }
