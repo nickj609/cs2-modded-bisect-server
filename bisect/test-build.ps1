@@ -36,7 +36,7 @@ if (-not (Get-Command dotnet -ErrorAction SilentlyContinue)) { Stop-WithError "d
 # A test build must not land on the branch production deploys from
 $branch = ("$(& $git -C $repoRoot rev-parse --abbrev-ref HEAD)").Trim()
 if ($branch -in @("main", "master") -and -not $Plan) {
-    Stop-WithError "This repo is on '$branch'. Switch to a feature branch (e.g. plugin-manifest) before installing a test build."
+    Stop-WithError "This repo is on '$branch'. Switch to a feature branch (e.g. bisect or test) before installing a test build."
 }
 
 # The test server: never one with role production
