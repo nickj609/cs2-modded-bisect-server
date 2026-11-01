@@ -93,7 +93,7 @@ if ($LASTEXITCODE -ne 0) { Stop-WithError "Installing the test build failed" }
 
 if ($Plan) {
     if ($entry) {
-        & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot "update.ps1") -Server "$($entry.name)" -PlanDeletions
+        & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot "update.ps1") -Server "$($entry.name)" -PlanDeletions -TestBuild
     }
     Write-Success "Plan finished: nothing was written or uploaded"
     exit 0
@@ -106,7 +106,7 @@ Write-Success "ServerBundleCheck passed"
 
 # 4. Deploy to the test server only
 $deployArgs = @("-NoProfile", "-ExecutionPolicy", "Bypass", "-File", (Join-Path $PSScriptRoot "update.ps1"),
-                "-Server", "$($entry.name)", "-LogRetention", "$LogRetention")
+                "-Server", "$($entry.name)", "-LogRetention", "$LogRetention", "-TestBuild")
 if ($FirstDeploy) { $deployArgs += @("-SinceCommit", "HEAD", "-AllowLargeDelete") }
 & powershell.exe @deployArgs
 if ($LASTEXITCODE -ne 0) { Stop-WithError "Deploy to '$($entry.name)' failed" }

@@ -87,6 +87,21 @@
 						"mg_dm"		"50"
 					}
 				}
+
+				// Rush
+				"rush"
+				{
+					"maxplayers"			"64"
+					"exec"
+					{
+						"exec" "gamemode_rush_last.cfg"
+					}
+					// Map groups for online modes
+					"mapgroupsMP"
+					{
+						"mg_rush"		"50"
+					}
+				}
 			}
 		}
 	}
@@ -104,7 +119,7 @@
 				"de_mirage"		""
 				"de_nuke"		""
 				"de_dust2"		""
-				"de_overpass"		""
+				"de_cache"		""
 			}
 		}
 		"mg_valve_competitive"
@@ -122,9 +137,9 @@
 				"de_overpass"		""
 				"de_anubis"			""
 				"de_vertigo"		""
-				"de_warden"			""
-				"de_stronghold"		""
-				"cs_alpine"			""
+				"de_boulder"		""
+				"de_fachwerk"		""
+				"cs_shelter"		""
 				"cs_office"			""
 				"cs_italy"			""
 			}
@@ -135,12 +150,13 @@
 			"displayname"			"Wingman (Valve)"
 			"maps"
 			{
-				"de_sanctum"		""
 				"de_poseidon"		""
 				"de_overpass"		""
 				"de_vertigo"		""
 				"de_nuke"			""
 				"de_inferno"		""
+				"de_debris"			""
+				"de_eldorado"		""
 			}
 		}
 		"mg_valve_casual"
@@ -158,9 +174,9 @@
 				"de_overpass"		""
 				"de_anubis"			""
 				"de_vertigo"		""
-				"de_warden"			""
-				"de_stronghold"		""
-				"cs_alpine"			""
+				"de_boulder"		""
+				"de_fachwerk"		""
+				"cs_shelter"		""
 				"cs_office"			""
 				"cs_italy"			""
 			}
@@ -180,9 +196,9 @@
 				"de_overpass"		""
 				"de_anubis"			""
 				"de_vertigo"		""
-				"de_warden"			""
-				"de_stronghold"		""
-				"cs_alpine"			""
+				"de_boulder"		""
+				"de_fachwerk"		""
+				"cs_shelter"		""
 				"cs_office"			""
 				"cs_italy"			""
 			}
@@ -216,6 +232,15 @@
 				"de_vertigo"		""
 			}
 		}
+		"mg_rush"
+		{
+			"name"					"mg_rush"
+			"displayname"			"Rush"
+			"maps"
+			{
+				"rush_001"			""
+			}
+		}
 		"mg_comp"
 		{
 			"name"			"mg_comp"
@@ -223,6 +248,7 @@
 			"maps"
 			{
 				"de_dust2"			""
+				"de_cache"			""
 				"de_mirage"			""
 				"de_inferno"		""
 				"de_ancient_night"	""
@@ -231,11 +257,14 @@
 				"de_overpass"		""
 				"de_anubis"			""
 				"de_vertigo"		""
-				"de_warden"			""
-				"de_stronghold"		""
-				"cs_alpine"			""
+				"de_boulder"		""
+				"de_fachwerk"		""
+				"cs_shelter"		""
 				"cs_office"			""
 				"cs_italy"			""
+				"workshop/3256988376/de_warden"			""
+				"workshop/3477094554/de_stronghold"			""
+				"workshop/3221491619/cs_alpine"			""
 				"workshop/3286163323/de_golden"			""
 				"workshop/3249860053/de_palacio"		""
 				"workshop/3339983232/cs_agency"			""
@@ -243,16 +272,16 @@
 				"workshop/3328169568/de_edin"        ""
 				"workshop/3071005299/de_assembly"		""
 				"workshop/3329387648/de_cbble"		""
-				"workshop/3437809122/de_cache"		""
-				"workshop/3079872050/de_pipeline"		""
+				"workshop/3691046714/de_splinter"		""
 				"workshop/3075706807/de_biome"		""
 				"workshop/3070346180/mp_raid"		""
 				"workshop/3070766070/de_mutiny"		""
-				"workshop/3070594412/cs_assault"		""
+				"workshop/3694043544/cs_assault"		""
 				"workshop/3072352643/de_ruins_d_prefab"		""
 				"workshop/3089953774/cs_militia"		""
 				"workshop/3079692971/de_aztec_hr"		""
 				"workshop/3108513658/de_akiba"		""
+				"workshop/3681322159/factory"		""
 				"workshop/3236615060/cs_insertion2"		""
 				"workshop/3152430710/de_mills"		""
 				"workshop/3121217565/de_thera"		""
@@ -261,6 +290,8 @@
 				"workshop/3345551391/twofort_cs2"		""
 				"workshop/3460962520/de_rats_remake"		""
 				"workshop/3464733042/de_mirage_bricks"		""
+				"workshop/3683699332/project_phoenix"		""
+				"workshop/3687298714/ultimate_free_nuke"		""
 			}
 		}
 		"mg_retake"
@@ -312,13 +343,16 @@
 			"displayname"			"Wingman"
 			"maps"
 			{
-				"de_sanctum"		""
+				"de_cache"			""
 				"de_poseidon"		""
 				"de_overpass"		""
 				"de_vertigo"		""
 				"de_nuke"			""
 				"de_inferno"		""
 				"ar_pool_day"		""
+				"de_debris"			""
+				"de_eldorado"		""
+				"workshop/3643331442/de_sanctum"		""
 				"workshop/3536622725/de_rooftop"		""
 				"workshop/3439120481/de_splat"		""
 				"workshop/3413800427/de_dust2_wingman"		""
@@ -332,8 +366,6 @@
 				"workshop/3070612859/de_shortdust"		""
 				"workshop/3071005299/de_assembly"		""
 				"workshop/3329387648/de_cbble"		""
-				"workshop/3437809122/de_cache"		""
-				"workshop/3079872050/de_pipeline"		""
 				"workshop/3075706807/de_biome"		""
 				"workshop/3070346180/mp_raid"		""
 				"workshop/3070766070/de_mutiny"		""
@@ -408,6 +440,7 @@
 				"workshop/3437226954/fy_hangemhigh"		""
 				"workshop/3455068243/ar_combat_arena"		""
 				"workshop/3329405459/ar_ds_cornered_gg1"		""
+				"workshop/3706720942/awp_lego_2_destructible"		""
 			}
 		}
 		"mg_1v1"
@@ -575,6 +608,7 @@
 			"maps"
 			{
 				"workshop/3142070597/awp_bhop_rocket"		""
+				"workshop/3679420050/bump_arena"		""
 			}
 		}
 		"mg_battle"

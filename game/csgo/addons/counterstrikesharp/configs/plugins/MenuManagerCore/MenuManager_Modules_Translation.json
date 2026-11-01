@@ -1,4 +1,12 @@
 {
+  "PMM_SimpleAdmin": {
+    "en": {
+      "pmm_sa.brand": "ADMIN MENU"
+    },
+    "ru": {
+      "pmm_sa.brand": "ADMIN MENU"
+    }
+  },
   "CS2-SimpleAdmin": {
     "ru": {
       "SA_TITLE": "SimpleAdmin",

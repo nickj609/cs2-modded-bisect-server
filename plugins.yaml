@@ -11,7 +11,7 @@ schema: 1
 
 server:
   platform: linux          # Bisect containers are Linux
-  css_api: "1.0.378"  # CounterStrikeSharp in game/csgo/addons/counterstrikesharp/api
+  css_api: "1.0.379"  # CounterStrikeSharp in game/csgo/addons/counterstrikesharp/api
   game_dir: game/csgo
 
 ignore:
@@ -36,7 +36,7 @@ components:
     kind: core
     source: { github: roflmuffin/CounterStrikeSharp }
     asset: counterstrikesharp-with-runtime-linux-*.zip   # with-runtime: CSS loads dotnet/host/fxr/<exact version>
-    version: v1.0.378
+    version: v1.0.379
     requires: [Metamod:Source]
     paths:
       - addons/counterstrikesharp/api/
@@ -58,7 +58,7 @@ components:
     kind: metamod
     source: { github: Source2ZE/MultiAddonManager }
     asset: '*-steamrt3.tar.gz'   # steamrt3 builds also run on steamrt4 servers; steamrt4 builds may not run on steamrt3
-    version: v1.7.2
+    version: v1.7.3
     paths:
       - addons/multiaddonmanager/
       - addons/metamod/multiaddonmanager.vdf
@@ -108,10 +108,11 @@ components:
     kind: plugin
     source: { github: RRimmer/PanoramaMenuManagerCS2 }   # upstream; the nickj609 fork has no releases
     asset: MenuManagerCS2-*.zip
-    version: MenuManagerCS2-1.3.00
+    version: MenuManagerCS2-1.3.01
     pin: true                # Harmony bridges (PMM_GG1MapChooser, PMM_SimpleAdmin) are built against specific PMM versions
     module: "[FORK] MenuManager"
     always_loaded: true
+    keep: [addons/counterstrikesharp/plugins/MenuManagerCore/lang/**]   # Center (WASD) restyled like MenuManagerAPI, in our orange
     requires: [MultiAddonManager]
     paths:
       - addons/counterstrikesharp/plugins/MenuManagerCore/
@@ -223,7 +224,7 @@ components:
     kind: plugin
     source: { github: nickj609/GameModeManager }
     asset: GameModeManager_v*.zip
-    version: 2.0.0-test.8b22385
+    version: 2.0.0-test.b11e098
     module: GameModeManager
     always_loaded: true
     requires: [PanoramaMenuManager, GG1MapChooser]
@@ -299,21 +300,13 @@ components:
     source: { github: qstage/CS2-FixRandomSpawn }
     version: v1.2.0
     module: FixRandomSpawn
-    always_loaded: true
+    always_loaded: false     # server.cfg stops it each map: only warmup/dm.cfg and enable_random_spawns.cfg start it
     paths:
       - addons/counterstrikesharp/plugins/FixRandomSpawn/
       - addons/counterstrikesharp/gamedata/FixRandomSpawn.json
     notes: >-
       README says 1.1.4.1 (release tag); the DLL reports 1.1.4. Latest release is v1.2.0, whose asset was renamed
       FixRandomSpawn.zip -> CS2-FixRandomSpawn.zip.
-
-  - name: CS2-BotAI
-    kind: plugin
-    source: { github: Austinbots/CS2-BotAI }
-    version: V1.3
-    module: Patches - Bot AI
-    always_loaded: true
-    paths: [addons/counterstrikesharp/plugins/BotAI/]
 
   - name: Bot AI scripts
     kind: content

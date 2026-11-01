@@ -545,6 +545,7 @@ function Sync-FilesViaSftp {
         [string]$RepoRoot,
         [string]$SinceCommit,
         [switch]$AllowLargeDelete,
+        [switch]$TestBuild,
         [switch]$PlanDeletions
     )
     
@@ -640,7 +641,7 @@ function Sync-FilesViaSftp {
             $deletions = $null
             if ($RepoRoot) {
                 $deletions = Invoke-DeployDeletions -Session $session -RepoRoot $RepoRoot -RemoteRoot $RemotePath `
-                                                    -SinceCommit $SinceCommit -AllowLargeDelete:$AllowLargeDelete -PlanOnly:$PlanDeletions
+                                                    -SinceCommit $SinceCommit -AllowLargeDelete:$AllowLargeDelete -TestBuild:$TestBuild -PlanOnly:$PlanDeletions
                 if ($PlanDeletions -or -not $deletions.Ok) {
                     $session.Close()
                     return [bool]$deletions.Ok
@@ -1513,6 +1514,19 @@ function Remove-RemoteFiles {
     }
 }
 
+function Test-OnlyTestBuildChanges {
+    <#
+    .SYNOPSIS
+    True when the only uncommitted changes under game/csgo are the GameModeManager files test-build.ps1 just installed
+    #>
+    param([Parameter(Mandatory)] [string]$RepoRoot)
+
+    $git = Resolve-GitExe
+    $changes = @(& $git -C $RepoRoot status --porcelain -- game/csgo)
+    $installed = 'game/csgo/addons/counterstrikesharp/(plugins/GameModeManager|shared/GameModeManager\.Shared)/'
+    return @($changes | Where-Object { $_ -notmatch $installed }).Count -eq 0
+}
+
 function Invoke-DeployDeletions {
     <#
     .SYNOPSIS
@@ -1534,6 +1548,7 @@ function Invoke-DeployDeletions {
         [string]$RemoteRoot = "/game/csgo",
         [string]$SinceCommit,
         [switch]$AllowLargeDelete,
+        [switch]$TestBuild,
         [switch]$PlanOnly
     )
 
@@ -1553,7 +1568,7 @@ function Invoke-DeployDeletions {
         return [PSCustomObject]@{ Ok = $false; Plan = $null }
     }
 
-    if ($plan.Dirty) {
+    if ($plan.Dirty -and -not ($TestBuild -and (Test-OnlyTestBuildChanges -RepoRoot $RepoRoot))) {
         Write-Log "game/csgo has uncommitted changes: they are deployed as they are on disk. Commit before deploying so the server matches a commit." -Level Warning
     }
     Write-Log "$($plan.Files.Count) file(s) removed since $($plan.Baseline.Substring(0,7)) (of $($plan.Tracked) tracked then)" -Level Info

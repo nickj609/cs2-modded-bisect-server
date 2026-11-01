@@ -1,0 +1,256 @@
+
+/* GameModeManager theme, added after PMM's ui.css by build-menu-addon.ps1.
+   Regular menus (!maps, !modes, !settings, !warmup, !game, !menu) in Morosco.io orange, the same as the vote panels.
+   The layout follows the PMM_SimpleAdmin panel, which stays red so admin tools look different. */
+
+.utils-menu
+{
+	width: 460px;
+	border-radius: 6px;
+}
+
+.utils-bg
+{
+	background-color: #17100af2;
+	background-image: none;
+	border: 1px solid #6b4a1a;
+	border-radius: 6px;
+}
+
+/* The left bar becomes the header band, and the menu's title sits in it */
+.utils-bar-left
+{
+	width: 100%;
+	height: 42px;
+	z-index: 1;
+	vertical-align: top;
+	background-color: #f5a623;
+	border-radius: 6px 6px 0px 0px;
+}
+
+.utils-bar-right
+{
+	visibility: collapse;
+}
+
+.utils-close-anchor,
+.utils-back-anchor
+{
+	margin-top: 9px;
+}
+
+.utils-back-arrow
+{
+	wash-color: #241703;
+}
+
+.utils-x-line
+{
+	background-color: #241703;
+}
+
+.utils-content
+{
+	width: 428px;
+	padding: 9px 0px 16px 0px;
+}
+
+.utils-title
+{
+	/* Fits its text and centres itself: text-align doesn't centre this one-line label in a wider box */
+	width: fit-children;
+	max-width: 340px;
+	height: 26px;
+	horizontal-align: center;
+	text-align: center;
+	font-size: 18px;
+	letter-spacing: 0px;
+	text-transform: none;
+	color: #241703;
+	white-space: nowrap;
+	margin-bottom: 15px;
+}
+
+/* PMM never sets a description, but the empty line still takes up height */
+.utils-desc
+{
+	visibility: collapse;
+}
+
+.utils-divider
+{
+	width: 100%;
+	background-color: #6b4a1a80;
+	margin-top: 10px;
+	margin-bottom: 8px;
+}
+
+/* The band already separates the title from the rows */
+.gmm-title-divider
+{
+	visibility: collapse;
+}
+
+.utils-buttons
+{
+	width: 100%;
+}
+
+/* Rows */
+.utils-item
+{
+	background-color: #00000000;
+	border-radius: 4px;
+}
+
+.utils-item:hover
+{
+	background-color: #3d2a10;
+}
+
+.utils-item:active
+{
+	background-color: #4d3514;
+}
+
+.utils-item.is-focus
+{
+	background-color: #3d2a10;
+}
+
+.utils-item.is-disabled.is-focus
+{
+	background-color: #2a1e0e;
+}
+
+/* The picked choice in a dropdown: PMM's own colour here is blue */
+.utils-opt.utils-sel
+{
+	background-color: #f5a62366;
+}
+
+.utils-item-label
+{
+	margin-left: 13px;
+	font-size: 18px;
+	letter-spacing: 0px;
+	text-transform: none;
+	color: #f4ece0;
+}
+
+.utils-item-value
+{
+	color: #c9b08c;
+}
+
+/* Used and empty rows: no stripes or dashed boxes */
+.utils-item.is-disabled,
+.utils-item.is-disabled:hover,
+.utils-item.is-disabled:active
+{
+	background-color: #00000000;
+	border: 0px solid transparent;
+}
+
+.utils-item.is-disabled .utils-item-label
+{
+	color: #7d7060;
+}
+
+/* PMM always has six row slots and marks unused ones k-empty. Hide those and let the menu shrink to the rows it has.
+   The row spacing moves from the slot to the item, so a slot with a hidden item takes no space. */
+.utils-item.k-empty
+{
+	visibility: collapse;
+}
+
+.utils-buttons
+{
+	height: fit-children;
+}
+
+.utils-slot
+{
+	height: fit-children;
+	margin: 0px;
+}
+
+.utils-item
+{
+	margin: 4px 0px;
+}
+
+.utils-slot.is-open
+{
+	height: 178px;
+	margin-bottom: -130px;
+}
+
+/* The WASD and number key footers: keycaps instead of PMM's text hint */
+.utils-menu.mode-wasd .utils-hint,
+.utils-menu.mode-digits .utils-hint
+{
+	visibility: collapse;
+}
+
+.gmm-keys
+{
+	horizontal-align: center;
+	flow-children: right;
+	margin-top: 10px;
+	visibility: collapse;
+}
+
+.utils-menu.mode-wasd .gmm-keys-wasd,
+.utils-menu.mode-digits .gmm-keys-digits
+{
+	visibility: visible;
+}
+
+.gmm-key
+{
+	width: 22px;
+	height: 22px;
+	margin-right: 3px;
+	padding-top: 3px;
+	text-align: center;
+	font-size: 13px;
+	color: #160a0b;
+	background-color: #f2eeee;
+	border-radius: 4px;
+}
+
+.gmm-key-or
+{
+	margin-right: 3px;
+	padding-top: 3px;
+	font-size: 13px;
+	color: #c9b08c;
+}
+
+.gmm-key-close
+{
+	color: #ffe9e6;
+	background-color: #b3201f;
+}
+
+.gmm-key-name
+{
+	margin-left: 2px;
+	margin-right: 12px;
+	padding-top: 3px;
+	font-size: 13px;
+	color: #c9b08c;
+}
+
+/* No gap after the last word, or the footer sits left of centre */
+.gmm-key-name-last
+{
+	margin-right: 0px;
+}
+
+/* The same colour as the footer's words */
+.utils-pagination-label
+{
+	color: #c9b08c;
+}

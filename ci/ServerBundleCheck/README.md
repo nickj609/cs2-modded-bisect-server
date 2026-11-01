@@ -49,9 +49,9 @@ reverting a component's files by hand (e.g. `git checkout HEAD -- <its paths>`),
 
 Always review `-DryRun -Verbose` before a real run: check the `!` (not installed) lines and what `--prune` removes.
 
-## Weekly update PR
+## Update PR on demand
 
-`.github/workflows/plugin-updates.yml` runs every Monday 06:00 UTC (and on demand: Actions > Plugin updates > Run
+The weekly check is `scripts/Check-Updates.ps1`, run from the PC by the `plugin-update-review` skill. `.github/workflows/plugin-updates.yml` runs only on demand (Actions > Plugin updates > Run
 workflow, optionally one `component` and `prune`). It runs `update` and `check` on a clean checkout of `master`, then
 opens or updates **one** PR from the branch `automation/plugin-updates` with the version table, release-note links
 and the check results. If the check finds errors the PR is opened as a draft. No updates means no PR. Nothing is merged or

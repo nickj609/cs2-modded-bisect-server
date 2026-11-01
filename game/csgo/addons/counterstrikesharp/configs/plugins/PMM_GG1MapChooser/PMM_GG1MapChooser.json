@@ -38,167 +38,922 @@
     "New": "#ff9800"
   },
   "Maps": {
-    "Mode:Casual": {
-      "Title": "Casual",
-      "Image": "",
-      "Badge": "Mode"
-    },
-    "Mode:Gun Game": {
-      "Title": "Gun Game",
-      "Image": "",
-      "Badge": "Mode"
-    },
-    "Mode:Deathmatch": {
-      "Title": "Deathmatch",
-      "Image": "",
-      "Badge": "Mode"
-    },
-    "Mode:Competitive": {
-      "Title": "Competitive",
-      "Image": "",
-      "Badge": "Mode"
-    },
-    "Mode:Wingman": {
-      "Title": "Wingman",
-      "Image": "",
-      "Badge": "Mode"
-    },
-    "Mode:Practice Mode": {
-      "Title": "Practice Mode",
-      "Image": "",
-      "Badge": "Mode"
-    },
-    "Mode:Prefire": {
-      "Title": "Prefire",
-      "Image": "",
-      "Badge": "Mode"
-    },
-    "Mode:Retakes": {
-      "Title": "Retakes",
-      "Image": "",
-      "Badge": "Mode"
-    },
-    "Mode:Executes": {
-      "Title": "Executes",
-      "Image": "",
-      "Badge": "Mode"
-    },
-    "Mode:Awp Only": {
+    "Awp Only": {
       "Title": "Awp Only",
-      "Image": "",
+      "Image": "maps/awp_bhop_rocket.png",
       "Badge": "Mode"
     },
-    "Mode:1v1 Arenas": {
+    "1v1 Arenas": {
       "Title": "1v1 Arenas",
-      "Image": "",
+      "Image": "maps/aim_redline_fp.png",
       "Badge": "Mode"
     },
-    "Mode:Aim": {
+    "Aim": {
       "Title": "Aim",
-      "Image": "",
+      "Image": "maps/aim_map.png",
       "Badge": "Mode"
     },
-    "Mode:Bhop": {
+    "Bhop": {
       "Title": "Bhop",
-      "Image": "",
+      "Image": "maps/bhop_arcturus.png",
       "Badge": "Mode"
     },
-    "Mode:Surf": {
+    "Surf": {
       "Title": "Surf",
-      "Image": "",
+      "Image": "maps/surf_rookie.png",
       "Badge": "Mode"
     },
-    "Mode:Kreedz Climbing": {
+    "Kreedz Climbing": {
       "Title": "Kreedz Climbing",
-      "Image": "",
+      "Image": "maps/kz_victoria.png",
       "Badge": "Mode"
     },
-    "Mode:Capture The Flag": {
+    "Capture The Flag": {
       "Title": "Capture The Flag",
-      "Image": "",
+      "Image": "maps/ctf_2fort.png",
       "Badge": "Mode"
     },
-    "Mode:Hide N Seek": {
-      "Title": "Hide N Seek",
-      "Image": "",
-      "Badge": "Mode"
-    },
-    "Mode:Soccer": {
+    "Soccer": {
       "Title": "Soccer",
-      "Image": "",
+      "Image": "maps/field.png",
       "Badge": "Mode"
     },
-    "Mode:Course": {
+    "Course": {
       "Title": "Course",
-      "Image": "",
+      "Image": "maps/mg_alley_course_v2.png",
       "Badge": "Mode"
     },
-    "Mode:Deathrun": {
+    "Deathrun": {
       "Title": "Deathrun",
-      "Image": "",
+      "Image": "maps/deathrun_playground.png",
       "Badge": "Mode"
     },
-    "Mode:Minigames": {
+    "Minigames": {
       "Title": "Minigames",
-      "Image": "",
+      "Image": "maps/mg_skeet_multigames_v7.png",
       "Badge": "Mode"
     },
-    "Mode:ScoutzKnivez": {
+    "ScoutzKnivez": {
       "Title": "ScoutzKnivez",
-      "Image": "",
+      "Image": "maps/scoutzknivez_pure_cs2.png",
       "Badge": "Mode"
     },
-    "Mode:One In The Chamber": {
-      "Title": "One In The Chamber",
-      "Image": "",
-      "Badge": "Mode"
-    },
-    "Mode:Battle Ball": {
+    "Battle Ball": {
       "Title": "Battle Ball",
-      "Image": "",
+      "Image": "maps/battleball.png",
       "Badge": "Mode"
     },
-    "Mode:Battle Royale": {
+    "Battle Royale": {
       "Title": "Battle Royale",
-      "Image": "",
+      "Image": "maps/br_t2.png",
       "Badge": "Mode"
     },
-    "Mode:Casual (1.6)": {
+    "Casual (1.6)": {
       "Title": "Casual (1.6)",
-      "Image": "",
+      "Image": "maps/de_dust2_classic.png",
       "Badge": "Mode"
     },
-    "Mode:Competitive (Valve)": {
-      "Title": "Competitive (Valve)",
-      "Image": "",
-      "Badge": "Mode"
-    },
-    "Mode:Deathmatch FFA (Valve)": {
-      "Title": "Deathmatch FFA (Valve)",
-      "Image": "",
-      "Badge": "Mode"
-    },
-    "Mode:Arms Race (Valve)": {
-      "Title": "Arms Race (Valve)",
-      "Image": "",
-      "Badge": "Mode"
-    },
-    "Mode:Wingman (Valve)": {
-      "Title": "Wingman (Valve)",
-      "Image": "",
-      "Badge": "Mode"
-    },
-    "Mode:Retakes (Valve)": {
-      "Title": "Retakes (Valve)",
-      "Image": "",
-      "Badge": "Mode"
-    },
-    "Mode:Competitive 45°": {
+    "Competitive 45°": {
       "Title": "Competitive 45°",
-      "Image": "",
+      "Image": "maps/de_vertigo_45.png",
       "Badge": "Mode"
     },
-    "de_mirage": {
+"aim_redline_fp": {
+      "Title": "",
+      "Image": "maps/aim_redline_fp.png",
+      "Badge": ""
+    },
+    "1v1aim_map_longdustversion_d": {
+      "Title": "",
+      "Image": "maps/1v1aim_map_longdustversion_d.png",
+      "Badge": ""
+    },
+    "1v1v1v1beta04": {
+      "Title": "",
+      "Image": "maps/1v1v1v1beta04.png",
+      "Badge": ""
+    },
+    "aim_ag_texture2": {
+      "Title": "",
+      "Image": "maps/aim_ag_texture2.png",
+      "Badge": ""
+    },
+    "aim_ag_texture_city_advanced": {
+      "Title": "",
+      "Image": "maps/aim_ag_texture_city_advanced.png",
+      "Badge": ""
+    },
+    "aim_ag_texture_jungle": {
+      "Title": "",
+      "Image": "maps/aim_ag_texture_jungle.png",
+      "Badge": ""
+    },
+    "aim_ak-colt_CS2": {
+      "Title": "",
+      "Image": "maps/aim_ak-colt_cs2.png",
+      "Badge": ""
+    },
+    "aim_deagle": {
+      "Title": "",
+      "Image": "maps/aim_deagle.png",
+      "Badge": ""
+    },
+    "aim_map": {
+      "Title": "",
+      "Image": "maps/aim_map.png",
+      "Badge": ""
+    },
+    "aim_plywood": {
+      "Title": "",
+      "Image": "maps/aim_plywood.png",
+      "Badge": ""
+    },
+    "aim_shotty2_gg1": {
+      "Title": "",
+      "Image": "maps/aim_shotty2_gg1.png",
+      "Badge": ""
+    },
+    "aim_usp": {
+      "Title": "",
+      "Image": "maps/aim_usp.png",
+      "Badge": ""
+    },
+    "ar_blue_arena": {
+      "Title": "",
+      "Image": "maps/ar_blue_arena.png",
+      "Badge": ""
+    },
+    "ar_combat_arena": {
+      "Title": "",
+      "Image": "maps/ar_combat_arena.png",
+      "Badge": ""
+    },
+    "ar_ds_cornered_gg1": {
+      "Title": "",
+      "Image": "maps/ar_ds_cornered_gg1.png",
+      "Badge": ""
+    },
+    "cs2_bloodstrike": {
+      "Title": "",
+      "Image": "maps/cs2_bloodstrike.png",
+      "Badge": ""
+    },
+    "daymare": {
+      "Title": "",
+      "Image": "maps/daymare.png",
+      "Badge": ""
+    },
+    "de_indoor": {
+      "Title": "",
+      "Image": "maps/de_indoor.png",
+      "Badge": ""
+    },
+    "de_splat": {
+      "Title": "",
+      "Image": "maps/de_splat.png",
+      "Badge": ""
+    },
+    "freebet_aim_map": {
+      "Title": "",
+      "Image": "maps/freebet_aim_map.png",
+      "Badge": ""
+    },
+    "fy_hangemhigh": {
+      "Title": "",
+      "Image": "maps/fy_hangemhigh.png",
+      "Badge": ""
+    },
+    "gg_festspeedball": {
+      "Title": "",
+      "Image": "maps/gg_festspeedball.png",
+      "Badge": ""
+    },
+    "gg_strafe_gg1": {
+      "Title": "",
+      "Image": "maps/gg_strafe_gg1.png",
+      "Badge": ""
+    },
+    "shipment_version_1_0": {
+      "Title": "",
+      "Image": "maps/shipment_version_1_0.png",
+      "Badge": ""
+    },
+    "trainingoutside": {
+      "Title": "",
+      "Image": "maps/trainingoutside.png",
+      "Badge": ""
+    },
+    "awp_bhop_rocket": {
+      "Title": "",
+      "Image": "maps/awp_bhop_rocket.png",
+      "Badge": ""
+    },
+    "battleball": {
+      "Title": "",
+      "Image": "maps/battleball.png",
+      "Badge": ""
+    },
+    "br_electrified": {
+      "Title": "",
+      "Image": "maps/br_electrified.png",
+      "Badge": ""
+    },
+    "br_flood": {
+      "Title": "",
+      "Image": "maps/br_flood.png",
+      "Badge": ""
+    },
+    "br_stacks": {
+      "Title": "",
+      "Image": "maps/br_stacks.png",
+      "Badge": ""
+    },
+    "br_t2": {
+      "Title": "",
+      "Image": "maps/br_t2.png",
+      "Badge": ""
+    },
+    "minecraft": {
+      "Title": "",
+      "Image": "maps/minecraft.png",
+      "Badge": ""
+    },
+    "minecraft_hungergame": {
+      "Title": "",
+      "Image": "maps/minecraft_hungergame.png",
+      "Badge": ""
+    },
+    "bhop_1derland": {
+      "Title": "",
+      "Image": "maps/bhop_1derland.png",
+      "Badge": ""
+    },
+    "bhop_arcturus": {
+      "Title": "",
+      "Image": "maps/bhop_arcturus.png",
+      "Badge": ""
+    },
+    "bhop_cherryblossom": {
+      "Title": "",
+      "Image": "maps/bhop_cherryblossom.png",
+      "Badge": ""
+    },
+    "bhop_kiwi_cwfx": {
+      "Title": "",
+      "Image": "maps/bhop_kiwi_cwfx.png",
+      "Badge": ""
+    },
+    "bhop_ragnarok": {
+      "Title": "",
+      "Image": "maps/bhop_ragnarok.png",
+      "Badge": ""
+    },
+    "bhop_whiteshit": {
+      "Title": "",
+      "Image": "maps/bhop_whiteshit.png",
+      "Badge": ""
+    },
+    "ctf_2fort": {
+      "Title": "",
+      "Image": "maps/ctf_2fort.png",
+      "Badge": ""
+    },
+    "ctf_applejack": {
+      "Title": "",
+      "Image": "maps/ctf_applejack.png",
+      "Badge": ""
+    },
+    "ctf_doublecross": {
+      "Title": "",
+      "Image": "maps/ctf_doublecross.png",
+      "Badge": ""
+    },
+    "ctf_landfall": {
+      "Title": "",
+      "Image": "maps/ctf_landfall.png",
+      "Badge": ""
+    },
+    "ctf_sawmill": {
+      "Title": "",
+      "Image": "maps/ctf_sawmill.png",
+      "Badge": ""
+    },
+    "ctf_turbine": {
+      "Title": "",
+      "Image": "maps/ctf_turbine.png",
+      "Badge": ""
+    },
+    "cs_agency": {
+      "Title": "",
+      "Image": "maps/cs_agency.png",
+      "Badge": ""
+    },
+    "cs_assault": {
+      "Title": "",
+      "Image": "maps/cs_assault.png",
+      "Badge": ""
+    },
+    "cs_insertion2": {
+      "Title": "",
+      "Image": "maps/cs_insertion2.png",
+      "Badge": ""
+    },
+    "cs_militia": {
+      "Title": "",
+      "Image": "maps/cs_militia.png",
+      "Badge": ""
+    },
+    "de_akiba": {
+      "Title": "",
+      "Image": "maps/de_akiba.png",
+      "Badge": ""
+    },
+    "de_assembly": {
+      "Title": "",
+      "Image": "maps/de_assembly.png",
+      "Badge": ""
+    },
+    "de_aztec_hr": {
+      "Title": "",
+      "Image": "maps/de_aztec_hr.png",
+      "Badge": ""
+    },
+    "de_basalt": {
+      "Title": "",
+      "Image": "maps/de_basalt.png",
+      "Badge": ""
+    },
+    "de_biome": {
+      "Title": "",
+      "Image": "maps/de_biome.png",
+      "Badge": ""
+    },
+    "de_cbble": {
+      "Title": "",
+      "Image": "maps/de_cbble.png",
+      "Badge": ""
+    },
+    "de_edin": {
+      "Title": "",
+      "Image": "maps/de_edin.png",
+      "Badge": ""
+    },
+    "de_ema": {
+      "Title": "",
+      "Image": "maps/de_ema.png",
+      "Badge": ""
+    },
+    "de_golden": {
+      "Title": "",
+      "Image": "maps/de_golden.png",
+      "Badge": ""
+    },
+    "de_mills": {
+      "Title": "",
+      "Image": "maps/de_mills.png",
+      "Badge": ""
+    },
+    "de_mirage_bricks": {
+      "Title": "",
+      "Image": "maps/de_mirage_bricks.png",
+      "Badge": ""
+    },
+    "de_mutiny": {
+      "Title": "",
+      "Image": "maps/de_mutiny.png",
+      "Badge": ""
+    },
+    "de_palacio": {
+      "Title": "",
+      "Image": "maps/de_palacio.png",
+      "Badge": ""
+    },
+    "de_pipeline": {
+      "Title": "",
+      "Image": "maps/de_pipeline.png",
+      "Badge": ""
+    },
+    "de_ruins_d_prefab": {
+      "Title": "",
+      "Image": "maps/de_ruins_d_prefab.png",
+      "Badge": ""
+    },
+    "de_season": {
+      "Title": "",
+      "Image": "maps/de_season.png",
+      "Badge": ""
+    },
+    "de_thera": {
+      "Title": "",
+      "Image": "maps/de_thera.png",
+      "Badge": ""
+    },
+    "mp_raid": {
+      "Title": "",
+      "Image": "maps/mp_raid.png",
+      "Badge": ""
+    },
+    "as_oilrig": {
+      "Title": "",
+      "Image": "maps/as_oilrig.png",
+      "Badge": ""
+    },
+    "cs_assult_classic": {
+      "Title": "",
+      "Image": "maps/cs_assult_classic.png",
+      "Badge": ""
+    },
+    "cs_italy_classic": {
+      "Title": "",
+      "Image": "maps/cs_italy_classic.png",
+      "Badge": ""
+    },
+    "cs_militia_classic": {
+      "Title": "",
+      "Image": "maps/cs_militia_classic.png",
+      "Badge": ""
+    },
+    "cs_office_classic": {
+      "Title": "",
+      "Image": "maps/cs_office_classic.png",
+      "Badge": ""
+    },
+    "de_aztec_classic": {
+      "Title": "",
+      "Image": "maps/de_aztec_classic.png",
+      "Badge": ""
+    },
+    "de_dust2_classic": {
+      "Title": "",
+      "Image": "maps/de_dust2_classic.png",
+      "Badge": ""
+    },
+    "de_dust_classic": {
+      "Title": "",
+      "Image": "maps/de_dust_classic.png",
+      "Badge": ""
+    },
+    "de_nuke_classic": {
+      "Title": "",
+      "Image": "maps/de_nuke_classic.png",
+      "Badge": ""
+    },
+    "de_survivor_classic_m": {
+      "Title": "",
+      "Image": "maps/de_survivor_classic_m.png",
+      "Badge": ""
+    },
+    "de_anubis_silly": {
+      "Title": "",
+      "Image": "maps/de_anubis_silly.png",
+      "Badge": ""
+    },
+    "de_nuke_silly": {
+      "Title": "",
+      "Image": "maps/de_nuke_silly.png",
+      "Badge": ""
+    },
+    "de_overpass_45": {
+      "Title": "",
+      "Image": "maps/de_overpass_45.png",
+      "Badge": ""
+    },
+    "de_vertigo_45": {
+      "Title": "",
+      "Image": "maps/de_vertigo_45.png",
+      "Badge": ""
+    },
+    "cr_devisland_p1_v1": {
+      "Title": "",
+      "Image": "maps/cr_devisland_p1_v1.png",
+      "Badge": ""
+    },
+    "cr_minecraft_jb_v2": {
+      "Title": "",
+      "Image": "maps/cr_minecraft_jb_v2.png",
+      "Badge": ""
+    },
+    "mg_acrophobia_run_v2": {
+      "Title": "",
+      "Image": "maps/mg_acrophobia_run_v2.png",
+      "Badge": ""
+    },
+    "mg_alley_course_v2": {
+      "Title": "",
+      "Image": "maps/mg_alley_course_v2.png",
+      "Badge": ""
+    },
+    "mg_circle_course_v3": {
+      "Title": "",
+      "Image": "maps/mg_circle_course_v3.png",
+      "Badge": ""
+    },
+    "mg_glave_course_v2": {
+      "Title": "",
+      "Image": "maps/mg_glave_course_v2.png",
+      "Badge": ""
+    },
+    "mg_metal_course_v2": {
+      "Title": "",
+      "Image": "maps/mg_metal_course_v2.png",
+      "Badge": ""
+    },
+    "mg_metro_course_v1": {
+      "Title": "",
+      "Image": "maps/mg_metro_course_v1.png",
+      "Badge": ""
+    },
+    "mg_office_course_v3": {
+      "Title": "",
+      "Image": "maps/mg_office_course_v3.png",
+      "Badge": ""
+    },
+    "mg_simpsons_course_v2": {
+      "Title": "",
+      "Image": "maps/mg_simpsons_course_v2.png",
+      "Badge": ""
+    },
+    "mg_sky_realm_v3": {
+      "Title": "",
+      "Image": "maps/mg_sky_realm_v3.png",
+      "Badge": ""
+    },
+    "mg_sonic_course_v2": {
+      "Title": "",
+      "Image": "maps/mg_sonic_course_v2.png",
+      "Badge": ""
+    },
+    "mg_switch_course_v2": {
+      "Title": "",
+      "Image": "maps/mg_switch_course_v2.png",
+      "Badge": ""
+    },
+    "deathrun_civilization": {
+      "Title": "",
+      "Image": "maps/deathrun_civilization.png",
+      "Badge": ""
+    },
+    "deathrun_egypt": {
+      "Title": "",
+      "Image": "maps/deathrun_egypt.png",
+      "Badge": ""
+    },
+    "deathrun_iceworld_cs2": {
+      "Title": "",
+      "Image": "maps/deathrun_iceworld_cs2.png",
+      "Badge": ""
+    },
+    "deathrun_playground": {
+      "Title": "",
+      "Image": "maps/deathrun_playground.png",
+      "Badge": ""
+    },
+    "aim_theorem": {
+      "Title": "",
+      "Image": "maps/aim_theorem.png",
+      "Badge": ""
+    },
+    "ar_churches_s2r": {
+      "Title": "",
+      "Image": "maps/ar_churches_s2r.png",
+      "Badge": ""
+    },
+    "de_bank": {
+      "Title": "",
+      "Image": "maps/de_bank.png",
+      "Badge": ""
+    },
+    "de_lake": {
+      "Title": "",
+      "Image": "maps/de_lake.png",
+      "Badge": ""
+    },
+    "de_safehouse": {
+      "Title": "",
+      "Image": "maps/de_safehouse.png",
+      "Badge": ""
+    },
+    "fun_bounce": {
+      "Title": "",
+      "Image": "maps/fun_bounce.png",
+      "Badge": ""
+    },
+    "fy_iceworld": {
+      "Title": "",
+      "Image": "maps/fy_iceworld.png",
+      "Badge": ""
+    },
+    "gg_lego_arena": {
+      "Title": "",
+      "Image": "maps/gg_lego_arena.png",
+      "Badge": ""
+    },
+    "gg_simpsons_vs_flanders_v2": {
+      "Title": "",
+      "Image": "maps/gg_simpsons_vs_flanders_v2.png",
+      "Badge": ""
+    },
+    "kloce": {
+      "Title": "",
+      "Image": "maps/kloce.png",
+      "Badge": ""
+    },
+    "mcdonalds": {
+      "Title": "",
+      "Image": "maps/mcdonalds.png",
+      "Badge": ""
+    },
+    "school_d_environment_prefab": {
+      "Title": "",
+      "Image": "maps/school_d_environment_prefab.png",
+      "Badge": ""
+    },
+    "ewii_challenge": {
+      "Title": "",
+      "Image": "maps/ewii_challenge.png",
+      "Badge": ""
+    },
+    "hellcasecyrilchallenge": {
+      "Title": "",
+      "Image": "maps/hellcasecyrilchallenge.png",
+      "Badge": ""
+    },
+    "kz_checkmate": {
+      "Title": "",
+      "Image": "maps/kz_checkmate.png",
+      "Badge": ""
+    },
+    "kz_dima": {
+      "Title": "",
+      "Image": "maps/kz_dima.png",
+      "Badge": ""
+    },
+    "kz_ggsh": {
+      "Title": "",
+      "Image": "maps/kz_ggsh.png",
+      "Badge": ""
+    },
+    "kz_ltt": {
+      "Title": "",
+      "Image": "maps/kz_ltt.png",
+      "Badge": ""
+    },
+    "kz_nomibo": {
+      "Title": "",
+      "Image": "maps/kz_nomibo.png",
+      "Badge": ""
+    },
+    "kz_rc_stonehenge": {
+      "Title": "",
+      "Image": "maps/kz_rc_stonehenge.png",
+      "Badge": ""
+    },
+    "kz_rc_twotowers": {
+      "Title": "",
+      "Image": "maps/kz_rc_twotowers.png",
+      "Badge": ""
+    },
+    "kz_simplyhard": {
+      "Title": "",
+      "Image": "maps/kz_simplyhard.png",
+      "Badge": ""
+    },
+    "kz_sxb2_biewan": {
+      "Title": "",
+      "Image": "maps/kz_sxb2_biewan.png",
+      "Badge": ""
+    },
+    "kz_sxb2_cxz": {
+      "Title": "",
+      "Image": "maps/kz_sxb2_cxz.png",
+      "Badge": ""
+    },
+    "kz_victoria": {
+      "Title": "",
+      "Image": "maps/kz_victoria.png",
+      "Badge": ""
+    },
+    "only_up": {
+      "Title": "",
+      "Image": "maps/only_up.png",
+      "Badge": ""
+    },
+    "mg_lego_course_2": {
+      "Title": "",
+      "Image": "maps/mg_lego_course_2.png",
+      "Badge": ""
+    },
+    "mg_skeet_multigames_v7": {
+      "Title": "",
+      "Image": "maps/mg_skeet_multigames_v7.png",
+      "Badge": ""
+    },
+    "mg_warmcup_headshot": {
+      "Title": "",
+      "Image": "maps/mg_warmcup_headshot.png",
+      "Badge": ""
+    },
+    "ar_dizzy": {
+      "Title": "",
+      "Image": "maps/ar_dizzy.png",
+      "Badge": ""
+    },
+    "scoutzknivez_pure_cs2": {
+      "Title": "",
+      "Image": "maps/scoutzknivez_pure_cs2.png",
+      "Badge": ""
+    },
+    "field": {
+      "Title": "",
+      "Image": "maps/field.png",
+      "Badge": ""
+    },
+    "surf_ace": {
+      "Title": "",
+      "Image": "maps/surf_ace.png",
+      "Badge": ""
+    },
+    "surf_beginner": {
+      "Title": "",
+      "Image": "maps/surf_beginner.png",
+      "Badge": ""
+    },
+    "surf_benevolent": {
+      "Title": "",
+      "Image": "maps/surf_benevolent.png",
+      "Badge": ""
+    },
+    "surf_boreas": {
+      "Title": "",
+      "Image": "maps/surf_boreas.png",
+      "Badge": ""
+    },
+    "surf_deathstar": {
+      "Title": "",
+      "Image": "maps/surf_deathstar.png",
+      "Badge": ""
+    },
+    "surf_kitsune": {
+      "Title": "",
+      "Image": "maps/surf_kitsune.png",
+      "Badge": ""
+    },
+    "surf_mesa_revo": {
+      "Title": "",
+      "Image": "maps/surf_mesa_revo.png",
+      "Badge": ""
+    },
+    "surf_nyx": {
+      "Title": "",
+      "Image": "maps/surf_nyx.png",
+      "Badge": ""
+    },
+    "surf_rookie": {
+      "Title": "",
+      "Image": "maps/surf_rookie.png",
+      "Badge": ""
+    },
+    "surf_ski_2": {
+      "Title": "",
+      "Image": "maps/surf_ski_2.png",
+      "Badge": ""
+    },
+    "surf_utopia_njv": {
+      "Title": "",
+      "Image": "maps/surf_utopia_njv.png",
+      "Badge": ""
+    },
+    "surf_whiteout": {
+      "Title": "",
+      "Image": "maps/surf_whiteout.png",
+      "Badge": ""
+    },
+    "de_dust2_wingman": {
+      "Title": "",
+      "Image": "maps/de_dust2_wingman.png",
+      "Badge": ""
+    },
+    "de_memento": {
+      "Title": "",
+      "Image": "maps/de_memento.png",
+      "Badge": ""
+    },
+    "de_mirage_d": {
+      "Title": "",
+      "Image": "maps/de_mirage_d.png",
+      "Badge": ""
+    },
+    "de_palais": {
+      "Title": "",
+      "Image": "maps/de_palais.png",
+      "Badge": ""
+    },
+    "de_rooftop": {
+      "Title": "",
+      "Image": "maps/de_rooftop.png",
+      "Badge": ""
+    },
+    "de_sakura": {
+      "Title": "",
+      "Image": "maps/de_sakura.png",
+      "Badge": ""
+    },
+    "de_shortdust": {
+      "Title": "",
+      "Image": "maps/de_shortdust.png",
+      "Badge": ""
+    },
+    "de_whistle": {
+      "Title": "",
+      "Image": "maps/de_whistle.png",
+      "Badge": ""
+    },
+    "gd_rialto": {
+      "Title": "",
+      "Image": "maps/gd_rialto.png",
+      "Badge": ""
+    },
+    "skatepark": {
+      "Title": "",
+      "Image": "maps/skatepark.png",
+      "Badge": ""
+    },
+    "Gun Game": {
+      "Title": "Gun Game",
+      "Image": "s2r://panorama/images/map_icons/screenshots/360p/ar_pool_day_png.vtex",
+      "Badge": "Mode"
+    },
+    "Deathmatch": {
+      "Title": "Deathmatch",
+      "Image": "s2r://panorama/images/map_icons/screenshots/360p/de_dust2_png.vtex",
+      "Badge": "Mode"
+    },
+    "Competitive": {
+      "Title": "Competitive",
+      "Image": "s2r://panorama/images/map_icons/screenshots/360p/de_inferno_png.vtex",
+      "Badge": "Mode"
+    },
+    "Wingman": {
+      "Title": "Wingman",
+      "Image": "s2r://panorama/images/map_icons/screenshots/360p/de_nuke_png.vtex",
+      "Badge": "Mode"
+    },
+    "Practice Mode": {
+      "Title": "Practice Mode",
+      "Image": "s2r://panorama/images/map_icons/screenshots/360p/de_dust2_png.vtex",
+      "Badge": "Mode"
+    },
+    "Prefire": {
+      "Title": "Prefire",
+      "Image": "s2r://panorama/images/map_icons/screenshots/360p/de_inferno_png.vtex",
+      "Badge": "Mode"
+    },
+    "Retakes": {
+      "Title": "Retakes",
+      "Image": "s2r://panorama/images/map_icons/screenshots/360p/de_dust2_png.vtex",
+      "Badge": "Mode"
+    },
+    "Executes": {
+      "Title": "Executes",
+      "Image": "s2r://panorama/images/map_icons/screenshots/360p/de_mirage_png.vtex",
+      "Badge": "Mode"
+    },
+    "One In The Chamber": {
+      "Title": "One In The Chamber",
+      "Image": "s2r://panorama/images/map_icons/screenshots/360p/ar_pool_day_png.vtex",
+      "Badge": "Mode"
+    },
+    "Casual": {
+      "Title": "Casual",
+      "Image": "s2r://panorama/images/map_icons/screenshots/360p/de_dust2_png.vtex",
+      "Badge": "Mode"
+    },
+    "Competitive (Valve)": {
+      "Title": "Competitive (Valve)",
+      "Image": "s2r://panorama/images/map_icons/screenshots/360p/de_dust2_png.vtex",
+      "Badge": "Mode"
+    },
+    "Deathmatch FFA (Valve)": {
+      "Title": "Deathmatch FFA (Valve)",
+      "Image": "s2r://panorama/images/map_icons/screenshots/360p/de_dust2_png.vtex",
+      "Badge": "Mode"
+    },
+    "Arms Race (Valve)": {
+      "Title": "Arms Race (Valve)",
+      "Image": "s2r://panorama/images/map_icons/screenshots/360p/ar_pool_day_png.vtex",
+      "Badge": "Mode"
+    },
+    "Wingman (Valve)": {
+      "Title": "Wingman (Valve)",
+      "Image": "s2r://panorama/images/map_icons/screenshots/360p/de_nuke_png.vtex",
+      "Badge": "Mode"
+    },
+    "Retakes (Valve)": {
+      "Title": "Retakes (Valve)",
+      "Image": "s2r://panorama/images/map_icons/screenshots/360p/de_dust2_png.vtex",
+      "Badge": "Mode"
+    },
+"de_mirage": {
       "Title": "Mirage",
       "Image": "builtin",
       "Badge": "Classic"

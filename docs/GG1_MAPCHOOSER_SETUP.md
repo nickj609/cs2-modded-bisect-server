@@ -94,12 +94,14 @@ them with the new release and add any new keys by hand. GG1 and the bridge's cod
 GameModeManager's release zip also carries PanoramaMenuManager, GG1 and PMM_GG1MapChooser with their configs and wording (`GameModeManager/lib/csgo` in that repo). This repo installs them as their own components, so the copies must match: after upgrading one here, or changing its config (badges, titles, GG1 settings), copy its files to `lib/csgo` and release GameModeManager. MultiAddonManager isn't bundled: GameModeManager adds the addon with `mm_add_addon` (`WorkshopAddon`).
 ## Modes in votes
 
-GameModeManager adds a few random other modes to the current pool, reshuffled every map (`MapChooser.ModesInPool`, `ModeWeight` in
-`GameModeManager.json`). In `cfg/GGMCmaps.json` they look like workshop maps: key `Mode:Surf`, `mapid` `gmm_mode_<n>`. When one wins,
+GameModeManager adds one random other mode to the current pool, reshuffled every map (`MapChooser.ModesInVotes` in
+`GameModeManager.json`). In `cfg/GGMCmaps.json` it looks like a workshop map: key `Surf`, `mapid` `gmm_mode_<n>`. When it wins,
 GG1 runs `host_workshop_map gmm_mode_<n>`; GameModeManager blocks that command and changes the mode. GG1 and the bridge's code are unchanged.
 
-The MODE badge and titles are in `PMM_GG1MapChooser.json` (`Badges`, `Maps`). **A new mode needs its own `Mode:<name>` entry there** to get
-them. The badge colour needs this line in the client addon's `panorama/styles/custom_game/pmm_mapvote_maps.css`, then a re-publish:
+`!nominate` asks Map or Mode first, then lists that kind in a regular menu and hands the pick to GG1. One mode can be nominated at a time.
+
+GameModeManager gives every mode in its config the MODE badge when the server starts, so a new mode needs nothing here. To change a mode's
+title or give it a picture, add a `<mode name>` entry under `Maps` in `PMM_GG1MapChooser.json`, which is kept. The badge colour needs this line in the client addon's `panorama/styles/custom_game/pmm_mapvote_maps.css`, then a re-publish:
 
 ```css
 .bd-mode { background-color: #e0a030; }
@@ -108,5 +110,5 @@ them. The badge colour needs this line in the client addon's `panorama/styles/cu
 For a picture, set `"Image": "maps/<name>.png"` on the entry and follow "Bridge config" above. Without one, the placeholder shows.
 
 To check on the first test: a mode can win an RTV vote and an end-of-map vote; and `nextlevel` doesn't cause a failed change at match end
-(an end-of-map vote also sets `nextlevel Mode:Surf`, which isn't a real map). If nobody votes, GG1's random pick can land on a mode, and that's
-more likely in a mode with few maps. Lower `ModeWeight` or set `ModesInPool` to 0 if that's too often.
+(an end-of-map vote also sets `nextlevel Surf`, which isn't a real map). If nobody votes, GG1's random pick can land on a mode, and that's
+more likely in a mode with few maps. Set `ModesInVotes` to `false` if that's too often.

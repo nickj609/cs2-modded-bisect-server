@@ -61,17 +61,17 @@
       }
     },
     "CounterStrikeSharp": {
-      "version": "v1.0.378",
-      "asset": "counterstrikesharp-with-runtime-linux-1.0.378.zip",
-      "url": "https://github.com/roflmuffin/CounterStrikeSharp/releases/download/v1.0.378/counterstrikesharp-with-runtime-linux-1.0.378.zip",
-      "installed": "2026-10-25T22:55:21.0450808Z",
+      "version": "v1.0.379",
+      "asset": "counterstrikesharp-with-runtime-linux-1.0.379.zip",
+      "url": "https://github.com/roflmuffin/CounterStrikeSharp/releases/download/v1.0.379/counterstrikesharp-with-runtime-linux-1.0.379.zip",
+      "installed": "2026-11-01T15:50:13.0709974Z",
       "baseline": false,
       "files": {
-        "addons/counterstrikesharp/api/CounterStrikeSharp.API.deps.json": "cb0cb39790f5d2a2",
-        "addons/counterstrikesharp/api/CounterStrikeSharp.API.dll": "6030fb03bd6655eb",
-        "addons/counterstrikesharp/api/CounterStrikeSharp.API.pdb": "baf8f93e662d6ffd",
+        "addons/counterstrikesharp/api/CounterStrikeSharp.API.deps.json": "1408bd9c80726f83",
+        "addons/counterstrikesharp/api/CounterStrikeSharp.API.dll": "652ac51d86a963d3",
+        "addons/counterstrikesharp/api/CounterStrikeSharp.API.pdb": "80057ab416f4838a",
         "addons/counterstrikesharp/api/CounterStrikeSharp.API.runtimeconfig.json": "7f62be048d31660d",
-        "addons/counterstrikesharp/api/CounterStrikeSharp.API.xml": "6c60cc9f4a3f3f4a",
+        "addons/counterstrikesharp/api/CounterStrikeSharp.API.xml": "775342f1cfde527a",
         "addons/counterstrikesharp/api/FastGenericNew.dll": "951402e8e53173e9",
         "addons/counterstrikesharp/api/McMaster.NETCore.Plugins.dll": "b9481ab7f2d54cc8",
         "addons/counterstrikesharp/api/Microsoft.DotNet.PlatformAbstractions.dll": "b1f4ad169fb19274",
@@ -113,7 +113,7 @@
         "addons/counterstrikesharp/api/Serilog.Sinks.File.dll": "192a97f6a2e408c3",
         "addons/counterstrikesharp/api/System.Diagnostics.EventLog.dll": "06594f65ad71b2fe",
         "addons/counterstrikesharp/api/Tomlyn.dll": "7cb44fc1961ebd16",
-        "addons/counterstrikesharp/bin/linuxsteamrt64/counterstrikesharp.so": "b1fbbb4acf9096aa",
+        "addons/counterstrikesharp/bin/linuxsteamrt64/counterstrikesharp.so": "3092ee8ed22caad3",
         "addons/counterstrikesharp/dotnet/dotnet": "bff05e5f15646f8b",
         "addons/counterstrikesharp/dotnet/host/fxr/10.0.3/libhostfxr.so": "9a4564f0a50ae77b",
         "addons/counterstrikesharp/dotnet/LICENSE.txt": "cfc21f5e8bd655ae",
@@ -675,20 +675,6 @@
         "addons/counterstrikesharp/plugins/disabled/cs2-advanced-weapon-system/lang/tr.json": "2958e97689b17ab6"
       }
     },
-    "CS2-BotAI": {
-      "version": "V1.3",
-      "asset": "BotAiV1.3.zip",
-      "url": "https://github.com/Austinbots/CS2-BotAI/releases/download/V1.3/BotAiV1.3.zip",
-      "installed": "2026-10-25T22:55:21.2837436Z",
-      "baseline": false,
-      "files": {
-        "addons/counterstrikesharp/plugins/BotAI/BotAI.deps.json": "0a0e1eb87e7d5954",
-        "addons/counterstrikesharp/plugins/BotAI/BotAI.dll": "093443e3e2aec396",
-        "addons/counterstrikesharp/plugins/BotAI/BotAI.pdb": "4e48fa52b0530da6",
-        "addons/counterstrikesharp/plugins/BotAI/Common.dll": "96071515f9c542e5",
-        "addons/counterstrikesharp/plugins/BotAI/Common.pdb": "f69b157a7950cca4"
-      }
-    },
     "CS2-FixRandomSpawn": {
       "version": "v1.2.0",
       "asset": "CS2-FixRandomSpawn.zip",
@@ -1081,32 +1067,32 @@
       }
     },
     "GameModeManager": {
-      "version": "2.0.0-test.8b22385",
+      "version": "2.0.0-test.b11e098",
       "asset": "GameModeManager_v2.0.0.zip",
       "url": "local build",
-      "installed": "2026-10-31T03:55:54.4168952Z",
+      "installed": "2026-11-01T15:51:28.5439333Z",
       "baseline": false,
       "files": {
         "addons/counterstrikesharp/plugins/GameModeManager/Gameloop.Vdf.dll": "c703e1d542c5c316",
         "addons/counterstrikesharp/plugins/GameModeManager/GameModeManager.deps.json": "763bd1f0f2810c78",
-        "addons/counterstrikesharp/plugins/GameModeManager/GameModeManager.dll": "9de0db0dc53e37da",
-        "addons/counterstrikesharp/plugins/GameModeManager/GameModeManager.pdb": "5d8e33f42010f068",
-        "addons/counterstrikesharp/plugins/GameModeManager/lang/de.json": "ddfd9b185b899071",
-        "addons/counterstrikesharp/plugins/GameModeManager/lang/en.json": "45661ac1bbffca71",
-        "addons/counterstrikesharp/plugins/GameModeManager/lang/es.json": "c782fda301e9a674",
-        "addons/counterstrikesharp/plugins/GameModeManager/lang/fr.json": "92a20f40a12e76b5",
-        "addons/counterstrikesharp/plugins/GameModeManager/lang/hu.json": "9c4422bcc0b25ae1",
-        "addons/counterstrikesharp/plugins/GameModeManager/lang/lv.json": "ee9c7d36627693c7",
-        "addons/counterstrikesharp/plugins/GameModeManager/lang/nl.json": "ed5001733da9c4c0",
-        "addons/counterstrikesharp/plugins/GameModeManager/lang/pl.json": "9e9ffd7f6ae5ff8e",
-        "addons/counterstrikesharp/plugins/GameModeManager/lang/pt-BR.json": "31bc00a2d29b3b5a",
-        "addons/counterstrikesharp/plugins/GameModeManager/lang/ru.json": "36fe5c8cef1ede43",
-        "addons/counterstrikesharp/plugins/GameModeManager/lang/tr.json": "191c6b86f4322245",
-        "addons/counterstrikesharp/plugins/GameModeManager/lang/ua.json": "f7acce4cc7a5fafa",
-        "addons/counterstrikesharp/plugins/GameModeManager/lang/zh-Hans.json": "2c3bb725006feb77",
+        "addons/counterstrikesharp/plugins/GameModeManager/GameModeManager.dll": "aeb9bad09b97de3a",
+        "addons/counterstrikesharp/plugins/GameModeManager/GameModeManager.pdb": "158f621e444dd62a",
+        "addons/counterstrikesharp/plugins/GameModeManager/lang/de.json": "80bae109b9b91028",
+        "addons/counterstrikesharp/plugins/GameModeManager/lang/en.json": "c2cfb0c341e4bb54",
+        "addons/counterstrikesharp/plugins/GameModeManager/lang/es.json": "377a2ee10f3d7800",
+        "addons/counterstrikesharp/plugins/GameModeManager/lang/fr.json": "aa064fa7874ceea4",
+        "addons/counterstrikesharp/plugins/GameModeManager/lang/hu.json": "43f53954e05b023c",
+        "addons/counterstrikesharp/plugins/GameModeManager/lang/lv.json": "d654e574c2ac734c",
+        "addons/counterstrikesharp/plugins/GameModeManager/lang/nl.json": "1550aebf234ad4d5",
+        "addons/counterstrikesharp/plugins/GameModeManager/lang/pl.json": "2cc4eaae6afb9522",
+        "addons/counterstrikesharp/plugins/GameModeManager/lang/pt-BR.json": "bbee8ca07f483411",
+        "addons/counterstrikesharp/plugins/GameModeManager/lang/ru.json": "70e778bca3f42f85",
+        "addons/counterstrikesharp/plugins/GameModeManager/lang/tr.json": "bd325f5802bae409",
+        "addons/counterstrikesharp/plugins/GameModeManager/lang/ua.json": "d26fe38c3666611e",
+        "addons/counterstrikesharp/plugins/GameModeManager/lang/zh-Hans.json": "83205630991fbb4f",
         "addons/counterstrikesharp/shared/GameModeManager.Shared/GameModeManager.Shared.deps.json": "c2c0e8fe791f5fc7",
-        "addons/counterstrikesharp/shared/GameModeManager.Shared/GameModeManager.Shared.dll": "2785047d3e9e349a",
-        "addons/counterstrikesharp/shared/GameModeManager.Shared/GameModeManager.Shared.pdb": "d81f9c11fb68a1bb"
+        "addons/counterstrikesharp/shared/GameModeManager.Shared/GameModeManager.Shared.dll": "934f7c9d14fad027",
+        "addons/counterstrikesharp/shared/GameModeManager.Shared/GameModeManager.Shared.pdb": "b5fe79cd81cef013"
       }
     },
     "GG1MapChooser": {
@@ -1341,14 +1327,14 @@
       }
     },
     "MultiAddonManager": {
-      "version": "v1.7.2",
-      "asset": "MultiAddonManager-v1.7.2-steamrt3.tar.gz",
-      "url": "https://github.com/Source2ZE/MultiAddonManager/releases/download/v1.7.2/MultiAddonManager-v1.7.2-steamrt3.tar.gz",
-      "installed": "2026-10-25T22:55:21.0816197Z",
+      "version": "v1.7.3",
+      "asset": "MultiAddonManager-v1.7.3-steamrt3.tar.gz",
+      "url": "https://github.com/Source2ZE/MultiAddonManager/releases/download/v1.7.3/MultiAddonManager-v1.7.3-steamrt3.tar.gz",
+      "installed": "2026-11-01T15:50:13.162632Z",
       "baseline": false,
       "files": {
-        "addons/multiaddonmanager/bin/multiaddonmanager.so": "66b0bd431ad2dd81",
-        "addons/metamod/multiaddonmanager.vdf": "445f1e0a0211aa08"
+        "addons/metamod/multiaddonmanager.vdf": "445f1e0a0211aa08",
+        "addons/multiaddonmanager/bin/multiaddonmanager.so": "3db116901b0ff215"
       }
     },
     "OpenPrefirePrac": {
@@ -1427,25 +1413,20 @@
       }
     },
     "PanoramaMenuManager": {
-      "version": "MenuManagerCS2-1.3.00",
-      "asset": "MenuManagerCS2-1.3.00-cssharp376.zip",
-      "url": "https://github.com/RRimmer/PanoramaMenuManagerCS2/releases/download/MenuManagerCS2-1.3.00/MenuManagerCS2-1.3.00-cssharp376.zip",
-      "installed": "2026-10-25T23:23:54.398982Z",
+      "version": "MenuManagerCS2-1.3.01",
+      "asset": "MenuManagerCS2-1.3.01-cssharp377.zip",
+      "url": "https://github.com/RRimmer/PanoramaMenuManagerCS2/releases/download/MenuManagerCS2-1.3.01/MenuManagerCS2-1.3.01-cssharp377.zip",
+      "installed": "2026-11-01T15:51:10.8152349Z",
       "baseline": false,
       "files": {
         "addons/counterstrikesharp/plugins/MenuManagerCore/Dapper.dll": "bd8dc38353bcd816",
         "addons/counterstrikesharp/plugins/MenuManagerCore/e_sqlite3.dll": "b7385d722c83fb52",
         "addons/counterstrikesharp/plugins/MenuManagerCore/FastGenericNew.dll": "951402e8e53173e9",
-        "addons/counterstrikesharp/plugins/MenuManagerCore/lang/en.json": "2625c2f691899059",
-        "addons/counterstrikesharp/plugins/MenuManagerCore/lang/ru.json": "f6f48069046b359d",
-        "addons/counterstrikesharp/plugins/MenuManagerCore/lang/russian.json": "57873c3efe03b340",
-        "addons/counterstrikesharp/plugins/MenuManagerCore/lang/tr.json": "851fb1ee68582fe0",
-        "addons/counterstrikesharp/plugins/MenuManagerCore/lang/zh-Hans.json": "3f4c4671256d92e2",
         "addons/counterstrikesharp/plugins/MenuManagerCore/libe_sqlite3.so": "965400c23fde16a1",
         "addons/counterstrikesharp/plugins/MenuManagerCore/McMaster.NETCore.Plugins.dll": "b9481ab7f2d54cc8",
-        "addons/counterstrikesharp/plugins/MenuManagerCore/MenuManagerCore.deps.json": "3f70efe639a1d318",
-        "addons/counterstrikesharp/plugins/MenuManagerCore/MenuManagerCore.dll": "ed123a9f95976104",
-        "addons/counterstrikesharp/plugins/MenuManagerCore/MenuManagerCore.pdb": "0fa589a4ab939355",
+        "addons/counterstrikesharp/plugins/MenuManagerCore/MenuManagerCore.deps.json": "41de293f8057cbeb",
+        "addons/counterstrikesharp/plugins/MenuManagerCore/MenuManagerCore.dll": "aa35bc3194b3bc76",
+        "addons/counterstrikesharp/plugins/MenuManagerCore/MenuManagerCore.pdb": "63a012e7c595e58d",
         "addons/counterstrikesharp/plugins/MenuManagerCore/Microsoft.Data.Sqlite.dll": "b98d957462be4328",
         "addons/counterstrikesharp/plugins/MenuManagerCore/Microsoft.DotNet.PlatformAbstractions.dll": "b1f4ad169fb19274",
         "addons/counterstrikesharp/plugins/MenuManagerCore/Microsoft.Extensions.Configuration.Abstractions.dll": "5def68e1c7d9c1fc",
@@ -1513,9 +1494,9 @@
         "addons/counterstrikesharp/plugins/MenuManagerCore/SQLitePCLRaw.provider.e_sqlite3.dll": "df996bcae63c2cab",
         "addons/counterstrikesharp/plugins/MenuManagerCore/System.Diagnostics.EventLog.dll": "06594f65ad71b2fe",
         "addons/counterstrikesharp/plugins/MenuManagerCore/Tomlyn.dll": "7cb44fc1961ebd16",
-        "addons/counterstrikesharp/shared/MenuManagerApi/MenuManagerApi.deps.json": "8ba9c7af8987bb91",
-        "addons/counterstrikesharp/shared/MenuManagerApi/MenuManagerApi.dll": "a240174a7701180c",
-        "addons/counterstrikesharp/shared/MenuManagerApi/MenuManagerApi.pdb": "0e1d39e610e1e434"
+        "addons/counterstrikesharp/shared/MenuManagerApi/MenuManagerApi.deps.json": "cb980404f44090b7",
+        "addons/counterstrikesharp/shared/MenuManagerApi/MenuManagerApi.dll": "4001b3cc4cddf2a4",
+        "addons/counterstrikesharp/shared/MenuManagerApi/MenuManagerApi.pdb": "3ab28c3b0e3885cb"
       }
     },
     "PlayerSettings": {

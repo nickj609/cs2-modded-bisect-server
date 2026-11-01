@@ -10,8 +10,6 @@ name: Plugin updates
 #   validate.yml also runs on the PR; PRs opened with the default GITHUB_TOKEN don't trigger other workflows.
 
 on:
-  schedule:
-    - cron: "0 6 * * 1"      # Mondays 06:00 UTC
   workflow_dispatch:
     inputs:
       component:

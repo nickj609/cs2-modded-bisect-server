@@ -49,7 +49,7 @@
     "ShowBots": false
   },
   "MapChooser": {
-    "Enabled": true,
+    "Enabled": false,
     "Permission": "@css/changemap",
     "Menus": {
       "change": {
@@ -187,6 +187,366 @@
     },
     "Управление картами": {
       "Icon": "random",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Spiel verwalten": {
+      "Icon": "crosshair",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Karten": {
+      "Icon": "random",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Modi": {
+      "Icon": "trophy",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Einstellungen": {
+      "Icon": "check",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Aufwärmphase": {
+      "Icon": "timer",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Manage game": {
+      "Icon": "crosshair",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Maps": {
+      "Icon": "random",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Modes": {
+      "Icon": "trophy",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Settings": {
+      "Icon": "check",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Warmup": {
+      "Icon": "timer",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Rotation": {
+      "Icon": "refresh",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Rotación": {
+      "Icon": "refresh",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Rotação": {
+      "Icon": "refresh",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Ротация": {
+      "Icon": "refresh",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Rotasyon": {
+      "Icon": "refresh",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Ротація": {
+      "Icon": "refresh",
+      "Danger": false,
+      "Arrow": true
+    },
+    "轮换": {
+      "Icon": "refresh",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Rotācija": {
+      "Icon": "refresh",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Rotáció": {
+      "Icon": "refresh",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Rotatie": {
+      "Icon": "refresh",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Rotacja": {
+      "Icon": "refresh",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Gestionar partida": {
+      "Icon": "crosshair",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Mapas": {
+      "Icon": "random",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Modos": {
+      "Icon": "trophy",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Ajustes": {
+      "Icon": "check",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Calentamiento": {
+      "Icon": "timer",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Gérer la partie": {
+      "Icon": "crosshair",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Cartes": {
+      "Icon": "random",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Paramètres": {
+      "Icon": "check",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Échauffement": {
+      "Icon": "timer",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Játék kezelése": {
+      "Icon": "crosshair",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Pályák": {
+      "Icon": "random",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Módok": {
+      "Icon": "trophy",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Beállítások": {
+      "Icon": "check",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Bemelegítés": {
+      "Icon": "timer",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Pārvaldīt spēli": {
+      "Icon": "crosshair",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Kartes": {
+      "Icon": "random",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Režīmi": {
+      "Icon": "trophy",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Iestatījumi": {
+      "Icon": "check",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Iesildīšanās": {
+      "Icon": "timer",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Spel beheren": {
+      "Icon": "crosshair",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Kaarten": {
+      "Icon": "random",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Instellingen": {
+      "Icon": "check",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Opwarmronde": {
+      "Icon": "timer",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Zarządzaj grą": {
+      "Icon": "crosshair",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Mapy": {
+      "Icon": "random",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Tryby": {
+      "Icon": "trophy",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Ustawienia": {
+      "Icon": "check",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Rozgrzewka": {
+      "Icon": "timer",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Gerenciar jogo": {
+      "Icon": "crosshair",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Configurações": {
+      "Icon": "check",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Aquecimento": {
+      "Icon": "timer",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Управление игрой": {
+      "Icon": "crosshair",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Карты": {
+      "Icon": "random",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Режимы": {
+      "Icon": "trophy",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Настройки": {
+      "Icon": "check",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Разминка": {
+      "Icon": "timer",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Oyunu yönet": {
+      "Icon": "crosshair",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Haritalar": {
+      "Icon": "random",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Modlar": {
+      "Icon": "trophy",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Ayarlar": {
+      "Icon": "check",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Isınma": {
+      "Icon": "timer",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Керування грою": {
+      "Icon": "crosshair",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Карти": {
+      "Icon": "random",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Режими": {
+      "Icon": "trophy",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Налаштування": {
+      "Icon": "check",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Розминка": {
+      "Icon": "timer",
+      "Danger": false,
+      "Arrow": true
+    },
+    "管理游戏": {
+      "Icon": "crosshair",
+      "Danger": false,
+      "Arrow": true
+    },
+    "地图": {
+      "Icon": "random",
+      "Danger": false,
+      "Arrow": true
+    },
+    "模式": {
+      "Icon": "trophy",
+      "Danger": false,
+      "Arrow": true
+    },
+    "设置": {
+      "Icon": "check",
+      "Danger": false,
+      "Arrow": true
+    },
+    "热身": {
+      "Icon": "timer",
       "Danger": false,
       "Arrow": true
     },

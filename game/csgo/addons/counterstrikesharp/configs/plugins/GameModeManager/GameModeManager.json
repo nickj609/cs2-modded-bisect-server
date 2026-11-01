@@ -9,21 +9,21 @@
     "Enabled": true,
     "GameModes": true,
     "GameSettings": true,
-    "Style": "menu",
+    "Style": "native",
     "Percentage": 51,
     "Duration": 30,
     "MinPlayers": 1,
     "Cooldown": 60,
     "AllowSpectators": false,
     "AllowInWarmup": false,
-    "NativeDisplayToken": "#SFUI_vote_panorama_vote"
+    "NativeTitleToken": "#SFUI_vote_panorama_vote_default"
+
   },
   "MapChooser": {
     "GeneratePools": true,
     "TriggerSecondsBeforeEnd": 60,
     "TriggerKillsBeforeEnd": 13,
-    "ModesInPool": 3,
-    "ModeWeight": 1
+    "ModesInVotes": true
   },
   "AdminPanel": {
     "Enabled": true
@@ -334,6 +334,22 @@
         "DefaultMap": "de_nuke",
         "MapGroups": [
           "mg_valve_wingman"
+        ]
+      },
+      {
+        "Name": "Rush",
+        "Config": "rush.cfg",
+        "DefaultMap": "rush_001",
+        "MapGroups": [
+          "mg_rush"
+        ]
+      },
+      {
+        "Name": "Rush (Valve)",
+        "Config": "valve-rush.cfg",
+        "DefaultMap": "rush_001",
+        "MapGroups": [
+          "mg_rush"
         ]
       },
       {

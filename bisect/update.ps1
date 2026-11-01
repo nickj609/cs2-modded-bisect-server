@@ -16,6 +16,7 @@ param(
     # Deletions: files removed from the repo since the deployed commit are deleted on the server (WinSCP).
     [string]$SinceCommit,          # baseline instead of the commit recorded on the server (first deploy: what's on it now, e.g. master)
     [switch]$AllowLargeDelete,     # allow deleting more than 25% of the tracked files
+    [switch]$TestBuild,            # from test-build.ps1: its GameModeManager install isn't an uncommitted change to warn about
     [switch]$PlanDeletions,        # only list what would be deleted; don't stop the server or upload
     [switch]$NoDeletions           # upload only, like before (the deployed commit is not recorded)
 )
@@ -118,7 +119,7 @@ if ($PlanDeletions) {
                             -SftpPassword $credentials.SftpPassword `
                             -LocalPath "$repoRoot\game\csgo" `
                             -RemotePath "/game/csgo" `
-                            -RepoRoot $repoRoot -SinceCommit $SinceCommit -AllowLargeDelete:$AllowLargeDelete -PlanDeletions
+                            -RepoRoot $repoRoot -SinceCommit $SinceCommit -AllowLargeDelete:$AllowLargeDelete -TestBuild:$TestBuild -PlanDeletions
     if ($ok) { exit 0 } else { exit 1 }
 }
 
@@ -145,7 +146,7 @@ if (-not $CustomFilesOnly) {
                           -RemotePath "/game/csgo" `
                           -RepoRoot $syncRepoRoot `
                           -SinceCommit $SinceCommit `
-                          -AllowLargeDelete:$AllowLargeDelete) {
+                          -AllowLargeDelete:$AllowLargeDelete -TestBuild:$TestBuild) {
         Write-Success "Files synced successfully"
     }
     else {

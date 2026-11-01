@@ -7,8 +7,8 @@
   "DefaultMenu": "PanoramaMenu",
   "MenuFlashFix": false,
   "TrimMenuOptions": true,
-  "TrimSelectedOption": 24,
-  "TrimNonSelectedOption": 28,
+  "TrimSelectedOption": 60,
+  "TrimNonSelectedOption": 64,
   "MenuSettingsCommand": [
     "menu",
     "menus"

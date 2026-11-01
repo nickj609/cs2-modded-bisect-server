@@ -108,6 +108,88 @@ foreach ($file in $sourceFiles) {
     if (-not (Test-Path (Join-Path $contentDir $file))) { Stop-WithError "Missing after copying: $file" }
 }
 
+# Apply the theme from addon\menu_theme.css over PMM's menu. The zips were just copied, so this always starts clean.
+$uiCss = Join-Path $contentDir "panorama\styles\custom_game\ui.css"
+$menuXml = Join-Path $contentDir "panorama\layout\custom_game\menu_ui.xml"
+$utf8 = New-Object Text.UTF8Encoding($false)
+$css = [IO.File]::ReadAllText($uiCss) -replace '(?m)^@define accent: [^;]+;', '@define accent: #f5a623;'
+[IO.File]::WriteAllText($uiCss, $css + [IO.File]::ReadAllText((Join-Path $PSScriptRoot "addon\menu_theme.css")), $utf8)
+
+$xml = [IO.File]::ReadAllText($menuXml)
+
+# The WASD and number key footers. PMM's hint can only be plain text, so these are fixed keycaps: keep WASD in step with ButtonsConfig
+# in MenuManagerCore.json. The theme shows each one instead of the hint, in its own style only.
+$hintLine = '<Label id="utils-hint" class="utils-hint stratum-medium-tf" text="{s:hint}" />'
+if (-not $xml.Contains($hintLine)) { Stop-WithError "menu_ui.xml has changed: $hintLine not found" }
+$footer = New-Object Text.StringBuilder
+[void]$footer.AppendLine($hintLine)
+# Each group: its word, what goes between its keys, then the keys
+$keyFooters = [ordered]@{
+    "gmm-keys-wasd"   = @(@("Move", "/", "W", "S"), @("Select", "/", "D", "E"), @("Back", "", "A"), @("Close", "", "R"))
+    "gmm-keys-digits" = @(@("Select", ([string][char]0x2013), "1", "6"), @("Back", "", "8"), @("Next", "", "9"), @("Close", "", "0"))
+}
+foreach ($style in $keyFooters.Keys) {
+    [void]$footer.AppendLine("`t`t`t`t`t<Panel class=`"gmm-keys $style`">")
+    foreach ($group in $keyFooters[$style]) {
+        $keys = @($group | Select-Object -Skip 2)
+        foreach ($key in $keys) {
+            if ($key -ne $keys[0]) { [void]$footer.AppendLine("`t`t`t`t`t`t<Label class=`"gmm-key-or stratum-medium-tf`" text=`"$($group[1])`" />") }
+            $class = if ($group[0] -eq "Close") { "gmm-key gmm-key-close" } else { "gmm-key" }
+            [void]$footer.AppendLine("`t`t`t`t`t`t<Label class=`"$class stratum-bold-tf`" text=`"$key`" />")
+        }
+        $nameClass = if ($group[0] -eq "Close") { "gmm-key-name gmm-key-name-last" } else { "gmm-key-name" }
+        [void]$footer.AppendLine("`t`t`t`t`t`t<Label class=`"$nameClass stratum-medium-tf`" text=`"$($group[0])`" />")
+    }
+    [void]$footer.AppendLine("`t`t`t`t`t</Panel>")
+}
+$xml = $xml.Replace($hintLine, $footer.ToString().TrimEnd())
+
+# PMM's title blends additively, which leaves dark text almost invisible on the orange band
+$titleClass = 'class="utils-title additive stratum-bold-tf"'
+if (-not $xml.Contains($titleClass)) { Stop-WithError "menu_ui.xml has changed: $titleClass not found" }
+$xml = $xml.Replace($titleClass, 'class="utils-title stratum-bold-tf"')
+
+# The divider under the title goes, because the band replaces it. The one above the page counter stays.
+$titleDivider = '<Panel class="utils-divider" />(\s*<Panel class="utils-buttons">)'
+if ($xml -notmatch $titleDivider) { Stop-WithError "menu_ui.xml has changed: the divider above utils-buttons not found" }
+$xml = [regex]::Replace($xml, $titleDivider, '<Panel class="utils-divider gmm-title-divider" />$1')
+
+[IO.File]::WriteAllText($menuXml, $xml, $utf8)
+Write-Host "  Applied the menu theme"
+
+# Carry the vote title tokens to players, for Votes.NativeTitleToken. Valve's uploader only packs resource/overviews, so this
+# needs CS2 Workshop Manager, which reads publish_rules.txt. Compiling doesn't touch it, so it goes straight in the game folder.
+$tokens = Join-Path $PSScriptRoot "..\game\csgo\resource\platform_english.txt"
+New-Item -ItemType Directory -Force -Path (Join-Path $gameDir "resource") | Out-Null
+Copy-Item -LiteralPath $tokens -Destination (Join-Path $gameDir "resource\platform_english.txt") -Force
+[IO.File]::WriteAllText((Join-Path $contentDir "publish_rules.txt"), "`"publish_rules`"`r`n{`r`n`t`"include`"`t`"resource/platform_english.txt`"`r`n}`r`n", $utf8)
+Write-Host "  Added the vote title tokens"
+
+# Add the pictures from build-menu-images.ps1: map files, then a CSS class for each map and mode, as the bridge names them.
+# The compiler only takes a PNG through a file:// reference in CSS, and builds it along with that stylesheet.
+$imageFiles = @()
+$imagesDir = Join-Path $env:USERPROFILE "Documents\CS2\addon-images"
+$manifestPath = Join-Path $imagesDir "images.json"
+if (Test-Path $manifestPath) {
+    $images = [IO.File]::ReadAllText($manifestPath, [Text.Encoding]::UTF8) | ConvertFrom-Json
+    $targetDir = Join-Path $contentDir "panorama\images\custom_game\maps"
+    New-Item -ItemType Directory -Force -Path $targetDir | Out-Null
+    $classes = New-Object Text.StringBuilder
+    foreach ($map in $images.maps.PSObject.Properties) {
+        Copy-Item -LiteralPath (Join-Path $imagesDir "maps\$($map.Value)") -Destination (Join-Path $targetDir $map.Value) -Force
+        $imageFiles += "panorama/images/custom_game/maps/$($map.Value)"
+        $name = [IO.Path]::GetFileNameWithoutExtension($map.Value)
+        [void]$classes.AppendLine(".mi-$name { background-image: url(`"file://{images}/custom_game/maps/$($map.Value)`"); }")
+    }
+    foreach ($mode in $images.modes.PSObject.Properties) {
+        $class = -join ($mode.Name.Trim().ToLowerInvariant().ToCharArray() | ForEach-Object { if ($_ -match '[a-z0-9_-]') { $_ } else { '_' } })
+        $url = if ($mode.Value -like 's2r://*') { $mode.Value } else { "file://{images}/custom_game/$($mode.Value)" }
+        [void]$classes.AppendLine(".mi-$class { background-image: url(`"$url`"); }")
+    }
+    [IO.File]::AppendAllText((Join-Path $contentDir "panorama\styles\custom_game\pmm_mapvote_maps.css"), "`r`n" + $classes.ToString(), $utf8)
+    Write-Host "  Added $($imageFiles.Count) map picture(s)"
+}
+
 # Add the MODE badge color used by GameModeManager's mode entries in the vote
 $mapsCss = Join-Path $contentDir "panorama\styles\custom_game\pmm_mapvote_maps.css"
 if ((Get-Content -LiteralPath $mapsCss -Raw) -notmatch [regex]::Escape(".bd-mode")) {
@@ -131,8 +213,8 @@ finally {
 }
 
 $missing = @()
-foreach ($file in $sourceFiles) {
-    $compiledName = ($file -replace '\.xml$', '.vxml_c') -replace '\.css$', '.vcss_c'
+foreach ($file in ($sourceFiles + $imageFiles)) {
+    $compiledName = (($file -replace '\.xml$', '.vxml_c') -replace '\.css$', '.vcss_c') -replace '\.png$', '_png.vtex_c'
     $compiled = Get-Item -LiteralPath (Join-Path $gameDir $compiledName) -ErrorAction SilentlyContinue
     if (-not $compiled -or $compiled.LastWriteTime -lt $started) { $missing += $compiledName }
 }
@@ -141,7 +223,7 @@ if ($missing.Count -gt 0 -or $exitCode -ne 0) {
     Stop-WithError "Compile failed (exit code $exitCode). Not written: $($missing -join ', ')"
 }
 
-Write-Host "[OK] Addon '$AddonName' is built: $($sourceFiles.Count) files compiled to $gameDir" -ForegroundColor Green
+Write-Host "[OK] Addon '$AddonName' is built: $($sourceFiles.Count) files and $($imageFiles.Count) pictures compiled to $gameDir" -ForegroundColor Green
 Write-Host ""
 Write-Host "Next, publish it by hand:" -ForegroundColor Cyan
 Write-Host "  1. In Steam, launch CS2 with Launch Counter-Strike 2 Workshop Tools and open '$AddonName'."
