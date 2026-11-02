@@ -113,6 +113,23 @@
 	background-color: #4d3514;
 }
 
+/* The orange bar runs the full height of its row, like the admin panel's */
+.utils-item-focus
+{
+	height: 100%;
+}
+
+/* The orange bar for the row under the mouse too, like the row selected with keys */
+.utils-item:hover .utils-item-focus
+{
+	visibility: visible;
+}
+
+.utils-item.is-disabled:hover .utils-item-focus
+{
+	visibility: collapse;
+}
+
 .utils-item.is-focus
 {
 	background-color: #3d2a10;
