@@ -1,6 +1,6 @@
 
 {
-  "prefix": "{lime}[알림]{white}",
+  "prefix": "{red}[알림]{default}",
 
   // 타이머
   "timer_time": "시간: [{lime}{0}{default}] {1}",

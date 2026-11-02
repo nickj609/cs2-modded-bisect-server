@@ -1,5 +1,5 @@
 ﻿{
-  "retakes.prefix": "[{green}RETAKES{default}]",
+  "retakes.prefix": "{red}[RETAKES]{default}",
   "retakes.no_permissions": "您沒有使用此指令的權限。",
   "retakes.enabled": "{red}已停用{default}",
   "retakes.disabled": "{green}已啟用{default}",

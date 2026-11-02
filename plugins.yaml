@@ -181,6 +181,7 @@ components:
     paths:
       - addons/counterstrikesharp/plugins/CS2-SimpleAdmin/
       - addons/counterstrikesharp/shared/CS2-SimpleAdminApi/
+    keep: [addons/counterstrikesharp/plugins/CS2-SimpleAdmin/lang/**]   # our chat prefix colour
       # CS2-SimpleAdmin_StealthModule (hides admins from players) is in the release but not installed
     configs:
       - addons/counterstrikesharp/configs/plugins/CS2-SimpleAdmin/
@@ -349,6 +350,7 @@ components:
       - addons/counterstrikesharp/plugins/disabled/SharpTimer/
       - addons/counterstrikesharp/shared/SharpTimerAPI/
       - addons/counterstrikesharp/gamedata/stgamedata.json
+    keep: [addons/counterstrikesharp/plugins/disabled/SharpTimer/lang/**]   # our chat prefix colour
     configs: [cfg/SharpTimer/]
     notes: >-
       Repository moved from Letaryat/poor-sharptimer. Pinned at 0.3.1x: v0.4.x requires the cs2-tags plugin (TagsApi),
@@ -385,6 +387,7 @@ components:
     paths:
       - addons/counterstrikesharp/plugins/disabled/K4-Arenas/
       - addons/counterstrikesharp/shared/K4-ArenaSharedApi/
+    keep: [addons/counterstrikesharp/plugins/disabled/K4-Arenas/lang/**]   # our chat prefix colour
     configs: [addons/counterstrikesharp/configs/plugins/K4-Arenas/]
 
   - name: K4-Arenas-Bots
@@ -414,6 +417,7 @@ components:
     paths:
       - addons/counterstrikesharp/plugins/disabled/RetakesPlugin/
       - addons/counterstrikesharp/shared/RetakesPluginShared/
+    keep: [addons/counterstrikesharp/plugins/disabled/RetakesPlugin/lang/**]   # our chat prefix colour
     configs: [cfg/cs2-retakes/]
 
   - name: CS2 Instadefuse
@@ -422,6 +426,7 @@ components:
     version: 2.0.0
     module: Instadefuse Plugin
     paths: [addons/counterstrikesharp/plugins/disabled/InstadefusePlugin/]
+    keep: [addons/counterstrikesharp/plugins/disabled/InstadefusePlugin/lang/**]   # our chat prefix colour
 
   - name: CS2 Retakes Allocator
     kind: plugin
@@ -432,6 +437,7 @@ components:
     paths:
       - addons/counterstrikesharp/plugins/disabled/RetakesAllocator/
       - addons/counterstrikesharp/gamedata/RetakesAllocator.json
+    keep: [addons/counterstrikesharp/plugins/disabled/RetakesAllocator/lang/**]   # our chat prefix colour
 
   - name: CS2 Whitelist
     kind: plugin
@@ -467,7 +473,7 @@ components:
       - addons/counterstrikesharp/shared/DeathmatchAPI/
       - addons/counterstrikesharp/gamedata/Deathmatch.json
     configs: [addons/counterstrikesharp/configs/plugins/Deathmatch/]
-    keep: [addons/counterstrikesharp/plugins/disabled/Deathmatch/spawns/**]
+    keep: [addons/counterstrikesharp/plugins/disabled/Deathmatch/spawns/**, addons/counterstrikesharp/plugins/disabled/Deathmatch/lang/**]
 
   - name: OpenPrefirePrac
     kind: plugin
@@ -509,6 +515,7 @@ components:
     version: "26.10.12"
     module: Roll The Dice
     paths: [addons/counterstrikesharp/plugins/disabled/RollTheDice/]
+    keep: [addons/counterstrikesharp/plugins/disabled/RollTheDice/lang/**]   # our chat prefix colour
     configs: [addons/counterstrikesharp/configs/plugins/RollTheDice/]
 
   - name: CS2-MutualScoringPlayers
@@ -517,6 +524,7 @@ components:
     version: 1.0.3
     module: MutualScoringPlayers
     paths: [addons/counterstrikesharp/plugins/disabled/MutualScoringPlayers/]
+    keep: [addons/counterstrikesharp/plugins/disabled/MutualScoringPlayers/lang/**]   # our chat prefix colour
 
   - name: CS2WarcraftMod
     kind: plugin
@@ -564,6 +572,7 @@ components:
     module: SpectatorList
     requires: [PlayerSettings]
     paths: [addons/counterstrikesharp/plugins/disabled/SpectatorList/]
+    keep: [addons/counterstrikesharp/plugins/disabled/SpectatorList/lang/**]   # our chat prefix colour
     configs: [addons/counterstrikesharp/configs/plugins/SpectatorList/]
     notes: README says 16 (release tag); the DLL reports 1.0.5.
 
@@ -581,6 +590,7 @@ components:
     version: "1.1"
     module: SLAYER Football
     paths: [addons/counterstrikesharp/plugins/disabled/SLAYER_Football/]
+    keep: [addons/counterstrikesharp/plugins/disabled/SLAYER_Football/lang/**]   # our chat prefix colour
     configs: [addons/counterstrikesharp/configs/plugins/SLAYER_Football/]
 
   - name: SLAYER_Revive
@@ -589,6 +599,7 @@ components:
     version: 1.3.2
     module: SLAYER_Revive
     paths: [addons/counterstrikesharp/plugins/disabled/SLAYER_Revive/]
+    keep: [addons/counterstrikesharp/plugins/disabled/SLAYER_Revive/lang/**]   # our chat prefix colour
     configs: [addons/counterstrikesharp/configs/plugins/SLAYER_Revive/]
 
   - name: cs2-TeleportKill
@@ -597,4 +608,5 @@ components:
     version: 1.0.1
     module: Teleport Kill
     paths: [addons/counterstrikesharp/plugins/disabled/TeleportKill/]
+    keep: [addons/counterstrikesharp/plugins/disabled/TeleportKill/lang/**]   # our chat prefix colour
     configs: [addons/counterstrikesharp/configs/plugins/TeleportKill/]

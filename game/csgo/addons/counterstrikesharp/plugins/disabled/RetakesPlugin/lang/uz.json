@@ -1,5 +1,5 @@
 {
-  "retakes.prefix": "[{green}RETAKES{default}]",
+  "retakes.prefix": "{red}[RETAKES]{default}",
   "retakes.no_permissions": "Sizda bu buyruqdan foydalanish huquqi yo'q.",
   "retakes.enabled": "{red}o'chirilgan{default}",
   "retakes.disabled": "{green}yoqilgan{default}",

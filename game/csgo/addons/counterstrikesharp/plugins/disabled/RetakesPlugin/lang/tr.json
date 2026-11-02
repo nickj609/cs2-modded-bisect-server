@@ -1,5 +1,5 @@
 {
-  "retakes.prefix": "[{green}RETAKES{default}]",
+  "retakes.prefix": "{red}[RETAKES]{default}",
   "retakes.no_permissions": "Bu komutu kullanma izniniz yok.",
   "retakes.enabled": "{red}devre dışı{default}",
   "retakes.disabled": "{green}etkin{default}",

@@ -1,5 +1,5 @@
 {
-    "Chat.Prefix":                    "{Gold}[{DarkRed}★ {Green}SLAYER Revive {DarkRed}★{Gold}]",
+    "Chat.Prefix":                    "{Red}[SLAYER Revive]{Default}",
     "Chat.GettingRevived":            "{lime}You are getting revived by {gold}{0}",
     "Chat.ReviveDelay":               "{lime}You will be able to Revive again after {gold}{0} {lime}seconds!",
     "Chat.NotEnoughRevive":           "{DarkRed}You can't {lime}Revive {DarkRed}more teammates in this Round!",

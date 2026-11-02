@@ -1,5 +1,5 @@
 {
-  "Chat.Prefix": "{darkred}[Deathmatch]{default}",
+  "Chat.Prefix": "{red}[Deathmatch]{default}",
   "Chat.NewModeStarted": "Starting a new mode type {green}{0}{default}!",
   "Chat.PrimaryWeaponSet": "Your primary weapon has been set to {green}{0}",
   "Chat.SecondaryWeaponSet": "Your secondary weapon has been set to {green}{0}",

@@ -1,5 +1,5 @@
 {
-  "Chat.Prefix": "{darkred}[Deathmatch]{default}",
+  "Chat.Prefix": "{red}[Deathmatch]{default}",
   "Chat.NewModeStarted": "{green}{0}{default} yangi rejim ishga tushirilmoqda!",
   "Chat.PrimaryWeaponSet": "Sizning asosiy qurolingiz {green}{0}{default} ga oʻzgartirildi",
   "Chat.SecondaryWeaponSet": "Sizning ikkinchi qurolingiz {green}{0}{default} ga oʻzgartirildi",

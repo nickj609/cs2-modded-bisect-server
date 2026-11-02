@@ -1,5 +1,5 @@
 {
-    "prefix": "{lime}SharpTimer ●{white}",
+    "prefix": "{red}[SharpTimer]{default}",
 
     //timer
     "timer_time": "Aika: [{lime}{0}{default}] {1}",

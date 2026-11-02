@@ -1,5 +1,5 @@
 {
-  "retakes.prefix": "[{green}RETAKES{default}]",
+  "retakes.prefix": "{red}[RETAKES]{default}",
   "retakes.no_permissions": "У вас нет разрешения на использование этой команды.",
   "retakes.enabled": "{red}отключено{default}",
   "retakes.disabled": "{green}включено{default}",

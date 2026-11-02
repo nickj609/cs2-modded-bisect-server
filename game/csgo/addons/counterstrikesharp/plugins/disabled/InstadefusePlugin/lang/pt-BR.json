@@ -1,5 +1,5 @@
 {
-  "instadefuse.prefix": "[[GREEN]Retakes[NORMAL]] ",
+  "instadefuse.prefix": "[RED][Retakes][NORMAL] ",
   
   "instadefuse.unsuccessful": "{0} estava a [DARK_RED]{1} segundos[WHITE] da desativação.",
   "instadefuse.successful": "{0} defusou com [GREEN]{1} segundos[WHITE] restantes na bomba.",

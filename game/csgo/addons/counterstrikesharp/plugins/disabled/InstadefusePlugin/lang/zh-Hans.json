@@ -1,5 +1,5 @@
 {
-  "instadefuse.prefix": "[[GREEN]Retakes[NORMAL]] ",
+  "instadefuse.prefix": "[RED][Retakes][NORMAL] ",
   
   "instadefuse.unsuccessful": "{0}拆包失败，还需要[DARK_RED]{1}秒[WHITE]才能拆除。",
   "instadefuse.successful": "{0}成功拆包，炸弹还剩下[GREEN]{1}秒[WHITE]。",

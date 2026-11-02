@@ -1,6 +1,6 @@
 {
 	"sa_title": "SimpleAdmin",
-	"sa_prefix": "{lightred}[SA] {default}",
+	"sa_prefix": "{red}[SA] {default}",
 	
 	"sa_unknown": "Unknown",
 	"sa_no_permission": "You do not have permissions to use this command.",

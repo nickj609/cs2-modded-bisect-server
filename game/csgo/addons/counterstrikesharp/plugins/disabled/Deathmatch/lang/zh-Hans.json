@@ -1,5 +1,5 @@
 {
-  "Chat.Prefix": "{darkred}[死亡竞赛]{default}",
+  "Chat.Prefix": "{red}[死亡竞赛]{default}",
   "Chat.NewModeStarted": "正在启动新模式 {green}{0}{default}！",
   "Chat.PrimaryWeaponSet": "您的主武器已设置为 {green}{0}",
   "Chat.SecondaryWeaponSet": "您的副武器已设置为 {green}{0}",

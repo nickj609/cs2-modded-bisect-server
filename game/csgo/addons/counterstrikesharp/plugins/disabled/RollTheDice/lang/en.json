@@ -16,7 +16,7 @@
     "core.debugprint": "{purple}[RollTheDice]{red}[DEBUG] {default}{message}",
     "dice.class.initialize": "{purple}[RollTheDice] {default}Initialized dice class {name}",
     "dice.class.destroy": "{purple}[RollTheDice] {default}Destroyed dice class {name}",
-    "command.prefix": "{purple}[RollTheDice] {default}",
+    "command.prefix": "{red}[RollTheDice] {default}",
     "command.rollthedice.iswarmup": "{purple}[RollTheDice] {default}disabled during Warm-Up!",
     "command.rollthedice.noactiveround": "{purple}[RollTheDice] {default}No active round!",
     "command.rollthedice.notalive": "{purple}[RollTheDice] {default}You need to be alive to roll the dice!",

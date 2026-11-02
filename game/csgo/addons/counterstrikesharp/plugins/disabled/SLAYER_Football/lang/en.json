@@ -1,5 +1,5 @@
 {
-    "Chat.Prefix":                      "{Gold}[{DarkRed}★ {Lime}Football {DarkRed}★{Gold}]",
+    "Chat.Prefix":                      "{Red}[Football]{Default}",
     "Chat.Invalid":                     "{DarkRed}Invalid Value. {White}Please Enter integer Value {Lime}!startgame <goals>",
     "Chat.GameStarted":                 "{Green}Game Started! {Gold}Total Goals to Win: {Lime}{0}",
     "Chat.CTGoal":                      "{Blue}Counter-Terrorists {White}scored a {Gold}Goal! {Purple}Total Goals: {Lime}{0}{DarkRed}/{1}",

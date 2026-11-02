@@ -1,5 +1,5 @@
 {
-  "prefix": "{lime} [surf] {white}",
+  "prefix": "{red}[surf]{default}",
   "timer_time": "时间: [{lime}{0}{default}] {1}",
   "timer_style": "风格: [{lime}{0}{default}]",
   "stop_using_timer": "先用 {lime}!timer{default} 停止你的计时器!",

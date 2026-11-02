@@ -1,5 +1,5 @@
 {
-    "prefix": "{lime}SharpTimer ●{white}",
+    "prefix": "{red}[SharpTimer]{default}",
   
     //Zamanlayıcı
     "timer_time": "Zaman: [{lime}{0}{default}] {1}",
