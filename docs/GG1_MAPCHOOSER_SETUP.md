@@ -91,7 +91,7 @@ The `lang/*.json` files of GG1MapChooser and PMM_GG1MapChooser in this repo are 
 "Nominate", "Make a selection"). `keep` in `plugins.yaml` stops plugin updates from overwriting them, so after an upgrade, compare
 them with the new release and add any new keys by hand. GG1 and the bridge's code are unchanged.
 
-GameModeManager's release zip also carries PanoramaMenuManager, GG1 and PMM_GG1MapChooser with their configs and wording (`GameModeManager/lib/csgo` in that repo). This repo installs them as their own components, so the copies must match: after upgrading one here, or changing its config (badges, titles, GG1 settings), copy its files to `lib/csgo` and release GameModeManager. MultiAddonManager isn't bundled: GameModeManager adds the addon with `mm_add_addon` (`WorkshopAddon`).
+GameModeManager's release zip also carries PanoramaMenuManager, GG1 and PMM_GG1MapChooser with their configs and wording (`bundle/csgo` in that repo). This repo installs them as their own components, so the copies must match: after upgrading one here, or changing its config (badges, titles, GG1 settings), copy its files to `bundle/csgo` and release GameModeManager. MultiAddonManager isn't bundled: GameModeManager adds the addon with `mm_add_addon` (`WorkshopAddon`).
 ## Modes in votes
 
 GameModeManager adds one random other mode to the current pool, reshuffled every map (`MapChooser.ModesInVotes` in

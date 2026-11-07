@@ -38,8 +38,8 @@ $keepRuntimes = @("linux-x64", "linux-musl-x64", "win", "win-x64")
 
 # Define the private members GameModeManager reaches by reflection. A new release that renames one breaks it at run time,
 # which a build can't see. Names are looked for in the DLL's metadata; nothing is loaded. The bundled plugins' lists are in
-# GameModeManager's Core/ReflectedMembers.cs. CS2-SimpleAdmin isn't bundled, so its list is here.
-$reflectedSource = Get-Content (Join-Path $gmm "GameModeManager/Core/ReflectedMembers.cs") -Raw
+# GameModeManager's src/GameModeManager/Core/ReflectedMembers.cs. CS2-SimpleAdmin isn't bundled, so its list is here.
+$reflectedSource = Get-Content (Join-Path $gmm "src/GameModeManager/Core/ReflectedMembers.cs") -Raw
 function Get-ReflectedList([string]$Name) {
     $list = [regex]::Match($reflectedSource, "string\[\] $Name\s*=\s*\{(.*?)\}", 'Singleline')
     if (-not $list.Success) { throw "No $Name list in GameModeManager's ReflectedMembers.cs" }
@@ -65,7 +65,7 @@ foreach ($name in $Component) {
 # Copy a folder into the bundle when its main DLL changed. Configs and lang files stay: GameModeManager ships its own wording.
 foreach ($folder in $bundleFolders.Keys) {
     $source = Join-Path $repo "game/csgo/addons/counterstrikesharp/$folder"
-    $target = Join-Path $gmm "GameModeManager/lib/csgo/addons/counterstrikesharp/$folder"
+    $target = Join-Path $gmm "bundle/csgo/addons/counterstrikesharp/$folder"
     if (-not (Test-Path $source)) { continue }
     $dll = $bundleFolders[$folder]
     if ((Test-Path (Join-Path $target $dll)) -and (Get-FileHash (Join-Path $source $dll)).Hash -eq (Get-FileHash (Join-Path $target $dll)).Hash) { continue }

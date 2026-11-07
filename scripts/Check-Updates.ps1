@@ -118,7 +118,7 @@ $drift = @()
 foreach ($component in $bundled.Keys) {
     $path = "addons/counterstrikesharp/" + $bundled[$component]
     $server = Join-Path $repo "game/csgo/$path"
-    $bundle = Join-Path $gmm "GameModeManager/lib/csgo/$path"
+    $bundle = Join-Path $gmm "bundle/csgo/$path"
     if ((Test-Path $server) -and (Test-Path $bundle) -and (Get-FileHash $server).Hash -ne (Get-FileHash $bundle).Hash) { $drift += $component }
 }
 if ($drift.Count -gt 0) {
