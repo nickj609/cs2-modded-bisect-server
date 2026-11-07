@@ -1,8 +1,14 @@
-# Shared by build-menu-images.ps1, build-menu-addon.ps1, render-visuals.ps1 and Check-Visuals.ps1. Runs on Windows PowerShell 5.1.
+# Shared by bisect\build-menu-images.ps1, Check-Visuals.ps1, and GameModeManager's tools\build-menu-addon.ps1 and tools\render-visuals.ps1.
+# Runs on Windows PowerShell 5.1.
 
 $script:VisualsDir = Join-Path $env:USERPROFILE "Documents\CS2\addon-images"
 $script:AddonStamp = Join-Path $script:VisualsDir "addon-build.json"
 $script:RenderStamp = Join-Path $script:VisualsDir "visuals-render.json"
+
+# The addon's theme, footers, mockups and build script are in GameModeManager, next to this repo
+function Get-GameModeManagerRepo([string]$Repo) {
+    return Join-Path (Split-Path -Parent $Repo) "GameModeManager"
+}
 
 # Every map in gamemodes_server.txt: name -> workshop ID, "" for an official map. The same rule as GameModeManager's MapGroupManager.
 function Get-ServerMaps([string]$Repo) {
@@ -40,8 +46,8 @@ function Get-FilesHash([string[]]$Files) {
 
 # What the addon is built from. A change to any of these means it needs building and uploading again.
 function Get-AddonInputsHash([string]$Repo) {
-    $bisect = Join-Path $Repo "bisect"
-    $files = @("addon\menu_theme.css", "addon\vote_footer.css", "build-menu-addon.ps1") | ForEach-Object { Join-Path $bisect $_ }
+    $gmm = Get-GameModeManagerRepo $Repo
+    $files = @("addon\menu_theme.css", "addon\vote_footer.css", "tools\build-menu-addon.ps1") | ForEach-Object { Join-Path $gmm $_ }
     $versions = @("PanoramaMenuManager", "PMM_GG1MapChooser", "PMM_SimpleAdmin") | ForEach-Object { Get-PluginVersion $Repo $_ }
     $pictures = ""
     $manifest = Join-Path $script:VisualsDir "images.json"
@@ -54,8 +60,8 @@ function Get-AddonInputsHash([string]$Repo) {
 
 # What the screenshots and thumbnail are drawn from
 function Get-VisualsInputsHash([string]$Repo) {
-    $bisect = Join-Path $Repo "bisect"
-    return Get-FilesHash (@("addon\mockups\scenes.html", "addon\mockups\thumbnail.html", "addon\menu_theme.css", "addon\vote_footer.css") | ForEach-Object { Join-Path $bisect $_ })
+    $gmm = Get-GameModeManagerRepo $Repo
+    return Get-FilesHash (@("addon\mockups\scenes.html", "addon\mockups\thumbnail.html", "addon\menu_theme.css", "addon\vote_footer.css") | ForEach-Object { Join-Path $gmm $_ })
 }
 
 function Write-Stamp([string]$Path, [string]$Hash) {

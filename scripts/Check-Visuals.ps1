@@ -68,7 +68,7 @@ foreach ($mode in [regex]::Matches($modesSection, '"Name":\s*"([^"]+)",\s*"Confi
 # The addon: built from the current files, and uploaded since
 $stamp = Read-Stamp $script:AddonStamp
 if (-not $stamp -or $stamp.hash -ne (Get-AddonInputsHash $repo)) {
-    Write-Output "The addon's files or plugin versions changed since its last build. Close CS2, run bisect\build-menu-addon.ps1, then upload it from Workshop Tools."
+    Write-Output "The addon's files or plugin versions changed since its last build. Close CS2, run GameModeManager's tools\build-menu-addon.ps1, then upload it from Workshop Tools."
 }
 elseif ($WorkshopId) {
     try {
@@ -93,7 +93,7 @@ foreach ($name in $zips.Keys) {
 # Screenshots and thumbnail: drawn from the mockups, which should follow the menu theme
 $render = Read-Stamp $script:RenderStamp
 if (-not $render -or $render.hash -ne (Get-VisualsInputsHash $repo)) {
-    Write-Output "The mockups or menu theme changed since the screenshots were made. Update bisect\addon\mockups if the menus look different, run bisect\render-visuals.ps1, commit GameModeManager's docs\images, and upload the changed images on the Workshop page."
+    Write-Output "The mockups or menu theme changed since the screenshots were made. Update GameModeManager's addon\mockups if the menus look different, run its tools\render-visuals.ps1, commit GameModeManager's docs\images, and upload the changed images on the Workshop page."
 }
 
 # GameModeManager's README lists what its zip carries

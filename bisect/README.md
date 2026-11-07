@@ -23,7 +23,7 @@ This repository automates install/update of [cs2-modded-server](https://github.c
 - **update.ps1** – manual update (single) or sync custom files only
 - **test-build.ps1** – build GameModeManager from its repo and deploy it to the test server
 - **deploy.ps1** – run the checks, then deploy to the test server and production
-- **build-menu-addon.ps1** – build the Workshop addon with the menu files
+- The Workshop addon with the menu files is built by GameModeManager's `tools\build-menu-addon.ps1`, from its `addon` folder and this repo's map pictures
 - **start.ps1** – start a server via API
 - **stop.ps1** – stop a server via API
 - **uninstall.ps1** – remove scheduled tasks and optionally clear credentials
