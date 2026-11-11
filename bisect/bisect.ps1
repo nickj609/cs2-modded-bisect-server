@@ -283,7 +283,7 @@ function Sync-CustomFiles {
             $backupResult = $session.SynchronizeDirectories(
                 [WinSCP.SynchronizationMode]::Local,
                 $backupPath,
-                "/home/container/custom_files",
+                "/custom_files", # From the SFTP root (/home/container), like the main sync and the overrides
                 $false,
                 $false,
                 [WinSCP.SynchronizationCriteria]::Time,
@@ -302,7 +302,8 @@ function Sync-CustomFiles {
         if (Test-Path $repoOverrides) {
             $overrideOptions = New-Object WinSCP.TransferOptions
             $overrideOptions.TransferMode = [WinSCP.TransferMode]::Binary
-            $overrideResult = $session.PutFiles((Join-Path $repoOverrides "*"), "/home/container/game/", $false, $overrideOptions)
+            # "/game/" from the SFTP root (/home/container): "/home/container/game/" landed in /home/container/home/container/game
+            $overrideResult = $session.PutFiles((Join-Path $repoOverrides "*"), "/game/", $false, $overrideOptions)
             $overrideResult.Check()
             Write-Status "Uploaded $($overrideResult.Transfers.Count) override(s) from custom_files/game"
         }

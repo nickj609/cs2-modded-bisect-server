@@ -241,6 +241,9 @@ public sealed class Updater
                 {
                     Directory.CreateDirectory(Path.GetDirectoryName(target)!);
                     File.Copy(src, target, overwrite: true);
+                    // File.Copy keeps the release's date, often older than the server's copy, and the deploy only
+                    // uploads files newer than the server's (SharpTimer 0.4.2 stayed at 0.3.1x that way). Now is newer.
+                    File.SetLastWriteTimeUtc(target, DateTime.UtcNow);
                 }
             }
         }

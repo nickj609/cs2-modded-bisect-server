@@ -26,7 +26,7 @@ components:
     source:
       url: "https://www.metamodsource.net/downloads.php?branch=dev"
       pattern: 'https?://[^"''\s<>]+/mmsource-(?<version>[\d.]+-git\d+)-linux\.tar\.gz'
-    version: 2.0.0-git1483
+    version: 2.0.0-git1490
     paths:
       - addons/metamod/
       - addons/metamod.vdf
@@ -122,7 +122,7 @@ components:
     notes: >-
       Menu engine (capability menu:nfcore) for GameModeManager 2.0+, PMM_GG1MapChooser and PMM_SimpleAdmin.
       Its release also ships empty PlayerSettings / PlayerSettingsApi / AnyBaseLib stubs; they are NOT installed because
-      SpectatorList uses the real PlayerSettings API (PMM's README: don't overwrite real copies).
+      the real PlayerSettings plugin is installed below (PMM's README: don't overwrite real copies).
       On start it writes shared/CS2MenuManager/CS2MenuManager.dll on the server ("CS2MenuManagerCompat"); that file is
       not in the repo. Players need its panorama files from the client workshop addon: see docs/PANORAMA_MENU_SETUP.md.
 
@@ -225,7 +225,7 @@ components:
     kind: plugin
     source: { github: nickj609/GameModeManager }
     asset: GameModeManager_v*.zip
-    version: v2.0.0
+    version: 2.4.0-test.b913e21
     module: GameModeManager
     always_loaded: true
     requires: [PanoramaMenuManager, GG1MapChooser]
@@ -236,19 +236,22 @@ components:
       - addons/counterstrikesharp/configs/plugins/GameModeManager/
       - cfg/settings/
       - cfg/warmup/
+      - cfg/actions/
 
   - name: PlayerSettings
     kind: plugin
     source: { github: NickFox007/PlayerSettingsCS2 }
     version: 0.9.3
-    pin: true                # only SpectatorList needs it
+    pin: true                # SpectatorList needed it; kept after SpectatorList was removed
     module: PlayerSettings [Core]
     always_loaded: true
     requires: [AnyBaseLib]
     paths:
       - addons/counterstrikesharp/plugins/PlayerSettings/
       - addons/counterstrikesharp/shared/PlayerSettingsApi/
-    notes: Dependency of SpectatorList.
+    notes: >-
+      Was a dependency of SpectatorList, which was removed (it was broken, and crashed the server). Nothing in plugins.yaml
+      needs it now; it stays because PanoramaMenu looks for a real PlayerSettings. Remove it (and AnyBaseLib) separately.
 
   - name: AnyBaseLib
     kind: shared
@@ -263,7 +266,7 @@ components:
   - name: Inventory Simulator
     kind: plugin
     source: { github: ianlucas/cs2-css-inventory-simulator }
-    version: "3.7.2"
+    version: "3.8.1"
     module: InventorySimulator
     always_loaded: true
     paths:
@@ -343,8 +346,7 @@ components:
   - name: SharpTimer
     kind: plugin
     source: { github: SharpTimer/SharpTimer }
-    version: 0.3.1x
-    pin: true
+    version: v0.4.2
     module: SharpTimer
     paths:
       - addons/counterstrikesharp/plugins/disabled/SharpTimer/
@@ -353,9 +355,22 @@ components:
     keep: [addons/counterstrikesharp/plugins/disabled/SharpTimer/lang/**]   # our chat prefix colour
     configs: [cfg/SharpTimer/]
     notes: >-
-      Repository moved from Letaryat/poor-sharptimer. Pinned at 0.3.1x: v0.4.x requires the cs2-tags plugin (TagsApi),
-      whose repository is archived (CounterStrike2-Plugins-Archive/cs2-tags). Unpin after adding cs2-tags as a component.
+      Repository moved from Letaryat/poor-sharptimer. 0.4.x needs the cs2-tags plugin (TagsApi), the Tags component below;
+      0.3.1x stopped loading on Linux after a CS2 update ("Invalid function pointer": its signatures were out of date).
       Database/ holds SQL migrations shipped with the plugin (not player data), so it is updated with the plugin.
+
+  - name: Tags
+    kind: plugin
+    source: { github: CounterStrike2-Plugins-Archive/cs2-tags }
+    version: v1.15
+    module: Tags
+    paths:
+      - addons/counterstrikesharp/plugins/disabled/cs2-tags/
+      - addons/counterstrikesharp/shared/TagsApi/
+    notes: >-
+      cs2-tags: chat and clan tags, and the TagsApi SharpTimer 0.4.x needs. The repository is archived, so it won't get
+      fixes. In disabled/: the cfgs that load SharpTimer (bhop, course, kz, surf) load it just before, and
+      unload_plugins.cfg unloads it, so it doesn't tag chat in other modes. Its ModuleName is "Tags".
 
   - name: STFixes
     kind: plugin
@@ -365,7 +380,11 @@ components:
     paths:
       - addons/counterstrikesharp/plugins/disabled/STFixes/
       - addons/counterstrikesharp/gamedata/cssharpfixes.json
-    notes: ModuleName comes from another class (STFixes/Config/ModuleInformation.cs), so the checker can't read it; set here.
+    notes: >-
+      ModuleName comes from another class (STFixes/Config/ModuleInformation.cs), so the checker can't read it; set here.
+      Not loaded: bhop, course, kz and surf.cfg have its css_plugins load commented out. 1.0.5 (Aug 2025, the last
+      release) calls CBaseEntity.Speed, which CounterStrikeSharp 1.0.379 removed, so its trigger_push fix throws on every
+      touch, its water patch's signature is out of date, and unloading it crashed the server. SharpTimer doesn't need it.
 
   - name: GunGame
     kind: plugin
@@ -564,17 +583,6 @@ components:
     module: Weapon Speed
     paths: [addons/counterstrikesharp/plugins/disabled/WeaponSpeed/]
     configs: [addons/counterstrikesharp/configs/plugins/WeaponSpeed/]
-
-  - name: SpectatorList-CS2
-    kind: plugin
-    source: { github: srwiruwiru/SpectatorList-CS2 }
-    version: "16"
-    module: SpectatorList
-    requires: [PlayerSettings]
-    paths: [addons/counterstrikesharp/plugins/disabled/SpectatorList/]
-    keep: [addons/counterstrikesharp/plugins/disabled/SpectatorList/lang/**]   # our chat prefix colour
-    configs: [addons/counterstrikesharp/configs/plugins/SpectatorList/]
-    notes: README says 16 (release tag); the DLL reports 1.0.5.
 
   - name: CS2-PlayerModelChanger
     kind: plugin

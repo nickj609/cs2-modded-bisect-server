@@ -47,7 +47,8 @@ function Get-FilesHash([string[]]$Files) {
 # What the addon is built from. A change to any of these means it needs building and uploading again.
 function Get-AddonInputsHash([string]$Repo) {
     $gmm = Get-GameModeManagerRepo $Repo
-    $files = @("addon\menu_theme.css", "addon\vote_footer.css", "tools\build-menu-addon.ps1") | ForEach-Object { Join-Path $gmm $_ }
+    $files = @("addon\menu_theme.css", "addon\vote_footer.css", "addon\admin_theme.css", "tools\build-menu-addon.ps1",
+        "addon\images\notify_ok.png", "addon\images\notify_warn.png", "addon\images\notify_err.png") | ForEach-Object { Join-Path $gmm $_ }
     $versions = @("PanoramaMenuManager", "PMM_GG1MapChooser", "PMM_SimpleAdmin") | ForEach-Object { Get-PluginVersion $Repo $_ }
     $pictures = ""
     $manifest = Join-Path $script:VisualsDir "images.json"
@@ -61,7 +62,7 @@ function Get-AddonInputsHash([string]$Repo) {
 # What the screenshots and thumbnail are drawn from
 function Get-VisualsInputsHash([string]$Repo) {
     $gmm = Get-GameModeManagerRepo $Repo
-    return Get-FilesHash (@("addon\mockups\scenes.html", "addon\mockups\thumbnail.html", "addon\menu_theme.css", "addon\vote_footer.css") | ForEach-Object { Join-Path $gmm $_ })
+    return Get-FilesHash (@("addon\mockups\scenes.html", "addon\mockups\thumbnail.html", "addon\menu_theme.css", "addon\vote_footer.css", "addon\admin_theme.css") | ForEach-Object { Join-Path $gmm $_ })
 }
 
 function Write-Stamp([string]$Path, [string]$Hash) {

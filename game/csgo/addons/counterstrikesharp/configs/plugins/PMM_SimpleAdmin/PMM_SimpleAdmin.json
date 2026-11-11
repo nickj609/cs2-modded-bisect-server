@@ -100,6 +100,1766 @@
     "ShowBots": false
   },
   "Items": {
+    "Add Admin": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Adicionar Admin": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Admin hinzufügen": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Advertencia": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Agregar Administrador": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Ajouter un administrateur": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "At": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Atdzimt": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Atdzīvināt": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Avertir": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Aviso": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Ağzını Kapat": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Bez šķēršļiem": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Boyut Değiştir": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Brīdināt": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Callar": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Cambiar Mapa": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Cambiar Tamaño": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Cambio de modo": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Change Map": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Changement de mode": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Changer de carte": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Chat stummschalten": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Comandos Personalizados": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Commandes personnalisées": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Congelar": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Custom Commands": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Daj Broń": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Daj broń": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Dar Arma": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Definir Dinheiro": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Definir Gravidade": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Definir HP": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Definir Velocidade": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Derniers joueurs": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Dieva Režīms": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Dieva režīms": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Dodaj administratora": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Dondur": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Donner Arme": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Donner une arme": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Dot Ieroci": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Dot ieroci": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Duvar Arkası Modu": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Définir Argent": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Définir Gravité": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Définir HP": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Définir Vitesse": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Définir l'argent": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Définir la gravité": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Définir la vitesse": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Définir les PV": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Eigene Befehle": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Einfrieren": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Eklentileri Yönet": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Eliminar Armas": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Establecer Dinero": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Establecer Gravedad": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Establecer HP": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Establecer Velocidad": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Establecer Vida": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Expulsar": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Expulser": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Force Team": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Forcer l'équipe": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Forzar Equipo": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Forçar Time": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Freeze": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Gag": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Geld Festlegen": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Geld setzen": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Geler": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Gerenciar Plugins": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Gerir Plugins": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Geschwindigkeit Festlegen": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Geschwindigkeit setzen": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Gestionar plugins": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Gifler": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Give Weapon": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "God Mode": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Golpear": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Gottmodus": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Gravitation setzen": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Größe Ändern": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Gérer les plugins": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "HP Ayarla": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "HP Festlegen": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Haritayı Değiştir": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Hız Ayarla": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Iestatīt gravitāciju": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Iestatīt naudu": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Iestatīt veselību": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Iestatīt ātrumu": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Izraidīt": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Izslēgt runu": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Jogadores recentes": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Jugadores recientes": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Kick": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Kicken": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Klaps": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Klusums": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Komendy niestandardowe": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Komplett stummschalten": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Latanie": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Letzte Spieler": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Lp setzen": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Mainīt Izmēru": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Mainīt karti": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Map wechseln": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Matar": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Mod değişimi": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Mode Dieu": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Mode Spectateur": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Mode change": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Modo Deus": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Modo Dios": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Modo Espectador": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Moduswechsel": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Moduswissel": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Mudar Mapa": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Mutar": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Mute": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Muter": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Módváltás": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "No Clip": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Noclip": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Nogalināt": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Noklusināt": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Noņemt Ieročus": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Noņemt ieročus": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Odrodzenie": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Ostatni gracze": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Ostrzeżenie": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Para Ayarla": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Pielāgotās komandas": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Pievienot administratoru": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Plašs": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Plugins Manage": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Plugins verwalten": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Pārvaldīt spraudņus": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Pēdējie spēlētāji": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Quitar Armas": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Reanimar": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Reaparecer": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Recent players": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Redimensionar": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Redimensionner": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Remover Armas": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Resize Player": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Respawn": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Ressurgir": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Retirer Armes": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Retirer les armes": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Režīma maiņa": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Réapparaître": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Réapparition": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Réduire au silence": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Salauzt": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Sasaldēt": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Schwerkraft Festlegen": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Sessizlik": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Set Gravity": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Set HP": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Set Hp": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Set Money": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Set Speed": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Silah Ver": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Silahları Al": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Silahları Çıkart": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Silence": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Silenciar": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Silencio": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Silêncio": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Sin Colisión": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Slap": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Slay": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Son oyuncular": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Sprachchat stummschalten": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Spēka komanda": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Strip Weapons": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Sustur": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Takımı Zorla": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Tanrı Modu": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Tapa": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Team zuweisen": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Tekrar Doğma": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Tokatla": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Troca de modo": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Tryb Boga": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Tryb Latania": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Tuer": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Ucisz": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Uderz": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Ustaw Grawitację": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Ustaw HP": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Ustaw Pieniądze": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Ustaw Prędkość": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Ustaw grawitację": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Ustaw pieniądze": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Ustaw prędkość": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Usuń bronie": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Uyarı": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Uzstādīt Gravitāciju": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Uzstādīt HP": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Uzstādīt Naudu": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Uzstādīt Ātrumu": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Waffe Geben": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Waffe gegeben": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Waffen Entfernen": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Waffen abnehmen": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Warn": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Warnen": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Wiederbeleben": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Wycisz": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Wymuś drużynę": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Wyrzuć": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Yeniden Doğma": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Yer Çekimi Ayarla": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Yerçekimi Ayarla": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Yönetici Ekle": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Zabierz Bronie": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Zabij": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Zaknebluj": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Zamroź": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Zamrożenie": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Zarządzaj pluginami": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Zmiana trybu": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Zmień Rozmiar": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Zmień mapę": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "töten": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Öldür": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Özel Komutlar": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Возрождение": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Выгнать": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Выдать Оружие": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Выдать оружие": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Добавить администратора": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Забрать Оружие": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Заглушить": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Заморозить": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Зміна режиму": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Изменить Размер": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Отключить звук": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Пользовательские команды": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Последние игроки": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Предупреждение": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Принудить к команде": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Режим Бога": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Режим бесконечного прохождения": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Режим бога": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Смена режима": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Сменить карту": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Тишина": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Убить": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Удалить оружие": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Управление плагинами": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Установить HP": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Установить Гравитацию": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Установить Деньги": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Установить Скорость": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Установить гравитацию": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Установить деньги": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Установить здоровье": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Установить скорость": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Шлепнуть": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "آخرین بازیکنان": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "إحياء": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "إدارة الإضافات": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "إضافة مسؤول": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "إعادة الظهور": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "إعطاء سلاح": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "اجبار تیم": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "احیا": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "اخراج": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "افزودن مدیر": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "الأوامر المخصصة": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "اللا تصادم": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "اللاعبون الأخيرون": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "باززایی": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "بدون بریدن": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "بدون قصاصات": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "برداشتن اسلحه": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "بی‌صدا کردن": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "تجريد الأسلحة": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "تجميد": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "تحذير": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "تعيين الجاذبية": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "تعيين السرعة": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "تعيين الصحة": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "تعيين المال": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "تغيير الحجم": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "تغيير الخريطة": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "تغییر اندازه": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "تغییر نقشه": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "تنظیم جاذبه": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "تنظیم سرعت": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "تنظیم سلامت": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "تنظیم پلیر": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "تنظیم پول": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "تنظیم گرانش": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "حالت خدا": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "دادن اسلحه": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "دادن سلاح": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "دستورات سفارشی": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "سکوت": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "صفعة": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "صمت": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "ضبط الجاذبية": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "ضبط الحياة": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "ضبط السرعة": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "ضبط المال": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "طرد": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "فرض الفريق": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "قتل": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "كتم": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "مدیریت پلاگین‌ها": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "ناپدیدی": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "نزع الأسلحة": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "هشدار": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "وضع الإله": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "وضع الله": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "چپاد زدن": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "کشتن": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "گرفتن سلاح‌ها": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "یخ زدن": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "یخ‌زدن": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "上帝模式": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "冻结": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "击杀": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "复活": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "强制分队": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "掌掴": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "插件管理": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "更换地图": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "最近的玩家": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "模式切换": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "沉默": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "添加管理员": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "禁言": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "移除武器": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "穿墙模式": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "给予武器": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "自定义命令": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "警告": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "设置生命值": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "设置速度": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "设置重力": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "设置金钱": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "调整大小": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "踢出": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "重生": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
+    "静音": {
+      "Icon": "",
+      "Danger": false,
+      "Arrow": true
+    },
     "Управление игроками": {
       "Icon": "teamplayer",
       "Danger": false,
@@ -237,6 +1997,71 @@
     },
     "Warmup": {
       "Icon": "timer",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Actions": {
+      "Icon": "fast",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Aktionen": {
+      "Icon": "fast",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Acciones": {
+      "Icon": "fast",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Műveletek": {
+      "Icon": "fast",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Darbības": {
+      "Icon": "fast",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Acties": {
+      "Icon": "fast",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Akcje": {
+      "Icon": "fast",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Ações": {
+      "Icon": "fast",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Действия": {
+      "Icon": "fast",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Eylemler": {
+      "Icon": "fast",
+      "Danger": false,
+      "Arrow": true
+    },
+    "Дії": {
+      "Icon": "fast",
+      "Danger": false,
+      "Arrow": true
+    },
+    "操作": {
+      "Icon": "fast",
+      "Danger": false,
+      "Arrow": true
+    },
+    "MatchZy": {
+      "Icon": "star",
       "Danger": false,
       "Arrow": true
     },

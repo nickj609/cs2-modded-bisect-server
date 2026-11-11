@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v10.0": {
-      "GameModeManager.Shared/2.0.0": {
+      "GameModeManager.Shared/2.4.0": {
         "runtime": {
           "GameModeManager.Shared.dll": {}
         }
@@ -14,7 +14,7 @@
     }
   },
   "libraries": {
-    "GameModeManager.Shared/2.0.0": {
+    "GameModeManager.Shared/2.4.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
